@@ -1,5 +1,5 @@
 {
-  "name": "PocArchiverBare",
+  "name": "poc-archiver-bare",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
     "@openspacelabs/react-native-zoomable-view": "^2.1.5",
@@ -17,6 +18,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "@shopify/flash-list": "1.6.2",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "buffer": "^6.0.3",
     "crypto-es": "^2.1.0",
     "date-fns": "^2.30.0",
@@ -25,9 +27,10 @@
     "react-native-gesture-handler": "~2.13.4",
     "react-native-paper": "^5.11.1",
     "react-native-reanimated": "~3.5.4",
-    "react-native-safe-area-context": "4.7.4",
+    "react-native-safe-area-context": "^4.7.4",
     "react-native-screens": "~3.27.0",
     "react-native-svg": "13.14.0",
+    "react-native-vector-icons": "^10.0.1",
     "react-native-webview": "13.6.2"
   },
   "devDependencies": {
@@ -43,6 +46,8 @@
     "eslint": "^8.52.0",
     "jest": "^29.7.0",
     "metro-react-native-babel-preset": "0.77.0",
+    "npm-license-crawler": "^0.2.1",
+    "patch-package": "^8.0.0",
     "prettier": "^3.0.3",
     "react-test-renderer": "18.2.0",
     "typescript": "5.2.2"
