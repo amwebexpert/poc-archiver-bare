@@ -4,7 +4,10 @@
 
 ## This app includes the following proof of concept
 
-- NA
+- `react-native-network-logger`
+- `jail-monkey`
+- `react-native-device-info`
+- more to come...
 
 ## TODOs
 
