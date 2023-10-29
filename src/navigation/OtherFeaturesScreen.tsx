@@ -1,15 +1,21 @@
-import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 import { RootStackParamList } from "./MainNavigation";
+import { loadUsersDemo } from "./OtherFeaturesScreen.utils";
 
 const OtherFeaturesScreen = () => {
   const styles = useStyles();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  useEffect(() => {
+    loadUsersDemo();
+  }, []);
 
   return (
     <AppLayout title="Miscellaneous">
@@ -31,6 +37,15 @@ const OtherFeaturesScreen = () => {
             onPress={() => navigation.navigate("DeviceInfoScreen")}
             icon="information-outline">
             Device info
+          </Button>
+
+          <Button
+            style={styles.category}
+            icon="network"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("NetworkLoggerScreen")}>
+            Network
           </Button>
         </ScrollView>
       </View>

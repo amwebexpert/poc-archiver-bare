@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import NetworkLogger from "react-native-network-logger";
 
 import { AboutScreen } from "../features/about/AboutScreen";
 import { JailMonkeyScreen } from "../features/device-info/JailMonkeyScreen";
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   OtherDemos: undefined;
   JailMonkeyScreen: { id: number } | undefined;
   DeviceInfoScreen: undefined;
+  NetworkLoggerScreen: undefined;
 
   About: undefined;
 };
@@ -28,6 +30,7 @@ const MainNavigation = (): JSX.Element => {
       <Stack.Screen name="OtherDemos" component={OtherFeaturesScreen} />
       <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />
       <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
+      <Stack.Screen name="NetworkLoggerScreen" component={NetworkLogger} />
 
       <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>

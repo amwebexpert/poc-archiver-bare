@@ -47,6 +47,12 @@
         "licenseUrl": "https://github.com/welldone-software/why-did-you-render/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "axios@1.6.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/axios/axios",
+        "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "buffer@6.0.3": {
         "licenses": "MIT",
         "repository": "https://github.com/feross/buffer",
