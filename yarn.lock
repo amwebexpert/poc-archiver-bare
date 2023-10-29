@@ -6741,6 +6741,11 @@ react-native-gesture-handler@~2.13.4:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-network-logger@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/react-native-network-logger/-/react-native-network-logger-1.15.0.tgz#e333ac57f19875a5d4d797498b144a42b37e8a1e"
+  integrity sha512-/nxAC6iCWf7dwD4LB6hTV64P/wnMj75oSDxgKKSJXDO1m0yGiZwMQzC9fcAydMM9lqKWRS5T4jPUPinZNu7VOQ==
+
 react-native-paper@^5.11.1:
   version "5.11.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-5.11.1.tgz#34f612d6fb28099334db08a1bd109086ea91dcac"
