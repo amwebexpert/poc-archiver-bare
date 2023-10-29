@@ -9,6 +9,7 @@ import OtherFeaturesScreen from "./OtherFeaturesScreen";
 import DeviceInfoScreen from "../features/device-info/DeviceInfoScreen";
 
 const Stack = createNativeStackNavigator();
+const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
 
 // https://stackoverflow.com/a/69368480/704681
 export type RootStackParamList = {
@@ -30,7 +31,7 @@ const MainNavigation = (): JSX.Element => {
       <Stack.Screen name="OtherDemos" component={OtherFeaturesScreen} />
       <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />
       <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
-      <Stack.Screen name="NetworkLoggerScreen" component={NetworkLogger} />
+      <Stack.Screen name="NetworkLoggerScreen" component={NetworkLoggerScreen} />
 
       <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>
