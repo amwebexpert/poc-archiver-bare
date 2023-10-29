@@ -1,13 +1,15 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
+import { RootStackParamList } from "./MainNavigation";
 
 const OtherFeaturesScreen = () => {
   const styles = useStyles();
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <AppLayout title="Miscellaneous">
@@ -18,7 +20,7 @@ const OtherFeaturesScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("JailMonkey")}
+            onPress={() => navigation.navigate("DeviceInfo")}
             icon="login">
             Jail broken detect
           </Button>
