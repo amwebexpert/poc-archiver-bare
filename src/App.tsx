@@ -1,16 +1,15 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {Provider as PaperProvider} from 'react-native-paper';
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider as PaperProvider } from "react-native-paper";
 
-import {SnackbarProvider} from './components/snack-bar/SnackbarProvider';
-import MainNavigation from './navigation/MainNavigation';
-import {appTheme} from './theme';
-
-import {setupLogBox} from './utils/logger';
+import { SnackbarProvider } from "./components/snack-bar/SnackbarProvider";
+import MainNavigation from "./navigation/MainNavigation";
+import { appTheme } from "./theme";
+import { setupLogBox } from "./utils/logger";
 
 setupLogBox();
 
 const App = (): JSX.Element => {
-  console.info('App: render');
+  console.info("App: render");
 
   return (
     <NavigationContainer theme={appTheme}>

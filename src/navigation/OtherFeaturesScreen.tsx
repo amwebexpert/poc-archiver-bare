@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native";
-
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
 
@@ -20,11 +19,9 @@ const OtherFeaturesScreen = () => {
             mode="outlined"
             style={styles.category}
             onPress={() => navigation.navigate("JailMonkey")}
-            icon="login"
-          >
+            icon="login">
             Jail broken detect
           </Button>
-
         </ScrollView>
       </View>
     </AppLayout>
@@ -54,4 +51,3 @@ const useStyles = () => {
 };
 
 export default OtherFeaturesScreen;
-

@@ -1,27 +1,26 @@
-import {PropsWithChildren, useEffect} from 'react';
-import {View, StyleSheet, StatusBar} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {useTheme} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
-import {AppTheme} from '../../theme';
+import { PropsWithChildren, useEffect } from "react";
+
+import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, StatusBar } from "react-native";
+import { useTheme } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { AppTheme } from "../../theme";
 
 type Props = {
   title: string;
 };
 
-export const AppLayout = ({
-  title,
-  children,
-}: PropsWithChildren<Props>): JSX.Element => {
+export const AppLayout = ({ title, children }: PropsWithChildren<Props>): JSX.Element => {
   const styles = useStyles();
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.setOptions({title});
+    navigation.setOptions({ title });
   }, []);
 
   return (
-    <SafeAreaView style={styles.root} edges={['bottom', 'left', 'right']}>
+    <SafeAreaView style={styles.root} edges={["bottom", "left", "right"]}>
       <View style={styles.content}>{children}</View>
       <StatusBar barStyle="dark-content" />
     </SafeAreaView>

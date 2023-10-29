@@ -1,10 +1,11 @@
+import { FlashList } from "@shopify/flash-list";
 import { Linking, StyleSheet, View } from "react-native";
 import { List, Paragraph, useTheme } from "react-native-paper";
 
-import { FlashList } from "@shopify/flash-list";
 import { AppLayout } from "../../components/layout/AppLayout";
-import { parseLicenceData } from "./service";
 import { AppTheme } from "../../theme";
+
+import { parseLicenceData } from "./service";
 
 export const AboutScreen = (): JSX.Element => {
   const styles = useStyles();
@@ -13,9 +14,7 @@ export const AboutScreen = (): JSX.Element => {
   return (
     <AppLayout title="About this app…">
       <View style={styles.root}>
-        <Paragraph style={styles.paragraph}>
-          List of open source dependencies
-        </Paragraph>
+        <Paragraph style={styles.paragraph}>List of open source dependencies</Paragraph>
 
         <FlashList
           data={data}
@@ -24,7 +23,7 @@ export const AboutScreen = (): JSX.Element => {
               title={item.title}
               description={`${item.version} [${item.licenceType} licence]`}
               onPress={() => Linking.openURL(item.repository)}
-              right={(props) => <List.Icon {...props} icon="chevron-right" />}
+              right={props => <List.Icon {...props} icon="chevron-right" />}
             />
           )}
           estimatedItemSize={data.length}

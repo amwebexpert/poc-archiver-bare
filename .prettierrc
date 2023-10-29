@@ -1,0 +1,11 @@
+{
+  "printWidth": 120,
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "prettier.bracketSpacing": false,
+  "jsxBracketSameLine": true,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
+}

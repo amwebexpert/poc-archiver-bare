@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
-
 import { Linking, ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, Text, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../components/layout/AppLayout";
-import { APP_URL } from "./HomeScreen.constants";
 import { AppTheme } from "../theme";
+
+import { APP_URL } from "./HomeScreen.constants";
 
 export const HomeScreen = () => {
   const styles = useStyles();
@@ -20,45 +20,29 @@ export const HomeScreen = () => {
           </Text>
 
           <Paragraph style={styles.paragraph}>
-            Enjoy this proof of concepts collection for React Native app
-            development
+            Enjoy this proof of concepts collection for React Native app development
           </Paragraph>
 
           <Paragraph style={styles.paragraph}>
-            Stay tuned because this is also an evolutive app used as a sandbox
-            to learn by implementing real solutions to real problems.
+            Stay tuned because this is also an evolutive app used as a sandbox to learn by implementing real solutions
+            to real problems.
           </Paragraph>
         </View>
 
-        <Button
-          mode="outlined"
-          style={styles.category}
-          onPress={() => navigation.navigate("OtherDemos")}
-          icon="brain"
-        >
+        <Button mode="outlined" style={styles.category} onPress={() => navigation.navigate("OtherDemos")} icon="brain">
           Miscellaneous…
         </Button>
       </ScrollView>
 
       <View>
-        <Paragraph style={styles.paragraphCentered}>
-          Like it? Do not forget to star the repo!
-        </Paragraph>
+        <Paragraph style={styles.paragraphCentered}>Like it? Do not forget to star the repo!</Paragraph>
 
         <View style={styles.actions}>
-          <Button
-            mode="outlined"
-            onPress={() => Linking.openURL(APP_URL)}
-            icon="star"
-          >
+          <Button mode="outlined" onPress={() => Linking.openURL(APP_URL)} icon="star">
             Star it!
           </Button>
 
-          <Button
-            mode="outlined"
-            onPress={() => navigation.navigate("About")}
-            icon="book-information-variant"
-          >
+          <Button mode="outlined" onPress={() => navigation.navigate("About")} icon="book-information-variant">
             Licences…
           </Button>
         </View>

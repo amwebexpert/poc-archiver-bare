@@ -1,7 +1,8 @@
 import * as React from "react";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, useTheme } from "react-native-paper";
-import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
