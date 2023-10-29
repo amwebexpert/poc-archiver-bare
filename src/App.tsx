@@ -1,15 +1,18 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider as PaperProvider } from "react-native-paper";
+import { observer } from "mobx-react";
 
 import { SnackbarProvider } from "./components/snack-bar/SnackbarProvider";
 import AppNavigation from "./navigation/AppNavigation";
-import { appTheme } from "./theme";
+import { darkTheme, lightTheme } from "./theme";
 import { setupLogBox } from "./utils/logger";
+import settingsStore from "./features/settings/Settings.store";
 
 setupLogBox();
 
 const App = (): JSX.Element => {
   console.info("App: render");
+  const appTheme = settingsStore.darkMode ? darkTheme : lightTheme;
 
   return (
     <NavigationContainer theme={appTheme}>
@@ -22,4 +25,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default observer(App);

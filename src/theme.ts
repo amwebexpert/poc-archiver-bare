@@ -109,7 +109,7 @@ export const CombinedDarkTheme = {
   },
 };
 
-// default theme until we provide a user preference and a theme toggle context
-export const appTheme = CombinedDarkTheme;
+export const darkTheme = CombinedDarkTheme;
+export const lightTheme = CombinedDefaultTheme;
 
-export type AppTheme = typeof appTheme;
+export type AppTheme = typeof CombinedDefaultTheme;

@@ -6,6 +6,7 @@ import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { AppTheme } from "../../theme";
+import settingsStore from "../../features/settings/Settings.store";
 
 type Props = {
   title: string;
@@ -21,8 +22,9 @@ export const AppLayout = ({ title, children }: PropsWithChildren<Props>): JSX.El
 
   return (
     <SafeAreaView style={styles.root} edges={["bottom", "left", "right"]}>
+      <StatusBar barStyle={settingsStore.darkMode ? "light-content" : "dark-content"} />
+
       <View style={styles.content}>{children}</View>
-      <StatusBar barStyle="dark-content" />
     </SafeAreaView>
   );
 };
