@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Linking, ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, Text, useTheme } from "react-native-paper";
 
@@ -6,10 +7,11 @@ import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 
 import { APP_URL } from "./HomeScreen.constants";
+import { RootStackParamList } from "./MainNavigation";
 
 export const HomeScreen = () => {
   const styles = useStyles();
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <AppLayout title="Home">
@@ -28,6 +30,14 @@ export const HomeScreen = () => {
             to real problems.
           </Paragraph>
         </View>
+
+        <Button
+          mode="outlined"
+          style={styles.category}
+          onPress={() => navigation.navigate("StorageManagementScreen")}
+          icon="database">
+          Storage management…
+        </Button>
 
         <Button mode="outlined" style={styles.category} onPress={() => navigation.navigate("OtherDemos")} icon="brain">
           Miscellaneous…
@@ -76,6 +86,7 @@ const useStyles = () => {
       justifyContent: "space-around",
     },
     category: {
+      justifyContent: "center",
       marginVertical: theme.spacing(1),
     },
   });

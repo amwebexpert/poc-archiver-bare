@@ -1,46 +1,37 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
-import { observer } from "mobx-react";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 import { RootStackParamList } from "./MainNavigation";
 
-const OtherFeaturesScreen = () => {
+const StorageManagementScreen = () => {
   const styles = useStyles();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
-    <AppLayout title="Miscellaneous">
+    <AppLayout title="Storage Management">
       <View style={styles.root}>
-        <Paragraph style={styles.paragraph}>Other features</Paragraph>
-
         <ScrollView style={styles.features}>
+          <Paragraph style={styles.paragraph}>Device storage features</Paragraph>
+
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("JailMonkeyScreen")}
-            icon="login">
-            Jail broken detect
+            onPress={() => navigation.navigate("SettingsScreen")}
+            icon="cog">
+            Settings MobX store
           </Button>
 
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("DeviceInfoScreen")}
-            icon="information-outline">
-            Device info
-          </Button>
-
-          <Button
-            style={styles.category}
-            icon="network"
-            mode="outlined"
-            compact={true}
-            onPress={() => navigation.navigate("NetworkLoggerScreen")}>
-            Network trafic
+            onPress={() => navigation.navigate("StoreDemoScreen")}
+            icon="database">
+            Users MobX store
           </Button>
         </ScrollView>
       </View>
@@ -65,9 +56,9 @@ const useStyles = () => {
       marginTop: theme.spacing(2),
     },
     category: {
-      marginVertical: theme.spacing(1),
+      marginVertical: theme.spacing(2),
     },
   });
 };
 
-export default observer(OtherFeaturesScreen);
+export default StorageManagementScreen;

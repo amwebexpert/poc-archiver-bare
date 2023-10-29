@@ -7,6 +7,9 @@ import { HomeScreen } from "../navigation/HomeScreen";
 
 import OtherFeaturesScreen from "./OtherFeaturesScreen";
 import DeviceInfoScreen from "../features/device-info/DeviceInfoScreen";
+import StorageManagementScreen from "./StorageManagementScreen";
+import StoreDemoScreen from "../features/store-demo/StoreDemoScreen";
+import SettingsScreen from "../features/settings/SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
@@ -15,11 +18,15 @@ const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
 export type RootStackParamList = {
   Home: undefined;
 
+  StorageManagementScreen: undefined;
+  StoreDemoScreen: undefined;
+
   OtherDemos: undefined;
   JailMonkeyScreen: { id: number } | undefined;
   DeviceInfoScreen: undefined;
   NetworkLoggerScreen: undefined;
 
+  SettingsScreen: undefined;
   About: undefined;
 };
 
@@ -28,10 +35,15 @@ const MainNavigation = (): JSX.Element => {
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: true }}>
       <Stack.Screen name="Home" component={HomeScreen} />
 
+      <Stack.Screen name="StorageManagementScreen" component={StorageManagementScreen} />
+      <Stack.Screen name="StoreDemoScreen" component={StoreDemoScreen} />
+
       <Stack.Screen name="OtherDemos" component={OtherFeaturesScreen} />
       <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />
       <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
       <Stack.Screen name="NetworkLoggerScreen" component={NetworkLoggerScreen} />
+
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
 
       <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>

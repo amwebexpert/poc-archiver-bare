@@ -1,32 +1,33 @@
-import { useEffect } from "react";
-
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, useTheme } from "react-native-paper";
 import { observer } from "mobx-react";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
-import settingsStore from "./Settings.store";
-import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
+import observableUsersStore from "./Users.store";
 
-const SettingsScreen = (): JSX.Element => {
+const StoreDemoScreen = (): JSX.Element => {
   const styles = useStyles();
-  const { showSnackbarMessage } = useSnackbar();
-
-  useEffect(() => {
-    if (settingsStore.darkMode) {
-      showSnackbarMessage("Dark mode is enabled");
-    }
-  }, [settingsStore.darkMode]);
+  const navigation = useNavigation();
 
   return (
     <AppLayout title="Settings screen">
       <View style={styles.root}>
-        <Text>{`${settingsStore.darkMode}`}</Text>
+        <Text>{`Users count: ${observableUsersStore.usersCount}`}</Text>
 
-        <Button icon="switch" mode="outlined" onPress={() => settingsStore.toggleDarkMode()}>
-          Toggle Dark mode
+        <View style={styles.storeData}>
+          {observableUsersStore.usersLoadCompleted && (
+            <Text>{JSON.stringify(observableUsersStore.users, null, 2)}</Text>
+          )}
+        </View>
+
+        <Button icon="download" mode="outlined" onPress={() => observableUsersStore.loadUsers()}>
+          Load users
+        </Button>
+
+        <Button icon="delete" mode="outlined" onPress={() => observableUsersStore.resetUsers()}>
+          Reset
         </Button>
       </View>
     </AppLayout>
@@ -42,7 +43,7 @@ const useStyles = () => {
       alignItems: "center",
       justifyContent: "center",
     },
-    params: {
+    storeData: {
       flex: 1,
       width: "100%",
       padding: theme.spacing(2),
@@ -53,4 +54,4 @@ const useStyles = () => {
   });
 };
 
-export default observer(SettingsScreen);
+export default observer(StoreDemoScreen);
