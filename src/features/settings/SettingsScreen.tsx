@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, useTheme } from "react-native-paper";
 import { observer } from "mobx-react";

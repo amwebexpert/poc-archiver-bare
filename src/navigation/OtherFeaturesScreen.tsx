@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
-import { RootStackParamList } from "./MainNavigation";
+import { RootStackParamList } from "./AppNavigation";
 
 const OtherFeaturesScreen = () => {
   const styles = useStyles();

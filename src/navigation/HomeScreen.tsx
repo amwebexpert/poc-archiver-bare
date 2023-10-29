@@ -7,7 +7,7 @@ import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 
 import { APP_URL } from "./HomeScreen.constants";
-import { RootStackParamList } from "./MainNavigation";
+import { RootStackParamList } from "./AppNavigation";
 
 export const HomeScreen = () => {
   const styles = useStyles();
@@ -39,7 +39,11 @@ export const HomeScreen = () => {
           Storage management…
         </Button>
 
-        <Button mode="outlined" style={styles.category} onPress={() => navigation.navigate("OtherDemos")} icon="brain">
+        <Button
+          mode="outlined"
+          style={styles.category}
+          onPress={() => navigation.navigate("MiscellaneousFeaturesScreen")}
+          icon="brain">
           Miscellaneous…
         </Button>
       </ScrollView>

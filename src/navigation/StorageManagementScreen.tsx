@@ -6,7 +6,7 @@ import { Button, Paragraph, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
-import { RootStackParamList } from "./MainNavigation";
+import { RootStackParamList } from "./AppNavigation";
 
 const StorageManagementScreen = () => {
   const styles = useStyles();

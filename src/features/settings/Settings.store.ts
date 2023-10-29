@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { makeAutoObservable, autorun, runInAction } from "mobx";
 
 class SettingsStore {
