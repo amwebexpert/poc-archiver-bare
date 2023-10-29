@@ -8,7 +8,7 @@
 
 ## TODOs
 
-- complete iOS steps for [RN-Paper](https://github.com/oblador/react-native-vector-icons#installation)
+- configure Eslint + line wrap 120 char
 
 
 # Getting Started
