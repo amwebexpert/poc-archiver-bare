@@ -47,7 +47,7 @@ const OtherFeaturesScreen = () => {
             mode="outlined"
             compact={true}
             onPress={() => navigation.navigate("NetworkLoggerScreen")}>
-            Network items: {`${settingsStore.usersLoadCompleted}`}
+            Network items: {`${settingsStore.loadedUsersCount}`}
           </Button>
         </ScrollView>
       </View>
