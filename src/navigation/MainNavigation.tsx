@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { AboutScreen } from "../features/about/AboutScreen";
-import { DeviceInfoScreen } from "../features/device-info/DeviceInfoScreen";
+import { JailMonkeyScreen } from "../features/device-info/JailMonkeyScreen";
 import { HomeScreen } from "../navigation/HomeScreen";
 
 import OtherFeaturesScreen from "./OtherFeaturesScreen";
+import DeviceInfoScreen from "../features/device-info/DeviceInfoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,8 @@ export type RootStackParamList = {
   Home: undefined;
 
   OtherDemos: undefined;
-  DeviceInfo: { id: number } | undefined;
+  JailMonkeyScreen: { id: number } | undefined;
+  DeviceInfoScreen: undefined;
 
   About: undefined;
 };
@@ -24,7 +26,8 @@ const MainNavigation = (): JSX.Element => {
       <Stack.Screen name="Home" component={HomeScreen} />
 
       <Stack.Screen name="OtherDemos" component={OtherFeaturesScreen} />
-      <Stack.Screen name="DeviceInfo" component={DeviceInfoScreen} />
+      <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />
+      <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
 
       <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>

@@ -71,6 +71,12 @@
         "licenseUrl": "https://github.com/GantMan/jail-monkey/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-device-info@10.11.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-native-device-info/react-native-device-info",
+        "licenseUrl": "https://github.com/react-native-device-info/react-native-device-info/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-gesture-handler@2.13.4": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-gesture-handler",

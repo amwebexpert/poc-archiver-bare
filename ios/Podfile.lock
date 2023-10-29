@@ -495,6 +495,8 @@ PODS:
     - React-perflogger (= 0.72.6)
   - RNCAsyncStorage (1.19.3):
     - React-Core
+  - RNDeviceInfo (10.11.0):
+    - React-Core
   - RNFlashList (1.6.2):
     - React-Core
   - RNGestureHandler (2.13.4):
@@ -607,6 +609,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -719,6 +722,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFlashList:
     :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
@@ -788,6 +793,7 @@ SPEC CHECKSUMS:
   React-utils: fa59c9a3375fb6f4aeb66714fd3f7f76b43a9f16
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
+  RNDeviceInfo: bf8a32acbcb875f568217285d1793b0e8588c974
   RNFlashList: 1983f915ae34e9253e413f31387959590d102f5e
   RNGestureHandler: 6e46dde1f87e5f018a54fe5d40cd0e0b942b49ee
   RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87

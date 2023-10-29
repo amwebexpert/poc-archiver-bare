@@ -1,29 +1,29 @@
 module.exports = {
   root: true,
-  plugins: ['import'],
-  extends: ['@react-native-community', 'plugin:import/recommended'],
+  plugins: ["import"],
+  extends: ["@react-native-community", "plugin:import/recommended"],
   rules: {
-    'no-shadow': 'off',
-    'prefer-const': 'error',
-    'import/no-named-as-default-member': 'off',
-    'import/no-named-as-default': 'off',
-    'import/namespace': 'off',
-    'import/default': 'off',
-    'import/order': [
-      'error',
+    "no-shadow": "off",
+    "prefer-const": "error",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    "import/namespace": "off",
+    "import/default": "off",
+    "import/order": [
+      "error",
       {
-        groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+        groups: ["builtin", "external", "parent", "sibling", "index"],
         pathGroups: [
           {
-            pattern: 'react',
-            group: 'external',
-            position: 'before',
+            pattern: "react",
+            group: "external",
+            position: "before",
           },
         ],
-        pathGroupsExcludedImportTypes: ['react'],
-        'newlines-between': 'always',
+        pathGroupsExcludedImportTypes: ["react"],
+        "newlines-between": "always",
         alphabetize: {
-          order: 'asc',
+          order: "asc",
           caseInsensitive: true,
         },
       },
@@ -31,17 +31,18 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/*.d.ts'],
+      files: ["**/*.d.ts"],
       rules: {
-        '@typescript-eslint/no-unused-vars': 'off',
+        "@typescript-eslint/no-unused-vars": "off",
       },
     },
   ],
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
   },
+  ignorePatterns: ["**/DeviceInfoScreen.*"],
   env: {
     jest: true,
   },

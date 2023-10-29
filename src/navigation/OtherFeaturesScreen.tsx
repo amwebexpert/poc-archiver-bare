@@ -20,9 +20,17 @@ const OtherFeaturesScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("DeviceInfo")}
+            onPress={() => navigation.navigate("JailMonkeyScreen")}
             icon="login">
             Jail broken detect
+          </Button>
+
+          <Button
+            mode="outlined"
+            style={styles.category}
+            onPress={() => navigation.navigate("DeviceInfoScreen")}
+            icon="information-outline">
+            Device info
           </Button>
         </ScrollView>
       </View>
