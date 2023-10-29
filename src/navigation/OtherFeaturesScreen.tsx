@@ -3,18 +3,20 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
+import { observer } from "mobx-react";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 import { RootStackParamList } from "./MainNavigation";
-import { loadUsersDemo } from "./OtherFeaturesScreen.utils";
+
+import settingsStore from "../features/settings/Settings.store";
 
 const OtherFeaturesScreen = () => {
   const styles = useStyles();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
-    loadUsersDemo();
+    settingsStore.loadUsers();
   }, []);
 
   return (
@@ -45,7 +47,7 @@ const OtherFeaturesScreen = () => {
             mode="outlined"
             compact={true}
             onPress={() => navigation.navigate("NetworkLoggerScreen")}>
-            Network
+            Network items: {`${settingsStore.usersLoadCompleted}`}
           </Button>
         </ScrollView>
       </View>
@@ -75,4 +77,4 @@ const useStyles = () => {
   });
 };
 
-export default OtherFeaturesScreen;
+export default observer(OtherFeaturesScreen);

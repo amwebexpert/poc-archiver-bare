@@ -1,4 +1,10 @@
 {
+    "@babel/plugin-proposal-decorators@7.23.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/babel/babel",
+        "licenseUrl": "https://github.com/babel/babel/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "@openspacelabs/react-native-zoomable-view@2.1.5": {
         "licenses": "MIT",
         "repository": "https://github.com/openspacelabs/react-native-zoomable-view",
@@ -75,6 +81,18 @@
         "licenses": "MIT",
         "repository": "https://github.com/GantMan/jail-monkey",
         "licenseUrl": "https://github.com/GantMan/jail-monkey/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "mobx-react@9.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mobxjs/mobx",
+        "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "mobx@6.10.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mobxjs/mobx",
+        "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "react-native-device-info@10.11.0": {
