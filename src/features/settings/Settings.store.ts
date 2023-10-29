@@ -25,8 +25,10 @@ class SettingsStore {
   }
 
   resetSettings() {
-    this.darkMode = false;
-    this.loadedUsersCount = 0;
+    runInAction(() => {
+      this.darkMode = false;
+      this.loadedUsersCount = 0;
+    });
   }
 
   async loadUsers() {
@@ -36,9 +38,11 @@ class SettingsStore {
     const persons = result.data;
 
     console.log(`Loaded ${persons.length} users from jsonplaceholder api call`);
-    runInAction(() => {
-      this.loadedUsersCount = persons.length;
-    });
+    setTimeout(() => {
+      runInAction(() => {
+        this.loadedUsersCount = persons.length;
+      });
+    }, 2000);
   }
 }
 
