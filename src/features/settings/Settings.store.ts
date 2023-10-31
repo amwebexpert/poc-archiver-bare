@@ -17,9 +17,9 @@ class SettingsStore {
   }
 
   async toggleDarkMode() {
-    const newMode = !this.darkMode;
-    await AsyncStorage.setItem("isDarkMode", `${newMode}`);
-    runInAction(() => (this.darkMode = newMode));
+    const toggledValue = !this.darkMode;
+    await AsyncStorage.setItem("isDarkMode", `${toggledValue}`);
+    runInAction(() => (this.darkMode = toggledValue));
   }
 
   get getCurrentTheme(): AppTheme {
