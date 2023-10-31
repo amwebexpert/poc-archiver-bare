@@ -1,11 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+
+import { observer } from "mobx-react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
-import { observer } from "mobx-react";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
+
 import { RootStackParamList } from "./AppNavigation";
 
 const OtherFeaturesScreen = () => {

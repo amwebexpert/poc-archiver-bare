@@ -5,11 +5,11 @@ import { AboutScreen } from "../features/about/AboutScreen";
 import { JailMonkeyScreen } from "../features/device-info/JailMonkeyScreen";
 import { HomeScreen } from "./HomeScreen";
 
-import OtherFeaturesScreen from "./OtherFeaturesScreen";
 import DeviceInfoScreen from "../features/device-info/DeviceInfoScreen";
-import StorageManagementScreen from "./StorageManagementScreen";
-import StoreDemoScreen from "../features/store-demo/StoreDemoScreen";
 import SettingsScreen from "../features/settings/SettingsScreen";
+import StoreDemoScreen from "../features/store-demo/StoreDemoScreen";
+import OtherFeaturesScreen from "./OtherFeaturesScreen";
+import StorageManagementScreen from "./StorageManagementScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;

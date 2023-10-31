@@ -1,7 +1,13 @@
 module.exports = {
   root: true,
   plugins: ["import"],
-  extends: ["@react-native-community", "plugin:import/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended",
+  ],
   rules: {
     "no-shadow": "off",
     "prefer-const": "error",

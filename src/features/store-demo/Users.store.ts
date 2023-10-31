@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { makeAutoObservable, autorun, runInAction } from "mobx";
+import { autorun, makeAutoObservable, runInAction } from "mobx";
 
 export type User = {
   id: number;

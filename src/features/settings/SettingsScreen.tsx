@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
-import { View, StyleSheet } from "react-native";
-import { Text, Button, useTheme } from "react-native-paper";
 import { observer } from "mobx-react";
+import { StyleSheet, View } from "react-native";
+import { Button, Text, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
+import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 import { AppTheme } from "../../theme";
 import settingsStore from "./Settings.store";
-import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 
 const SettingsScreen = (): JSX.Element => {
   const styles = useStyles();

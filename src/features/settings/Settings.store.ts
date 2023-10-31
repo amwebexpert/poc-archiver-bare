@@ -1,4 +1,4 @@
-import { makeAutoObservable, autorun, runInAction } from "mobx";
+import { autorun, makeAutoObservable, runInAction } from "mobx";
 
 class SettingsStore {
   darkMode: boolean = true;

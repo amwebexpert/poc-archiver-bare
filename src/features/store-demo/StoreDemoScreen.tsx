@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, StyleSheet } from "react-native";
-import { Text, Button, useTheme } from "react-native-paper";
 import { observer } from "mobx-react";
+import { StyleSheet, View } from "react-native";
+import { Button, Text, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";

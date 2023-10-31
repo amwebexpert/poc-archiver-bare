@@ -1,12 +1,12 @@
 import { PropsWithChildren, useEffect } from "react";
 
 import { useNavigation } from "@react-navigation/native";
-import { View, StyleSheet, StatusBar } from "react-native";
+import { StatusBar, StyleSheet, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AppTheme } from "../../theme";
 import settingsStore from "../../features/settings/Settings.store";
+import { AppTheme } from "../../theme";
 
 type Props = {
   title: string;

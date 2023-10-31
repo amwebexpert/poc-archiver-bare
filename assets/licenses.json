@@ -160,5 +160,11 @@
         "repository": "https://github.com/facebook/react",
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
+    },
+    "styled-components@6.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/styled-components/styled-components",
+        "licenseUrl": "https://github.com/styled-components/styled-components/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
     }
 }
