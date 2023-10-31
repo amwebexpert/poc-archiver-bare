@@ -11,9 +11,9 @@ class SettingsStore {
   }
 
   async loadSettings() {
-    const isDarkMode = await AsyncStorage.getItem("isDarkMode");
-    console.info("isDarkMode persisted loaded value:", isDarkMode);
-    runInAction(() => (this.darkMode = isDarkMode !== "false"));
+    const persistedValue = await AsyncStorage.getItem("isDarkMode");
+    console.info("isDarkMode persisted loaded value:", persistedValue);
+    runInAction(() => (this.darkMode = persistedValue !== "false"));
   }
 
   async toggleDarkMode() {
