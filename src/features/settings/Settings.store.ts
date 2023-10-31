@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { AppTheme, darkTheme, lightTheme } from "../../theme";
 
@@ -6,18 +7,19 @@ class SettingsStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.loadSettings();
   }
 
-  resetSettings() {
-    runInAction(() => {
-      this.darkMode = true;
-    });
+  async loadSettings() {
+    const isDarkMode = await AsyncStorage.getItem("isDarkMode");
+    console.info("isDarkMode persisted loaded value:", isDarkMode);
+    runInAction(() => (this.darkMode = isDarkMode !== "false"));
   }
 
   async toggleDarkMode() {
-    runInAction(() => {
-      this.darkMode = !this.darkMode;
-    });
+    const newMode = !this.darkMode;
+    await AsyncStorage.setItem("isDarkMode", `${newMode}`);
+    runInAction(() => (this.darkMode = newMode));
   }
 
   get getCurrentTheme(): AppTheme {
