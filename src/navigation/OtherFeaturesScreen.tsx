@@ -44,6 +44,15 @@ const OtherFeaturesScreen = () => {
             onPress={() => navigation.navigate("NetworkLoggerScreen")}>
             Network trafic
           </Button>
+
+          <Button
+            style={styles.category}
+            icon="snail"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("StyledComponentsScreen")}>
+            Styled components
+          </Button>
         </ScrollView>
       </View>
     </AppLayout>

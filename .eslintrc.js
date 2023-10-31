@@ -48,7 +48,7 @@ module.exports = {
       "@typescript-eslint/parser": [".ts", ".tsx"],
     },
   },
-  ignorePatterns: ["**/DeviceInfoScreen.*"],
+  ignorePatterns: ["**/DeviceInfoScreen.*", "**/DeviceInfoScreen.*"],
   env: {
     jest: true,
   },
