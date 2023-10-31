@@ -1,4 +1,5 @@
 import { autorun, makeAutoObservable, runInAction } from "mobx";
+import { AppTheme, darkTheme, lightTheme } from "../../theme";
 
 class SettingsStore {
   darkMode: boolean = true;
@@ -17,6 +18,10 @@ class SettingsStore {
     runInAction(() => {
       this.darkMode = !this.darkMode;
     });
+  }
+
+  get getCurrentTheme(): AppTheme {
+    return this.darkMode ? darkTheme : lightTheme;
   }
 }
 

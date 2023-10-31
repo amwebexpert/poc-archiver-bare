@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { observer } from "mobx-react";
+import { ThemeProvider as StyledThemeProvider } from "styled-components/native";
 
 import { SnackbarProvider } from "./components/snack-bar/SnackbarProvider";
 import AppNavigation from "./navigation/AppNavigation";
@@ -17,9 +18,11 @@ const App = (): JSX.Element => {
   return (
     <NavigationContainer theme={appTheme}>
       <PaperProvider theme={appTheme}>
-        <SnackbarProvider>
-          <AppNavigation />
-        </SnackbarProvider>
+        <StyledThemeProvider theme={appTheme}>
+          <SnackbarProvider>
+            <AppNavigation />
+          </SnackbarProvider>
+        </StyledThemeProvider>
       </PaperProvider>
     </NavigationContainer>
   );
