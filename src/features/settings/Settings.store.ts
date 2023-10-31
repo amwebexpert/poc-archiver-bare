@@ -11,14 +11,14 @@ class SettingsStore {
   }
 
   async loadSettings() {
-    const persistedValue = await AsyncStorage.getItem("isDarkMode");
-    console.info("isDarkMode persisted loaded value:", persistedValue);
+    const persistedValue = await AsyncStorage.getItem("darkMode");
+    console.info("darkMode persisted loaded value:", persistedValue);
     runInAction(() => (this.darkMode = persistedValue !== "false"));
   }
 
   async toggleDarkMode() {
     const toggledValue = !this.darkMode;
-    await AsyncStorage.setItem("isDarkMode", `${toggledValue}`);
+    await AsyncStorage.setItem("darkMode", `${toggledValue}`);
     runInAction(() => (this.darkMode = toggledValue));
   }
 
