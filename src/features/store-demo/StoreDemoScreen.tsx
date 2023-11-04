@@ -7,7 +7,7 @@ import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 import observableUsersStore from "./Users.store";
 
-const StoreDemoScreen = (): JSX.Element => {
+const StoreDemoScreen: FunctionComponent = () => {
   const styles = useStyles();
   const navigation = useNavigation();
 

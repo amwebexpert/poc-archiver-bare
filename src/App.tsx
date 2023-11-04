@@ -11,7 +11,7 @@ import settingsStore from "./features/settings/Settings.store";
 
 setupLogBox();
 
-const App = (): JSX.Element => {
+const App: FunctionComponent = () => {
   console.info("App: render");
   const appTheme = settingsStore.darkMode ? darkTheme : lightTheme;
 

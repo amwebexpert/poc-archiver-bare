@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 
 import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";
@@ -9,7 +9,7 @@ import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 import { AppTheme } from "../../theme";
 import settingsStore from "./Settings.store";
 
-const SettingsScreen = (): JSX.Element => {
+const SettingsScreen: FunctionComponent = () => {
   const styles = useStyles();
   const { showSnackbarMessage } = useSnackbar();
 

@@ -32,7 +32,7 @@ export type RootStackParamList = {
   About: undefined;
 };
 
-const AppNavigation = (): JSX.Element => {
+const AppNavigation: FunctionComponent = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: true }}>
       <Stack.Screen name="Home" component={HomeScreen} />

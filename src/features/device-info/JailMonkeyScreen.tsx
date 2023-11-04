@@ -8,7 +8,7 @@ import { Button, Text, useTheme } from "react-native-paper";
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 
-export const JailMonkeyScreen = (): JSX.Element => {
+export const JailMonkeyScreen: FunctionComponent = () => {
   const styles = useStyles();
   const navigation = useNavigation();
 

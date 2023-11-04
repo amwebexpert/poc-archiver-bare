@@ -8,7 +8,7 @@ import { AppTheme } from "../../theme";
 import { parseLicenceData } from "./service";
 import { LightHouseAnimation } from "../../components/light-house/LightHouseAnimation";
 
-export const AboutScreen = (): JSX.Element => {
+export const AboutScreen: FunctionComponent = () => {
   const styles = useStyles();
   const data = parseLicenceData();
 
