@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { AppTheme, darkTheme, lightTheme } from "../../theme";
 import { createMobxDebugger } from "mobx-flipper";
+import { loadData, storeData, StorageKey } from "../../utils/storage";
 
 class SettingsStore {
   darkMode: boolean = true;
@@ -12,14 +12,14 @@ class SettingsStore {
   }
 
   async loadSettings() {
-    const persistedValue = await AsyncStorage.getItem("darkMode");
+    const persistedValue = await loadData(StorageKey.darkMode, true);
     console.info("darkMode persisted loaded value:", persistedValue);
-    runInAction(() => (this.darkMode = persistedValue !== "false"));
+    runInAction(() => (this.darkMode = persistedValue));
   }
 
   async toggleDarkMode() {
     const toggledValue = !this.darkMode;
-    await AsyncStorage.setItem("darkMode", `${toggledValue}`);
+    await storeData(StorageKey.darkMode, toggledValue);
     runInAction(() => (this.darkMode = toggledValue));
   }
 
