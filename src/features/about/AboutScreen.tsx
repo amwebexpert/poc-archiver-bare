@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { FlashList } from "@shopify/flash-list";
 import { Linking, StyleSheet, View } from "react-native";
 import { List, Paragraph, useTheme } from "react-native-paper";
@@ -5,8 +6,8 @@ import { List, Paragraph, useTheme } from "react-native-paper";
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 
-import { parseLicenceData } from "./service";
 import { LightHouseAnimation } from "../../components/light-house/LightHouseAnimation";
+import { parseLicenceData } from "./service";
 
 export const AboutScreen: FunctionComponent = () => {
   const styles = useStyles();

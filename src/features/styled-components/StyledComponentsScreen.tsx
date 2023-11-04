@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { Text } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";

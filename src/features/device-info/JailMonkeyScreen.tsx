@@ -1,5 +1,5 @@
 import JailMonkey from "jail-monkey";
-import { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";

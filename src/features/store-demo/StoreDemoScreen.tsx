@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";

@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NetworkLogger from "react-native-network-logger";
 
