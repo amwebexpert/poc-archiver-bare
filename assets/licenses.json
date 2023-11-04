@@ -77,6 +77,12 @@
         "licenseUrl": "https://github.com/GantMan/jail-monkey/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "mobx-flipper@1.2.6": {
+        "licenses": "MIT",
+        "repository": "https://github.com/khorark/mobx-flipper",
+        "licenseUrl": "https://github.com/khorark/mobx-flipper",
+        "parents": "poc-archiver-bare"
+    },
     "mobx-react@9.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/mobxjs/mobx",
@@ -93,6 +99,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/react-native-device-info/react-native-device-info",
         "licenseUrl": "https://github.com/react-native-device-info/react-native-device-info/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "react-native-flipper@0.212.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/flipper",
+        "licenseUrl": "https://github.com/facebook/flipper/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "react-native-gesture-handler@2.13.4": {

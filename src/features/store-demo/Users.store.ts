@@ -1,6 +1,8 @@
 import axios from "axios";
 
 import { autorun, makeAutoObservable, runInAction } from "mobx";
+import { spy } from "mobx";
+import { createMobxDebugger } from "mobx-flipper";
 
 export type User = {
   id: number;
@@ -50,5 +52,9 @@ const observableUsersStore = new UsersStore();
 autorun(() => {
   console.info("Loaded users count: ", observableUsersStore.usersLoadCompleted);
 });
+
+if (__DEV__) {
+  spy(createMobxDebugger(observableUsersStore) as any);
+}
 
 export default observableUsersStore;

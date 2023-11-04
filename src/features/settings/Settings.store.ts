@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { autorun, makeAutoObservable, runInAction } from "mobx";
+import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { AppTheme, darkTheme, lightTheme } from "../../theme";
+import { createMobxDebugger } from "mobx-flipper";
 
 class SettingsStore {
   darkMode: boolean = true;
@@ -32,5 +33,9 @@ const observableSettingsStore = new SettingsStore();
 autorun(() => {
   console.info("DarkMode: ", observableSettingsStore.darkMode);
 });
+
+if (__DEV__) {
+  spy(createMobxDebugger(observableSettingsStore) as any);
+}
 
 export default observableSettingsStore;

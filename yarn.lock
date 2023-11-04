@@ -6176,6 +6176,15 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.6"
 
+mobx-flipper@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/mobx-flipper/-/mobx-flipper-1.2.6.tgz#9802cee0f258a5668f1190f40a3179fbca12dda1"
+  integrity sha512-k4yR1pU/o4j6AAOofrHeIeMvCg44pNdZcuieiSlBmCElHEqCMPMJFlxOT38wjoJSOJe+LOSv2OKIOFqqufuqXw==
+  dependencies:
+    mobx "^6.3.0"
+    mobx-state-tree "^5.0.1"
+    react-native-flipper "^0.87.0"
+
 mobx-react-lite@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-4.0.5.tgz#e2cb98f813e118917bcc463638f5bf6ea053a67b"
@@ -6190,7 +6199,12 @@ mobx-react@^9.0.1:
   dependencies:
     mobx-react-lite "^4.0.4"
 
-mobx@^6.10.2:
+mobx-state-tree@^5.0.1:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-5.3.0.tgz#fb743c4bfe770628aaed2f4d961a4b61fdd74126"
+  integrity sha512-2XInCjIxGQx/UmTbpAreWKcHswmuOKOV23HJmy1x4gqyDqCcOHJcaClpWnD2/qQlGncg8gAUfP/mm+cLpTrtlQ==
+
+mobx@^6.10.2, mobx@^6.3.0:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.10.2.tgz#96e123deef140750360ca9a5b02a8b91fbffd4d9"
   integrity sha512-B1UGC3ieK3boCjnMEcZSwxqRDMdzX65H/8zOHbuTY8ZhvrIjTUoLRR2TP2bPqIgYRfb3+dUigu8yMZufNjn0LQ==
@@ -6848,6 +6862,16 @@ react-native-device-info@^10.11.0:
   version "10.11.0"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-10.11.0.tgz#2c9f378f1c3c5eb9aafa803d015b84325991a9aa"
   integrity sha512-qRzhuYOm5ZXQi5dhfJFjDq157oipxcEW/fo0QyMm5+TI6V6/+P/tju+Hif6z0rpLCf7MV7iDVRv2Kqha4D/yvQ==
+
+react-native-flipper@^0.212.0:
+  version "0.212.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.212.0.tgz#b3fdd47676ecd09a25edd77a1466acace6276762"
+  integrity sha512-bDRfIgE3v/jjEEdnvGP0T6maDD+bXhDAQ/SZUYTKd/CQ6YIU1c0EF+e0urU62LNMv6XEFQKz226McdddyVhYZA==
+
+react-native-flipper@^0.87.0:
+  version "0.87.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.87.0.tgz#7442994a5dd3fadd64b78293835af36bcf7fa891"
+  integrity sha512-WCi0j/4gRxYbEizVHN9kNWKx7m/sBajxXXhhTQBmhNLywSData+za62e5XtTGTnHoS8bDC5ev65PKAA7ncM9Lg==
 
 react-native-gesture-handler@~2.13.4:
   version "2.13.4"
