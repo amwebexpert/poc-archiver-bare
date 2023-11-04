@@ -10,6 +10,7 @@ import { AppTheme } from "../../theme";
 type State = {
   type?: string;
   isConnected?: boolean | null;
+  details?: any;
 };
 
 const NetInfoScreen: FunctionComponent = () => {
@@ -28,6 +29,7 @@ const NetInfoScreen: FunctionComponent = () => {
         <Text variant="headlineMedium">Network state detection</Text>
         <Text>Is connected: {`${state.isConnected}`}</Text>
         <Text>Connection type: {state.type}</Text>
+        <Text>Details: {JSON.stringify(state.details, null, 2)}</Text>
       </View>
     </AppLayout>
   );
