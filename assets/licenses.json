@@ -17,7 +17,7 @@
         "licenseUrl": "https://github.com/react-native-clipboard/clipboard/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-native-community/netinfo@9.4.1": {
+    "@react-native-community/netinfo@11.0.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-netinfo/react-native-netinfo",
         "licenseUrl": "https://github.com/react-native-netinfo/react-native-netinfo/raw/master/LICENSE",

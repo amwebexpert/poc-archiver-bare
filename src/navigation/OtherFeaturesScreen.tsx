@@ -47,6 +47,15 @@ const OtherFeaturesScreen = () => {
 
           <Button
             style={styles.category}
+            icon="wifi"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("NetInfoScreen")}>
+            Network Info
+          </Button>
+
+          <Button
+            style={styles.category}
             icon="snail"
             mode="outlined"
             compact={true}

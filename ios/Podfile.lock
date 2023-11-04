@@ -383,7 +383,7 @@ PODS:
     - glog
   - react-native-flipper (0.212.0):
     - React-Core
-  - react-native-netinfo (9.4.1):
+  - react-native-netinfo (11.0.0):
     - React-Core
   - react-native-safe-area-context (4.7.4):
     - React-Core
@@ -793,7 +793,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
   react-native-flipper: 9c1957af24b76493ba74f46d000a5c1d485e7731
-  react-native-netinfo: fefd4e98d75cbdd6e85fc530f7111a8afdf2b0c5
+  react-native-netinfo: 5ddbf20865bcffab6b43d0e4e1fd8b3896beb898
   react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
   react-native-webview: 8fc09f66a1a5b16bbe37c3878fda27d5982bb776
   React-NativeModulesApple: 02e35e9a51e10c6422f04f5e4076a7c02243fff2

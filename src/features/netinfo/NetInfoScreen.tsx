@@ -1,32 +1,33 @@
-import { FunctionComponent, useEffect } from "react";
-
-import { observer } from "mobx-react";
+import { FunctionComponent, useEffect, useState } from "react";
+import NetInfo from "@react-native-community/netinfo";
 import { StyleSheet, View } from "react-native";
 import { Button, Text, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 import { AppTheme } from "../../theme";
-import settingsStore from "./Settings.store";
 
-const SettingsScreen: FunctionComponent = () => {
+type State = {
+  type?: string;
+  isConnected?: boolean | null;
+};
+
+const NetInfoScreen: FunctionComponent = () => {
   const styles = useStyles();
-  const { showSnackbarMessage } = useSnackbar();
+  const [state, setState] = useState<State>({});
 
   useEffect(() => {
-    if (settingsStore.darkMode) {
-      showSnackbarMessage("Dark mode is enabled");
-    }
-  }, [settingsStore.darkMode]);
+    const unsubscribe = NetInfo.addEventListener(state => setState(state));
+
+    return unsubscribe;
+  }, []);
 
   return (
     <AppLayout title="Settings screen">
       <View style={styles.root}>
-        <Text>{`${settingsStore.darkMode}`}</Text>
-
-        <Button icon="switch" mode="outlined" onPress={() => settingsStore.toggleDarkMode()}>
-          Toggle Dark mode
-        </Button>
+        <Text variant="headlineMedium">Network state detection</Text>
+        <Text>Is connected: {`${state.isConnected}`}</Text>
+        <Text>Connection type: {state.type}</Text>
       </View>
     </AppLayout>
   );
@@ -44,4 +45,4 @@ const useStyles = () => {
   });
 };
 
-export default observer(SettingsScreen);
+export default NetInfoScreen;
