@@ -53,6 +53,15 @@ const OtherFeaturesScreen = () => {
             onPress={() => navigation.navigate("StyledComponentsScreen")}>
             Styled components
           </Button>
+
+          <Button
+            style={styles.category}
+            icon="clipboard"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("ClipboardScreen")}>
+            Clipboard
+          </Button>
         </ScrollView>
       </View>
     </AppLayout>

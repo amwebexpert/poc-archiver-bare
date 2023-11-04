@@ -12,6 +12,7 @@ import StoreDemoScreen from "../features/store-demo/StoreDemoScreen";
 import OtherFeaturesScreen from "./OtherFeaturesScreen";
 import StorageManagementScreen from "./StorageManagementScreen";
 import StyledComponentsScreen from "../features/styled-components/StyledComponentsScreen";
+import ClipboardScreen from "../features/clipboard/ClipboardScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
@@ -28,6 +29,7 @@ export type RootStackParamList = {
   DeviceInfoScreen: undefined;
   NetworkLoggerScreen: undefined;
   StyledComponentsScreen: undefined;
+  ClipboardScreen: undefined;
 
   SettingsScreen: undefined;
   About: undefined;
@@ -46,6 +48,7 @@ const AppNavigation: FunctionComponent = () => {
       <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
       <Stack.Screen name="NetworkLoggerScreen" component={NetworkLoggerScreen} />
       <Stack.Screen name="StyledComponentsScreen" component={StyledComponentsScreen} />
+      <Stack.Screen name="ClipboardScreen" component={ClipboardScreen} />
 
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
 

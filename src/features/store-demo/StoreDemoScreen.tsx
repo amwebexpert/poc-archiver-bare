@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";
-import { Button, Text, useTheme } from "react-native-paper";
+import { Button, Text, TextInput, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
@@ -19,7 +19,7 @@ const StoreDemoScreen: FunctionComponent = () => {
 
         <View style={styles.storeData}>
           {observableUsersStore.usersLoadCompleted && (
-            <Text>{JSON.stringify(observableUsersStore.users, null, 2)}</Text>
+            <TextInput multiline={true}>{JSON.stringify(observableUsersStore.users, null, 2)}</TextInput>
           )}
         </View>
 

@@ -11,6 +11,12 @@
         "licenseUrl": "https://github.com/react-native-async-storage/async-storage",
         "parents": "poc-archiver-bare"
     },
+    "@react-native-clipboard/clipboard@1.12.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-native-clipboard/clipboard",
+        "licenseUrl": "https://github.com/react-native-clipboard/clipboard/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "@react-native-community/netinfo@9.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-netinfo/react-native-netinfo",
