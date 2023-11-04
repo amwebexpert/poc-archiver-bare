@@ -71,6 +71,15 @@ const OtherFeaturesScreen = () => {
             onPress={() => navigation.navigate("ClipboardScreen")}>
             Clipboard
           </Button>
+
+          <Button
+            style={styles.category}
+            icon="calendar"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("DatePickerScreen")}>
+            Date & time picker
+          </Button>
         </ScrollView>
       </View>
     </AppLayout>

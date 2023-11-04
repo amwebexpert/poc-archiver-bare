@@ -107,6 +107,12 @@
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-date-picker@4.3.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/henninghall/react-native-date-picker",
+        "licenseUrl": "https://github.com/henninghall/react-native-date-picker/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-device-info@10.11.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-device-info/react-native-device-info",
