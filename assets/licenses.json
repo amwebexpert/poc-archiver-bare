@@ -107,6 +107,12 @@
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-color-matrix-image-filters@6.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
+        "licenseUrl": "https://github.com/iyegoroff/react-native-color-matrix-image-filters/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-date-picker@4.3.3": {
         "licenses": "MIT",
         "repository": "https://github.com/henninghall/react-native-date-picker",

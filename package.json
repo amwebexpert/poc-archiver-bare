@@ -31,6 +31,7 @@
     "mobx-react": "^9.0.1",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-color-matrix-image-filters": "^6.0.3",
     "react-native-date-picker": "^4.3.3",
     "react-native-device-info": "^10.11.0",
     "react-native-email-link": "^1.14.7",

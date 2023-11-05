@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent, memo, useState } from "react";
 import { Alert, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import { ImageItemType } from "./Image.types";
+import { FilteredImage } from "./FilteredImage";
+import { FilteringTypes, ImageItemType } from "./Image.types";
 
 type ImageItemProps = {
   item: ImageItemType;
@@ -9,6 +10,7 @@ type ImageItemProps = {
 
 const ImageItem: FunctionComponent<ImageItemProps> = ({ item }) => {
   const { id, src } = item;
+  const [filteringType, setFilteringType] = useState<FilteringTypes>(FilteringTypes.none);
 
   return (
     <View style={styles.imageContainerStyle}>
@@ -17,7 +19,9 @@ const ImageItem: FunctionComponent<ImageItemProps> = ({ item }) => {
         style={styles.touchableOpacity}
         onPress={() => Linking.openURL(src)}
         onLongPress={() => Alert.alert("aaa")}>
-        <FastImage style={styles.imageStyle} source={{ uri: src }} />
+        <FilteredImage filteringType={filteringType}>
+          <FastImage style={styles.imageStyle} source={{ uri: src }} />
+        </FilteredImage>
       </TouchableOpacity>
     </View>
   );
@@ -38,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(ImageItem);
+export default memo(ImageItem);

@@ -43,6 +43,7 @@ const useStyles = () => {
     },
     paragraph: {
       marginVertical: theme.spacing(2),
+      textAlign: "center",
     },
     features: {
       marginTop: theme.spacing(2),
