@@ -119,6 +119,12 @@
         "licenseUrl": "https://github.com/react-native-device-info/react-native-device-info/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-email-link@1.14.7": {
+        "licenses": "MIT",
+        "repository": "https://github.com/flexible-agency/react-native-email-link",
+        "licenseUrl": "https://github.com/flexible-agency/react-native-email-link/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-flipper@0.212.0": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/flipper",

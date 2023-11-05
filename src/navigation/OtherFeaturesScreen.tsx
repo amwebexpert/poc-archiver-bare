@@ -80,6 +80,15 @@ const OtherFeaturesScreen = () => {
             onPress={() => navigation.navigate("DatePickerScreen")}>
             Date & time picker
           </Button>
+
+          <Button
+            style={styles.category}
+            icon="email"
+            mode="outlined"
+            compact={true}
+            onPress={() => navigation.navigate("EmailerScreen")}>
+            Emailer
+          </Button>
         </ScrollView>
       </View>
     </AppLayout>

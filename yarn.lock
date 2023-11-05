@@ -6878,6 +6878,11 @@ react-native-device-info@^10.11.0:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-10.11.0.tgz#2c9f378f1c3c5eb9aafa803d015b84325991a9aa"
   integrity sha512-qRzhuYOm5ZXQi5dhfJFjDq157oipxcEW/fo0QyMm5+TI6V6/+P/tju+Hif6z0rpLCf7MV7iDVRv2Kqha4D/yvQ==
 
+react-native-email-link@^1.14.7:
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/react-native-email-link/-/react-native-email-link-1.14.7.tgz#5f7cb10f6eb0e8e0f642306484542c5c8bc6d833"
+  integrity sha512-BHhakcPGkVgYeSXd/j/OICC9nGFHe0RFv7b3+PvNhstOyjXoUHBX+qftuUzNqFeeMcktfGMlzl2CacA6nKUvKQ==
+
 react-native-flipper@^0.212.0:
   version "0.212.0"
   resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.212.0.tgz#b3fdd47676ecd09a25edd77a1466acace6276762"

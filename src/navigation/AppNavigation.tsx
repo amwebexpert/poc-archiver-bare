@@ -15,6 +15,7 @@ import StyledComponentsScreen from "../features/styled-components/StyledComponen
 import ClipboardScreen from "../features/clipboard/ClipboardScreen";
 import NetInfoScreen from "../features/netinfo/NetInfoScreen";
 import DatePickerScreen from "../features/datepicker/DatePickerScreen";
+import EmailerScreen from "../features/email/EmailerScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   ClipboardScreen: undefined;
   NetInfoScreen: undefined;
   DatePickerScreen: undefined;
+  EmailerScreen: undefined;
 
   SettingsScreen: undefined;
   About: undefined;
@@ -55,6 +57,7 @@ const AppNavigation: FunctionComponent = () => {
       <Stack.Screen name="ClipboardScreen" component={ClipboardScreen} />
       <Stack.Screen name="NetInfoScreen" component={NetInfoScreen} />
       <Stack.Screen name="DatePickerScreen" component={DatePickerScreen} />
+      <Stack.Screen name="EmailerScreen" component={EmailerScreen} />
 
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
 
