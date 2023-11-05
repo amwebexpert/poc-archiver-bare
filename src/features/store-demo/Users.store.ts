@@ -3,6 +3,7 @@ import axios from "axios";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
+import { USERS_API_URL } from "@env";
 
 export type User = {
   id: number;
@@ -33,7 +34,8 @@ class UsersStore {
   async loadUsers(): Promise<void> {
     this.resetUsers();
 
-    const url = "https://jsonplaceholder.typicode.com/users";
+    const url = USERS_API_URL;
+    console.log(`Loading users from [${url}]...`);
     const result = await axios.get(url);
     const users = result.data;
 
