@@ -1,5 +1,3 @@
-import "./src/utils/wdyr"; // <--- first import
-
 import { AppRegistry } from "react-native";
 import { startNetworkLogging } from "react-native-network-logger";
 

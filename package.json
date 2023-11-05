@@ -18,7 +18,7 @@
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
-    "@shopify/flash-list": "1.6.2",
+    "@shopify/flash-list": "^1.6.2",
     "@welldone-software/why-did-you-render": "^7.0.1",
     "axios": "^1.6.0",
     "buffer": "^6.0.3",

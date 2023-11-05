@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 
 import { FlatList, StyleSheet, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
+import { FlashList } from "@shopify/flash-list";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
@@ -23,11 +24,12 @@ const FastImageScreen: FunctionComponent = () => {
         </Text>
 
         <View style={styles.listContainer}>
-          <FlatList
+          <FlashList
             data={dataSource}
             renderItem={({ item }) => <ImageItem item={item} />}
             numColumns={3}
             keyExtractor={item => `${item.id}`}
+            estimatedItemSize={200}
           />
         </View>
       </View>
