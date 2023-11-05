@@ -125,6 +125,12 @@
         "licenseUrl": "https://github.com/flexible-agency/react-native-email-link/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-fast-image@8.6.3": {
+        "licenses": "(MIT AND Apache-2.0)",
+        "repository": "https://github.com/DylanVann/react-native-fast-image",
+        "licenseUrl": "https://github.com/DylanVann/react-native-fast-image/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-flipper@0.212.0": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/flipper",

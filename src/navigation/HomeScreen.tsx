@@ -42,6 +42,14 @@ export const HomeScreen = () => {
         <Button
           mode="outlined"
           style={styles.category}
+          onPress={() => navigation.navigate("ImageFeaturesScreen")}
+          icon="image">
+          Images features…
+        </Button>
+
+        <Button
+          mode="outlined"
+          style={styles.category}
           onPress={() => navigation.navigate("MiscellaneousFeaturesScreen")}
           icon="brain">
           Miscellaneous…

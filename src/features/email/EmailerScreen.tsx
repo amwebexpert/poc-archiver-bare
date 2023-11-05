@@ -1,6 +1,5 @@
 import { FunctionComponent, useState } from "react";
 
-import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text, TextInput, useTheme } from "react-native-paper";
 
@@ -71,4 +70,4 @@ const useStyles = () => {
   });
 };
 
-export default observer(EmailerScreen);
+export default EmailerScreen;

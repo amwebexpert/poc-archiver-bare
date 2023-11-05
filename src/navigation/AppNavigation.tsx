@@ -16,6 +16,8 @@ import ClipboardScreen from "../features/clipboard/ClipboardScreen";
 import NetInfoScreen from "../features/netinfo/NetInfoScreen";
 import DatePickerScreen from "../features/datepicker/DatePickerScreen";
 import EmailerScreen from "../features/email/EmailerScreen";
+import ImagesFeaturesScreen from "./ImageFeaturesScreen";
+import FastImageScreen from "../features/images/FastImageScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
@@ -26,6 +28,9 @@ export type RootStackParamList = {
 
   StorageManagementScreen: undefined;
   StoreDemoScreen: undefined;
+
+  ImageFeaturesScreen: undefined;
+  FastImageScreen: undefined;
 
   MiscellaneousFeaturesScreen: undefined;
   JailMonkeyScreen: { id: number } | undefined;
@@ -48,6 +53,9 @@ const AppNavigation: FunctionComponent = () => {
 
       <Stack.Screen name="StorageManagementScreen" component={StorageManagementScreen} />
       <Stack.Screen name="StoreDemoScreen" component={StoreDemoScreen} />
+
+      <Stack.Screen name="ImageFeaturesScreen" component={ImagesFeaturesScreen} />
+      <Stack.Screen name="FastImageScreen" component={FastImageScreen} />
 
       <Stack.Screen name="MiscellaneousFeaturesScreen" component={OtherFeaturesScreen} />
       <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />

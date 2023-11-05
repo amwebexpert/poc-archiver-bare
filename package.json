@@ -34,6 +34,7 @@
     "react-native-date-picker": "^4.3.3",
     "react-native-device-info": "^10.11.0",
     "react-native-email-link": "^1.14.7",
+    "react-native-fast-image": "^8.6.3",
     "react-native-flipper": "^0.212.0",
     "react-native-gesture-handler": "~2.13.4",
     "react-native-network-logger": "^1.15.0",
