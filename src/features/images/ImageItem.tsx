@@ -2,15 +2,15 @@ import { FunctionComponent, memo, useState } from "react";
 import { Alert, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { FilteredImage } from "./FilteredImage";
-import { FilteringTypes, ImageItemType } from "./Image.types";
+import { FilteringType, ImageItemType } from "./Image.types";
 
 type ImageItemProps = {
   item: ImageItemType;
+  filteringType?: FilteringType;
 };
 
-const ImageItem: FunctionComponent<ImageItemProps> = ({ item }) => {
+const ImageItem: FunctionComponent<ImageItemProps> = ({ item, filteringType }) => {
   const { id, src } = item;
-  const [filteringType, setFilteringType] = useState<FilteringTypes>(FilteringTypes.none);
 
   return (
     <View style={styles.imageContainerStyle}>

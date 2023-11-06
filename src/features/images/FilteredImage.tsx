@@ -10,24 +10,24 @@ import {
   saturate,
 } from "react-native-color-matrix-image-filters";
 
-import { FilteringTypes } from "./Image.types";
+import { FilteringType } from "./Image.types";
 
 type FilteredImageProps = PropsWithChildren<{
-  filteringType?: FilteringTypes;
+  filteringType?: FilteringType;
 }>;
 
 export const FilteredImage: FunctionComponent<FilteredImageProps> = ({ filteringType, children }) => {
   switch (filteringType) {
-    case FilteringTypes.none:
+    case FilteringType.none:
       return <>{children}</>;
 
-    case FilteringTypes.grayscale:
+    case FilteringType.grayscale:
       return <Grayscale>{children}</Grayscale>;
 
-    case FilteringTypes.sepiaWithTint:
+    case FilteringType.sepiaWithTint:
       return <ColorMatrix matrix={concatColorMatrices(sepia(), tint(1.25))}>{children}</ColorMatrix>;
 
-    case FilteringTypes.saturateWithContrast:
+    case FilteringType.saturateWithContrast:
       return (
         <ColorMatrix matrix={concatColorMatrices(saturate(-0.9), contrast(5.2), invert())}>{children}</ColorMatrix>
       );
