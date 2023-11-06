@@ -18,7 +18,7 @@ const FastImageScreen: FunctionComponent = () => {
   useEffect(() => setDataSource(buildImagesList(200)), []);
 
   return (
-    <AppLayout title="Settings screen">
+    <AppLayout title="FastImage screen">
       <View style={styles.root}>
         <Text variant="titleSmall" style={styles.title}>
           Unsplash images collection
@@ -55,12 +55,12 @@ const useStyles = () => {
       justifyContent: "center",
     },
     title: {
-      marginBottom: theme.spacing(3),
+      marginBottom: theme.spacing(1),
     },
     listContainer: {
       flex: 1,
       width: "100%",
-      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(2),
     },
   });
 };
