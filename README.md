@@ -7,7 +7,14 @@
 - `react-native-network-logger`
 - `jail-monkey`
 - `react-native-device-info`
-- more to come...
+- `react-native-date-picker`
+- `react-native-email-link`
+- `styled-components`
+- `mobx-react`
+- `axios`
+- `@shopify/flash-list`
+- `@react-native-clipboard/clipboard`
+- and many more...
 
 ## TODOs
 
@@ -54,3 +61,13 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
+
+### Troubleshooting
+
+#### `undefined method __apply_Xcode_12_5_M1_post_install_workaround'`
+
+- https://stackoverflow.com/a/70073403/704681
+
+#### `CocoaPods could not find compatible versions for pod xyz`
+
+- https://stackoverflow.com/a/67027937/704681
