@@ -1,33 +1,33 @@
 import { FunctionComponent } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";
-import { Button, Text, TextInput, useTheme } from "react-native-paper";
+import { ActivityIndicator, Button, Text, TextInput, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
-import observableUsersStore from "./Users.store";
+import usersStore from "./Users.store";
 
 const StoreDemoScreen: FunctionComponent = () => {
   const styles = useStyles();
-  const navigation = useNavigation();
 
   return (
     <AppLayout title="Settings screen">
       <View style={styles.root}>
-        <Text>{`Users count: ${observableUsersStore.usersCount}`}</Text>
+        <View style={styles.activity}>
+          {usersStore.isLoading ? <ActivityIndicator /> : <Text>{`Users count: ${usersStore.usersCount}`}</Text>}
+        </View>
 
         <View style={styles.storeData}>
-          {observableUsersStore.usersLoadCompleted && (
-            <TextInput multiline={true}>{JSON.stringify(observableUsersStore.users, null, 2)}</TextInput>
+          {usersStore.usersLoadCompleted && (
+            <TextInput multiline={true}>{JSON.stringify(usersStore.users, null, 2)}</TextInput>
           )}
         </View>
 
-        <Button icon="download" mode="outlined" onPress={() => observableUsersStore.loadUsers()}>
-          Load users
+        <Button icon="download" mode="outlined" onPress={() => usersStore.loadUsers()}>
+          Fetch users
         </Button>
 
-        <Button icon="delete" mode="outlined" onPress={() => observableUsersStore.resetUsers()}>
+        <Button icon="broom" mode="outlined" onPress={() => usersStore.resetUsers()}>
           Reset
         </Button>
       </View>
@@ -39,6 +39,9 @@ const useStyles = () => {
   const theme = useTheme() as AppTheme;
 
   return StyleSheet.create({
+    activity: {
+      height: 28,
+    },
     root: {
       flex: 1,
       alignItems: "center",

@@ -12,13 +12,15 @@ export type User = {
 
 class UsersStore {
   users: User[] = [];
+  isLoading = false;
+  isError = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   get usersLoadCompleted(): boolean {
-    return this.users.length > 0;
+    return !this.isLoading && this.users.length > 0;
   }
 
   get usersCount(): number {
@@ -32,27 +34,39 @@ class UsersStore {
   }
 
   async loadUsers(): Promise<void> {
-    this.resetUsers();
+    runInAction(() => {
+      this.isLoading = true;
+      this.isError = false;
+    });
 
-    const url = USERS_API_URL;
-    console.log(`Loading users from [${url}]...`);
-    const result = await axios.get(url);
-    const users = result.data;
+    try {
+      this.resetUsers();
 
-    console.log(`Loaded ${users.length} users from jsonplaceholder http api call`);
+      console.log(`Loading users from [${USERS_API_URL}]...`);
+      const result = await axios.get(USERS_API_URL);
+      const users = result.data;
 
-    setTimeout(() => {
+      console.log(`Loaded ${users.length} users from jsonplaceholder http api call`);
+
+      setTimeout(() => {
+        runInAction(() => {
+          this.users = users;
+          this.isLoading = false;
+        });
+      }, 2000);
+    } catch (error) {
+      console.error(`Error while calling [${USERS_API_URL}]...`, error);
       runInAction(() => {
-        this.users = users;
+        this.isError = true;
       });
-    }, 2000);
+    }
   }
 }
 
 const observableUsersStore = new UsersStore();
 
 autorun(() => {
-  console.info("Loaded users count: ", observableUsersStore.usersLoadCompleted);
+  console.info("usersLoadCompleted: ", observableUsersStore.usersLoadCompleted);
 });
 
 if (__DEV__) {
