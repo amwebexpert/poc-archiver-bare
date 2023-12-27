@@ -5,17 +5,6 @@ export enum CanvasMode {
   TRANSFORM = "TRANSFORM",
 }
 
-export enum SvgElementType {
-  path = "path",
-  circle = "circle",
-  rect = "rect",
-  ellipse = "ellipse",
-  line = "line",
-  polyline = "polyline",
-  polygon = "polygon",
-  text = "text",
-}
-
 export type CanvasDimensions = {
   width: number;
   height: number;
