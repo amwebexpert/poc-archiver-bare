@@ -8,7 +8,7 @@ import { Button, Paragraph, useTheme } from "react-native-paper";
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 
-import { RootStackParamList } from "./AppNavigation";
+import { AppScreens, RootStackParamList } from "./AppNavigation";
 
 const OtherFeaturesScreen = () => {
   const styles = useStyles();
@@ -23,7 +23,7 @@ const OtherFeaturesScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("JailMonkeyScreen")}
+            onPress={() => navigation.navigate(AppScreens.JailMonkeyScreen)}
             icon="login">
             Jail broken detect
           </Button>
@@ -31,7 +31,7 @@ const OtherFeaturesScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("DeviceInfoScreen")}
+            onPress={() => navigation.navigate(AppScreens.DeviceInfoScreen)}
             icon="information-outline">
             Device info
           </Button>
@@ -41,7 +41,7 @@ const OtherFeaturesScreen = () => {
             icon="network"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("NetworkLoggerScreen")}>
+            onPress={() => navigation.navigate(AppScreens.NetworkLoggerScreen)}>
             Network trafic
           </Button>
 
@@ -50,7 +50,7 @@ const OtherFeaturesScreen = () => {
             icon="wifi"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("NetInfoScreen")}>
+            onPress={() => navigation.navigate(AppScreens.NetInfoScreen)}>
             Network Info
           </Button>
 
@@ -59,7 +59,7 @@ const OtherFeaturesScreen = () => {
             icon="snail"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("StyledComponentsScreen")}>
+            onPress={() => navigation.navigate(AppScreens.StyledComponentsScreen)}>
             Styled components
           </Button>
 
@@ -68,7 +68,7 @@ const OtherFeaturesScreen = () => {
             icon="clipboard"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("ClipboardScreen")}>
+            onPress={() => navigation.navigate(AppScreens.ClipboardScreen)}>
             Clipboard
           </Button>
 
@@ -77,7 +77,7 @@ const OtherFeaturesScreen = () => {
             icon="calendar"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("DatePickerScreen")}>
+            onPress={() => navigation.navigate(AppScreens.DatePickerScreen)}>
             Date & time picker
           </Button>
 
@@ -86,7 +86,7 @@ const OtherFeaturesScreen = () => {
             icon="email"
             mode="outlined"
             compact={true}
-            onPress={() => navigation.navigate("EmailerScreen")}>
+            onPress={() => navigation.navigate(AppScreens.EmailerScreen)}>
             Emailer
           </Button>
         </ScrollView>

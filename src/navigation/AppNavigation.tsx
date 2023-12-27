@@ -18,58 +18,90 @@ import DatePickerScreen from "../features/datepicker/DatePickerScreen";
 import EmailerScreen from "../features/email/EmailerScreen";
 import ImagesFeaturesScreen from "./ImageFeaturesScreen";
 import FastImageScreen from "../features/images/FastImageScreen";
+import AnimationFeaturesScreen from "./AnimationFeaturesScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
 
+export enum AppScreens {
+  Home = "Home",
+
+  StorageManagementScreen = "StorageManagementScreen",
+  StoreDemoScreen = "StoreDemoScreen",
+
+  ImageFeaturesScreen = "ImageFeaturesScreen",
+  FastImageScreen = "FastImageScreen",
+
+  MiscellaneousFeaturesScreen = "MiscellaneousFeaturesScreen",
+  JailMonkeyScreen = "JailMonkeyScreen",
+  DeviceInfoScreen = "DeviceInfoScreen",
+  NetworkLoggerScreen = "NetworkLoggerScreen",
+  StyledComponentsScreen = "StyledComponentsScreen",
+  ClipboardScreen = "ClipboardScreen",
+  NetInfoScreen = "NetInfoScreen",
+  DatePickerScreen = "DatePickerScreen",
+  EmailerScreen = "EmailerScreen",
+
+  AnimationFeaturesScreen = "AnimationFeaturesScreen",
+  DrawerScreen = "DrawerScreen",
+
+  SettingsScreen = "SettingsScreen",
+  About = "About",
+}
+
 // https://stackoverflow.com/a/69368480/704681
 export type RootStackParamList = {
-  Home: undefined;
+  [AppScreens.Home]: undefined;
 
-  StorageManagementScreen: undefined;
-  StoreDemoScreen: undefined;
+  [AppScreens.StorageManagementScreen]: undefined;
+  [AppScreens.StoreDemoScreen]: undefined;
 
-  ImageFeaturesScreen: undefined;
-  FastImageScreen: undefined;
+  [AppScreens.ImageFeaturesScreen]: undefined;
+  [AppScreens.FastImageScreen]: undefined;
 
-  MiscellaneousFeaturesScreen: undefined;
-  JailMonkeyScreen: { id: number } | undefined;
-  DeviceInfoScreen: undefined;
-  NetworkLoggerScreen: undefined;
-  StyledComponentsScreen: undefined;
-  ClipboardScreen: undefined;
-  NetInfoScreen: undefined;
-  DatePickerScreen: undefined;
-  EmailerScreen: undefined;
+  [AppScreens.MiscellaneousFeaturesScreen]: undefined;
+  [AppScreens.JailMonkeyScreen]: undefined;
+  [AppScreens.DeviceInfoScreen]: undefined;
+  [AppScreens.NetworkLoggerScreen]: undefined;
+  [AppScreens.StyledComponentsScreen]: undefined;
+  [AppScreens.ClipboardScreen]: undefined;
+  [AppScreens.NetInfoScreen]: undefined;
+  [AppScreens.DatePickerScreen]: undefined;
+  [AppScreens.EmailerScreen]: undefined;
 
-  SettingsScreen: undefined;
-  About: undefined;
+  [AppScreens.AnimationFeaturesScreen]: undefined;
+  [AppScreens.DrawerScreen]: undefined;
+
+  [AppScreens.SettingsScreen]: undefined;
+  [AppScreens.About]: undefined;
 };
 
 const AppNavigation: FunctionComponent = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator initialRouteName={AppScreens.Home} screenOptions={{ headerShown: true }}>
+      <Stack.Screen name={AppScreens.Home} component={HomeScreen} />
 
-      <Stack.Screen name="StorageManagementScreen" component={StorageManagementScreen} />
-      <Stack.Screen name="StoreDemoScreen" component={StoreDemoScreen} />
+      <Stack.Screen name={AppScreens.StorageManagementScreen} component={StorageManagementScreen} />
+      <Stack.Screen name={AppScreens.StoreDemoScreen} component={StoreDemoScreen} />
 
-      <Stack.Screen name="ImageFeaturesScreen" component={ImagesFeaturesScreen} />
-      <Stack.Screen name="FastImageScreen" component={FastImageScreen} />
+      <Stack.Screen name={AppScreens.ImageFeaturesScreen} component={ImagesFeaturesScreen} />
+      <Stack.Screen name={AppScreens.FastImageScreen} component={FastImageScreen} />
 
-      <Stack.Screen name="MiscellaneousFeaturesScreen" component={OtherFeaturesScreen} />
-      <Stack.Screen name="JailMonkeyScreen" component={JailMonkeyScreen} />
-      <Stack.Screen name="DeviceInfoScreen" component={DeviceInfoScreen} />
-      <Stack.Screen name="NetworkLoggerScreen" component={NetworkLoggerScreen} />
-      <Stack.Screen name="StyledComponentsScreen" component={StyledComponentsScreen} />
-      <Stack.Screen name="ClipboardScreen" component={ClipboardScreen} />
-      <Stack.Screen name="NetInfoScreen" component={NetInfoScreen} />
-      <Stack.Screen name="DatePickerScreen" component={DatePickerScreen} />
-      <Stack.Screen name="EmailerScreen" component={EmailerScreen} />
+      <Stack.Screen name={AppScreens.MiscellaneousFeaturesScreen} component={OtherFeaturesScreen} />
+      <Stack.Screen name={AppScreens.JailMonkeyScreen} component={JailMonkeyScreen} />
+      <Stack.Screen name={AppScreens.DeviceInfoScreen} component={DeviceInfoScreen} />
+      <Stack.Screen name={AppScreens.NetworkLoggerScreen} component={NetworkLoggerScreen} />
+      <Stack.Screen name={AppScreens.StyledComponentsScreen} component={StyledComponentsScreen} />
+      <Stack.Screen name={AppScreens.ClipboardScreen} component={ClipboardScreen} />
+      <Stack.Screen name={AppScreens.NetInfoScreen} component={NetInfoScreen} />
+      <Stack.Screen name={AppScreens.DatePickerScreen} component={DatePickerScreen} />
+      <Stack.Screen name={AppScreens.EmailerScreen} component={EmailerScreen} />
 
-      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name={AppScreens.AnimationFeaturesScreen} component={AnimationFeaturesScreen} />
 
-      <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name={AppScreens.SettingsScreen} component={SettingsScreen} />
+
+      <Stack.Screen name={AppScreens.About} component={AboutScreen} />
     </Stack.Navigator>
   );
 };

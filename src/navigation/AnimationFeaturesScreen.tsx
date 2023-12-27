@@ -8,22 +8,22 @@ import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 import { AppScreens, RootStackParamList } from "./AppNavigation";
 
-const ImagesFeaturesScreen = () => {
+const AnimationFeaturesScreen = () => {
   const styles = useStyles();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
-    <AppLayout title="Images features">
+    <AppLayout title="Animations">
       <View style={styles.root}>
         <ScrollView style={styles.features}>
-          <Paragraph style={styles.paragraph}>Image features</Paragraph>
+          <Paragraph style={styles.paragraph}>Animations related features</Paragraph>
 
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate(AppScreens.FastImageScreen)}
-            icon="image">
-            FastImage
+            onPress={() => navigation.navigate(AppScreens.SettingsScreen)}
+            icon="paint">
+            Paint demo…
           </Button>
         </ScrollView>
       </View>
@@ -54,4 +54,4 @@ const useStyles = () => {
   });
 };
 
-export default ImagesFeaturesScreen;
+export default AnimationFeaturesScreen;

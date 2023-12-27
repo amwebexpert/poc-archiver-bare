@@ -6,7 +6,7 @@ import { Button, Paragraph, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
-import { RootStackParamList } from "./AppNavigation";
+import { AppScreens, RootStackParamList } from "./AppNavigation";
 
 const StorageManagementScreen = () => {
   const styles = useStyles();
@@ -21,7 +21,7 @@ const StorageManagementScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("SettingsScreen")}
+            onPress={() => navigation.navigate(AppScreens.SettingsScreen)}
             icon="cog">
             Settings MobX store
           </Button>
@@ -29,7 +29,7 @@ const StorageManagementScreen = () => {
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate("StoreDemoScreen")}
+            onPress={() => navigation.navigate(AppScreens.StoreDemoScreen)}
             icon="database">
             Users MobX store
           </Button>
@@ -51,6 +51,7 @@ const useStyles = () => {
     },
     paragraph: {
       marginVertical: theme.spacing(2),
+      textAlign: "center",
     },
     features: {
       marginTop: theme.spacing(2),

@@ -7,7 +7,7 @@ import { AppLayout } from "../components/layout/AppLayout";
 import { AppTheme } from "../theme";
 
 import { APP_URL } from "./HomeScreen.constants";
-import { RootStackParamList } from "./AppNavigation";
+import { AppScreens, RootStackParamList } from "./AppNavigation";
 
 export const HomeScreen = () => {
   const styles = useStyles();
@@ -34,7 +34,7 @@ export const HomeScreen = () => {
         <Button
           mode="outlined"
           style={styles.category}
-          onPress={() => navigation.navigate("StorageManagementScreen")}
+          onPress={() => navigation.navigate(AppScreens.StorageManagementScreen)}
           icon="database">
           Storage management…
         </Button>
@@ -42,7 +42,7 @@ export const HomeScreen = () => {
         <Button
           mode="outlined"
           style={styles.category}
-          onPress={() => navigation.navigate("ImageFeaturesScreen")}
+          onPress={() => navigation.navigate(AppScreens.ImageFeaturesScreen)}
           icon="image">
           Images features…
         </Button>
@@ -50,7 +50,7 @@ export const HomeScreen = () => {
         <Button
           mode="outlined"
           style={styles.category}
-          onPress={() => navigation.navigate("MiscellaneousFeaturesScreen")}
+          onPress={() => navigation.navigate(AppScreens.MiscellaneousFeaturesScreen)}
           icon="brain">
           Miscellaneous…
         </Button>
@@ -64,7 +64,7 @@ export const HomeScreen = () => {
             Star it!
           </Button>
 
-          <Button mode="outlined" onPress={() => navigation.navigate("About")} icon="book-information-variant">
+          <Button mode="outlined" onPress={() => navigation.navigate(AppScreens.About)} icon="book-information-variant">
             Licences…
           </Button>
         </View>
