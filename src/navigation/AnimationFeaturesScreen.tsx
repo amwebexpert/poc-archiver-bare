@@ -16,14 +16,14 @@ const AnimationFeaturesScreen = () => {
     <AppLayout title="Animations">
       <View style={styles.root}>
         <ScrollView style={styles.features}>
-          <Paragraph style={styles.paragraph}>Animations related features</Paragraph>
+          <Paragraph style={styles.paragraph}>Animations POC</Paragraph>
 
           <Button
             mode="outlined"
             style={styles.category}
-            onPress={() => navigation.navigate(AppScreens.SettingsScreen)}
-            icon="paint">
-            Paint demo…
+            onPress={() => navigation.navigate(AppScreens.PaintDemoScreen)}
+            icon="draw">
+            Paint App demo…
           </Button>
         </ScrollView>
       </View>

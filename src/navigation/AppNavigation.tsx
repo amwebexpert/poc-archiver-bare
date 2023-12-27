@@ -19,6 +19,7 @@ import EmailerScreen from "../features/email/EmailerScreen";
 import ImagesFeaturesScreen from "./ImageFeaturesScreen";
 import FastImageScreen from "../features/images/FastImageScreen";
 import AnimationFeaturesScreen from "./AnimationFeaturesScreen";
+import PaintDemoScreen from "../features/paint/PaintDemoScreen";
 
 const Stack = createNativeStackNavigator();
 const NetworkLoggerScreen = () => <NetworkLogger theme="dark" />;
@@ -43,7 +44,7 @@ export enum AppScreens {
   EmailerScreen = "EmailerScreen",
 
   AnimationFeaturesScreen = "AnimationFeaturesScreen",
-  DrawerScreen = "DrawerScreen",
+  PaintDemoScreen = "PaintDemoScreen",
 
   SettingsScreen = "SettingsScreen",
   About = "About",
@@ -70,7 +71,7 @@ export type RootStackParamList = {
   [AppScreens.EmailerScreen]: undefined;
 
   [AppScreens.AnimationFeaturesScreen]: undefined;
-  [AppScreens.DrawerScreen]: undefined;
+  [AppScreens.PaintDemoScreen]: undefined;
 
   [AppScreens.SettingsScreen]: undefined;
   [AppScreens.About]: undefined;
@@ -98,6 +99,7 @@ const AppNavigation: FunctionComponent = () => {
       <Stack.Screen name={AppScreens.EmailerScreen} component={EmailerScreen} />
 
       <Stack.Screen name={AppScreens.AnimationFeaturesScreen} component={AnimationFeaturesScreen} />
+      <Stack.Screen name={AppScreens.PaintDemoScreen} component={PaintDemoScreen} />
 
       <Stack.Screen name={AppScreens.SettingsScreen} component={SettingsScreen} />
 

@@ -50,6 +50,14 @@ export const HomeScreen = () => {
         <Button
           mode="outlined"
           style={styles.category}
+          onPress={() => navigation.navigate(AppScreens.AnimationFeaturesScreen)}
+          icon="draw">
+          Animations…
+        </Button>
+
+        <Button
+          mode="outlined"
+          style={styles.category}
           onPress={() => navigation.navigate(AppScreens.MiscellaneousFeaturesScreen)}
           icon="brain">
           Miscellaneous…
