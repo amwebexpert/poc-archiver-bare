@@ -40,9 +40,9 @@ export type DeserializerInputs = {
 };
 
 export type XmlSerializer<E extends SvgElement> = (inputs: SerializerInputs<E>) => string;
-export type XmlDeserializer<E extends SvgElement> = (inputs: DeserializerInputs) => E;
+export type XmlDeserializer<E extends SvgElement> = (inputs: DeserializerInputs) => E | undefined;
 
-export type XmlSerializationHandler<E extends SvgElement> = {
+export type XmlSerializationHandler<E extends SvgElement = SvgElement> = {
   serializer: XmlSerializer<E>;
   deserializer: XmlDeserializer<E>;
 };
