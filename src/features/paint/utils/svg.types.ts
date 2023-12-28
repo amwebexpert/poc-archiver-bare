@@ -25,7 +25,8 @@ export type SvgCircleElement = SvgElement & {
   type: SvgElementType.circle;
   cx: number;
   cy: number;
-  r: number;
+  radius: number;
+  fill: string;
 };
 
 export type SerializerInputs<E extends SvgElement> = {
