@@ -1,3 +1,4 @@
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { FunctionComponent } from "react";
 
 import { observer } from "mobx-react";
@@ -10,11 +11,12 @@ import { AppTheme } from "../../theme";
 const PaintDemoScreen: FunctionComponent = () => {
   const styles = useStyles();
 
+  // @see https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/handling-gestures/#handling-tap-gestures
   return (
     <AppLayout title="Paint App demo">
-      <View style={styles.root}>
+      <GestureHandlerRootView style={styles.root}>
         <Text>Paint App demo</Text>
-      </View>
+      </GestureHandlerRootView>
     </AppLayout>
   );
 };
