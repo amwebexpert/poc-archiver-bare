@@ -25,14 +25,6 @@ const XML_ELEMENT_ATTRIBUTES_KEY = ":@";
 const SVG_ELEMENTS = new Map<SvgElementType, XmlSerializationHandler>([
   [SvgElementType.path, PATH_SERIALIZER as unknown as XmlSerializationHandler],
   [SvgElementType.circle, CIRCLE_SERIALIZER as unknown as XmlSerializationHandler],
-
-  //...not yet implemented
-  [SvgElementType.rect, DEFAULT_ELEMENT_NOOP_SERIALIZER],
-  [SvgElementType.line, DEFAULT_ELEMENT_NOOP_SERIALIZER],
-  [SvgElementType.polygon, DEFAULT_ELEMENT_NOOP_SERIALIZER],
-  [SvgElementType.polyline, DEFAULT_ELEMENT_NOOP_SERIALIZER],
-  [SvgElementType.ellipse, DEFAULT_ELEMENT_NOOP_SERIALIZER],
-  [SvgElementType.text, DEFAULT_ELEMENT_NOOP_SERIALIZER],
 ]);
 
 const svgWrapper = ({ content = "", viewBox = DEFAULT_VIEW_BOX }) =>
