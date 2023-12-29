@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction, spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
-import { CanvasMode } from "./constants";
+import { CanvasMode } from "./canvas.types";
 import { SvgElement } from "./svg.types";
 
 export type ZoomPanInfoType = {

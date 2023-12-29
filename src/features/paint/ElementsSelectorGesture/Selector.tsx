@@ -1,9 +1,8 @@
 import { FunctionComponent, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import { GestureHandlerRootView, PanGestureHandler, Gesture, GestureDetector } from "react-native-gesture-handler";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   runOnJS,
-  useAnimatedGestureHandler,
   useAnimatedProps,
   useAnimatedStyle,
   useDerivedValue,
@@ -11,11 +10,14 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { BoundingBox, CanvasDimensions, DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../constants";
+import { DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../constants";
 import { fromCoordinatesArray, getPathPoints } from "../utils/svg-path.utils";
 
-import { SelectorMoveType } from "./constants";
+import { BoundingBox, CanvasDimensions } from "../canvas.types";
+import paintStore from "../paint.store";
+import { SvgPathElement } from "../svg.types";
 import { MovableHandle } from "./MovableHandle";
+import { SelectorMoveType } from "./constants";
 import {
   applyBottomRightSnap,
   applyTopLeftSnap,
@@ -24,8 +26,6 @@ import {
   onTopLeftDrag,
   setupRegionContext,
 } from "./selectorUtils";
-import { SvgElement, SvgPathElement } from "../svg.types";
-import paintStore from "../paint.store";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedPath = Animated.createAnimatedComponent(Path);

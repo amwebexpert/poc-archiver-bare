@@ -1,7 +1,7 @@
 import { useState } from "react";
 
+import { CanvasDimensions, CanvasSurface } from "../canvas.types";
 import { computeMaxDimensionsForAspectRatio_16_9 } from "../utils/canvas.utils";
-import { CanvasDimensions, CanvasSurface, DEFAULT_DIMENSIONS } from "../constants";
 
 export const useCanvasDimensions = () => {
   const [canvasDimensions, setCanvasDimensions] = useState<CanvasDimensions>();

@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import Svg from "react-native-svg";
 
-import { ELEMENT_VIEWERS } from "./constants";
 import { SvgElement } from "../svg.types";
 import { EmptyView } from "./EmptyView";
+import { ELEMENT_VIEWERS } from "./constants";
 
 type SvgViewerProps = {
   elements?: SvgElement[];

@@ -1,15 +1,4 @@
-export enum CanvasMode {
-  ZOOM_PAN = "ZOOM_PAN",
-  DRAW = "DRAW",
-  SELECTOR = "SELECTOR",
-  TRANSFORM = "TRANSFORM",
-}
-
-export type CanvasSurface = { width: number; height: number };
-export type CanvasDimensions = CanvasSurface & { snapshotScale: number; screenScale: number };
-export type XYCoordinates = { x: number; y: number };
-
-export type BoundingBox = { left: number; top: number; width: number; height: number };
+import { BoundingBox, CanvasDimensions, XYCoordinates } from "./canvas.types";
 
 // match 8.5" x 11" at 300 dpi
 export const CANVAS_DIMENSIONS: CanvasDimensions = { width: 2550, height: 3300, snapshotScale: 1, screenScale: 1 };

@@ -5,7 +5,6 @@ import Svg, { Path } from "react-native-svg";
 
 import { SINGLE_TAP_MAX_DISTANCE } from "../constants";
 
-import { Ghost } from "./Ghost";
 import { FunctionComponent } from "react";
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);

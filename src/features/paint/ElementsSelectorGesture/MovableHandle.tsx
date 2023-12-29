@@ -3,7 +3,7 @@ import { GestureDetector, GestureType, PanGestureHandler } from "react-native-ge
 import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from "react-native-reanimated";
 
 import { useMovableHandleSize } from "./hooks/useMovableHandleSize";
-import { XYCoordinates } from "../constants";
+import { XYCoordinates } from "../canvas.types";
 import { FunctionComponent } from "react";
 
 const AnimatedView = Animated.createAnimatedComponent(View);

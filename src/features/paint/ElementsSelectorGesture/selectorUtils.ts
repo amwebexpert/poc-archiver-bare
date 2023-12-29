@@ -1,6 +1,7 @@
 import { SharedValue } from "react-native-reanimated";
+import { XYCoordinates } from "../canvas.types";
+import { DEFAULT_COORDINATES } from "../constants";
 import { SNAP_DELTA } from "./constants";
-import { DEFAULT_COORDINATES, XYCoordinates } from "../constants";
 import { AnimationEventType, ContextType } from "./selectors.types";
 
 // optional (dont call it if you don't want a "snap 2 the edge" behavior)

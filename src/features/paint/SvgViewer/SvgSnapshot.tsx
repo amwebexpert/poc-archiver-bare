@@ -4,10 +4,10 @@ import Svg, { G, Rect } from "react-native-svg";
 
 import { CANVAS_DIMENSIONS } from "../constants";
 
-import { ELEMENT_VIEWERS } from "./constants";
+import { FunctionComponent } from "react";
 import { SvgElement } from "../svg.types";
-import { FunctionComponent, LegacyRef, Ref } from "react";
 import { EmptyView } from "./EmptyView";
+import { ELEMENT_VIEWERS } from "./constants";
 
 type SvgSnapshotProps = {
   elements?: SvgElement[];
