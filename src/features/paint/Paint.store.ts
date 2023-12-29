@@ -32,13 +32,46 @@ class PaintStore {
     makeAutoObservable(this);
   }
 
-  addDrawElement = (newElement: SvgElement) => {
+  addDrawElement(newElement: SvgElement) {
     runInAction(() => {
       this.undoHistory = [...this.undoHistory, this.elements];
       this.elements = [...this.elements, newElement];
       this.isSaved = false;
     });
-  };
+  }
+
+  selectElement(element: SvgElement) {
+    // multiple elements selection not supported (yet)
+    runInAction(() => {
+      this.selectedElementIDs = [];
+    });
+
+    this.toggleElementSelection(element);
+    this.changeCanvasMode(CanvasMode.TRANSFORM);
+  }
+
+  toggleElementSelection(element: SvgElement) {
+    const elementID = element.id;
+    const selections = this.selectedElementIDs;
+
+    const newSelectedElementIDs = selections.includes(elementID)
+      ? selections.filter(id => id !== elementID)
+      : [...selections, elementID];
+
+    runInAction(() => {
+      this.selectedElementIDs = newSelectedElementIDs;
+    });
+  }
+
+  changeCanvasMode(newCanvasMode: CanvasMode) {
+    runInAction(() => {
+      // if we switch to draw mode, we reset the selected elements
+      if (newCanvasMode === CanvasMode.DRAW) {
+        this.selectedElementIDs = [];
+      }
+      this.canvasMode = newCanvasMode;
+    });
+  }
 }
 
 const paintStore = new PaintStore();
