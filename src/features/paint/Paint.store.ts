@@ -2,25 +2,11 @@ import { makeAutoObservable, runInAction, spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
 import { CanvasMode } from "./canvas.types";
 import { SvgElement } from "./svg.types";
-
-export type ZoomPanInfoType = {
-  zoomLevel: number;
-  offsetX: number;
-  offsetY: number;
-  translateX: number;
-  translateY: number;
-};
-
-const DEFAULT_ZOOM_PAN: ZoomPanInfoType = {
-  zoomLevel: 0.95,
-  offsetX: 0, // offset from the zoomed subject center (@see openspacelabs/react-native-zoomable-view doc)
-  offsetY: 0,
-  translateX: 0, // <View> style "transform" attributes
-  translateY: 0,
-};
+import { toSvgFormat } from "./utils/svg-serialization.utils";
+import zoomPanInfoStore from "./zoom-pan.store";
 
 class PaintStore {
-  zoomAndPanInfo = DEFAULT_ZOOM_PAN;
+  zoomAndPanInfo = zoomPanInfoStore;
 
   canvasMode: CanvasMode = CanvasMode.DRAW;
   elements: SvgElement[] = [];
@@ -28,16 +14,67 @@ class PaintStore {
   undoHistory: SvgElement[][] = [];
 
   isDrawGestureDirty = false;
+
   isSaved = true;
+  isSaving = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  reset(elements: SvgElement[] = []) {
-    runInAction(() => {
-      this.zoomAndPanInfo = DEFAULT_ZOOM_PAN;
+  get isDrawMode(): boolean {
+    return this.canvasMode === CanvasMode.DRAW;
+  }
 
+  get isZoomPanMode(): boolean {
+    return this.canvasMode === CanvasMode.TRANSFORM;
+  }
+
+  get isSelectorMode(): boolean {
+    return this.canvasMode === CanvasMode.SELECTOR;
+  }
+
+  get isTransformMode(): boolean {
+    return this.canvasMode === CanvasMode.TRANSFORM;
+  }
+
+  get hasSelectedElements(): boolean {
+    return this.selectedElementIDs.length > 0;
+  }
+
+  get elementsCount(): number {
+    return this.elements.length;
+  }
+
+  get isCanvasEmpty(): boolean {
+    return this.elementsCount === 0;
+  }
+
+  get hasUndoHistory(): boolean {
+    return this.undoHistory.length > 0;
+  }
+
+  async save(base64Snapshot: string) {
+    runInAction(() => {
+      this.isSaving = true;
+      console.info("saving simulation");
+      console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
+      console.info("\t *.svg content", toSvgFormat({ elements: this.elements }).substring(0, 200) + "...");
+    });
+
+    setTimeout(() => {
+      runInAction(() => {
+        this.isSaved = true;
+        this.isSaving = false;
+        console.info("saving simulation completed");
+      });
+    }, 3000);
+  }
+
+  reset(elements: SvgElement[] = []) {
+    this.zoomAndPanInfo.reset();
+
+    runInAction(() => {
       this.canvasMode = CanvasMode.DRAW;
       this.elements = elements;
       this.selectedElementIDs = [];
@@ -52,6 +89,28 @@ class PaintStore {
     runInAction(() => {
       this.undoHistory = [...this.undoHistory, this.elements];
       this.elements = [...this.elements, newElement];
+      this.isSaved = false;
+    });
+  }
+
+  undo() {
+    if (!this.hasUndoHistory) {
+      return;
+    }
+
+    runInAction(() => {
+      const lastElements = this.undoHistory[this.undoHistory.length - 1];
+
+      this.undoHistory = this.undoHistory.slice(0, -1);
+      this.elements = lastElements;
+      this.isSaved = false;
+    });
+  }
+
+  deleteSelectedElements() {
+    runInAction(() => {
+      this.undoHistory = [...this.undoHistory, this.elements];
+      this.elements = this.elements.filter(elem => !this.selectedElementIDs.includes(elem.id));
       this.isSaved = false;
     });
   }
@@ -95,6 +154,22 @@ class PaintStore {
       }
       this.canvasMode = newCanvasMode;
     });
+  }
+
+  setCanvasModeToDraw() {
+    this.changeCanvasMode(CanvasMode.DRAW);
+  }
+
+  setCanvasModeToTransform() {
+    this.changeCanvasMode(CanvasMode.TRANSFORM);
+  }
+
+  setCanvasModeToSelector() {
+    this.changeCanvasMode(CanvasMode.SELECTOR);
+  }
+
+  setCanvasModeToZoomPan() {
+    this.changeCanvasMode(CanvasMode.ZOOM_PAN);
   }
 }
 
