@@ -31,6 +31,14 @@ class PaintStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  addDrawElement = (newElement: SvgElement) => {
+    runInAction(() => {
+      this.undoHistory = [...this.undoHistory, this.elements];
+      this.elements = [...this.elements, newElement];
+      this.isSaved = false;
+    });
+  };
 }
 
 const paintStore = new PaintStore();
