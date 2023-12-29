@@ -1,3 +1,29 @@
+diff --git a/node_modules/@openspacelabs/react-native-zoomable-view/lib/typescript/typings/index.d.ts b/node_modules/@openspacelabs/react-native-zoomable-view/lib/typescript/typings/index.d.ts
+index ec80b01..3fa3da4 100644
+--- a/node_modules/@openspacelabs/react-native-zoomable-view/lib/typescript/typings/index.d.ts
++++ b/node_modules/@openspacelabs/react-native-zoomable-view/lib/typescript/typings/index.d.ts
+@@ -14,6 +14,13 @@ export interface ZoomableViewEvent {
+     originalPageX: number;
+     originalPageY: number;
+ }
++export type ZoomPanInfoType = {
++    zoomLevel: number;
++    offsetX: number;
++    offsetY: number;
++    translateX: number;
++    translateY: number;
++}
+ export interface ReactNativeZoomableViewProps extends ViewProps {
+     zoomEnabled?: boolean;
+     initialZoom?: number;
+@@ -27,6 +34,7 @@ export interface ReactNativeZoomableViewProps extends ViewProps {
+     doubleTapDelay?: number;
+     doubleTapZoomToCenter?: boolean;
+     bindToBorders?: boolean;
++    onTranslateXY: (info: ZoomPanInfoType) => void;
+     zoomStep?: number;
+     pinchToZoomInSensitivity?: number;
+     pinchToZoomOutSensitivity?: number;
 diff --git a/node_modules/@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView.tsx b/node_modules/@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView.tsx
 index 5d41626..f386a50 100644
 --- a/node_modules/@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView.tsx
