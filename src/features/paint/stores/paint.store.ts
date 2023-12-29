@@ -1,8 +1,8 @@
 import { makeAutoObservable, runInAction, spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
-import { CanvasMode } from "./canvas.types";
-import { SvgElement } from "./svg.types";
-import { toSvgFormat } from "./utils/svg-serialization.utils";
+import { CanvasMode } from "../canvas.types";
+import { SvgElement } from "../svg.types";
+import { toSvgFormat } from "../utils/svg-serialization.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
 
 class PaintStore {

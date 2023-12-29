@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./paint.store";
+import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";
 
 const SvgCanvasElementsSelectorMode: FunctionComponent<{}> = () => {

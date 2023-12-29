@@ -7,7 +7,7 @@ import SvgViewer from "./SvgViewer/SvgViewer";
 import { CanvasDimensions } from "./canvas.types";
 import { DEFAULT_DIMENSIONS } from "./constants";
 import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./paint.store";
+import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";
 import { SvgPathElement } from "./svg.types";
 

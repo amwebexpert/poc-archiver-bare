@@ -1,4 +1,4 @@
-import paintStore from "../../paint.store";
+import paintStore from "../../stores/paint.store";
 import { CIRCLE_SIZE } from "../constants";
 
 export const useMovableHandleSize = () => {

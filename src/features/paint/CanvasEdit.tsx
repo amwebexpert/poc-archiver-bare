@@ -13,7 +13,7 @@ import SvgSnapshot from "./SvgViewer/SvgSnapshot";
 import { ExpandableToolbar } from "./components/ExpandableToolbar";
 import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./paint.store";
+import paintStore from "./stores/paint.store";
 
 const CanvasEdit = () => {
   const styles = useStyles();

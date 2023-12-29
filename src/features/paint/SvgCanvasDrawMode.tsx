@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
-import paintStore from "./paint.store";
+import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
 

@@ -3,9 +3,9 @@ import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-vi
 import { observer } from "mobx-react";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./paint.store";
+import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";
-import { ZoomPanInfoType } from "./zoom-pan.store";
+import { ZoomPanInfoType } from "./stores/zoom-pan.store";
 
 const SvgCanvasZoomMode = () => {
   const { elementsWithSelectedFlag } = useSelectedElements();
