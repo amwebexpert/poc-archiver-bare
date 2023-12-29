@@ -10,12 +10,12 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../constants";
-import { fromCoordinatesArray, getPathPoints } from "../utils/svg-path.utils";
+import { DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../../constants";
+import { fromCoordinatesArray, getPathPoints } from "../../utils/svg-path.utils";
 
-import { BoundingBox, CanvasDimensions } from "../types/canvas.types";
-import paintStore from "../stores/paint.store";
-import { SvgPathElement } from "../types/svg.types";
+import { BoundingBox, CanvasDimensions } from "../../types/canvas.types";
+import paintStore from "../../stores/paint.store";
+import { SvgPathElement } from "../../types/svg.types";
 import { MovableHandle } from "./MovableHandle";
 import { SelectorMoveType } from "./constants";
 import {
