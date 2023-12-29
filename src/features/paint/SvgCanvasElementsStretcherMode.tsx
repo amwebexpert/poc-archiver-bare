@@ -1,11 +1,13 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
-import { CanvasDimensions, DEFAULT_DIMENSIONS } from "./constants";
-import { Selector } from "./ElementsSelectorGesture/Selector";
-import { useSelectedElements } from "./hooks/useSelectedElement";
-import SvgViewer from "./SvgViewer/SvgViewer";
-import paintStore from "./paint.store";
 import { FunctionComponent } from "react";
+import { Selector } from "./ElementsSelectorGesture/Selector";
+import SvgViewer from "./SvgViewer/SvgViewer";
+import { CanvasDimensions } from "./canvas.types";
+import { DEFAULT_DIMENSIONS } from "./constants";
+import { useSelectedElements } from "./hooks/useSelectedElement";
+import paintStore from "./paint.store";
+import { paintCommonStyles } from "./paint.styles";
 import { SvgPathElement } from "./svg.types";
 
 type SvgCanvasElementsStretcherModeProps = {
@@ -25,7 +27,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
   };
 
   return (
-    <View style={[styles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
+    <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
       {isBoundingBoxReady && (
         <Selector
           canvasDimensions={canvasDimensions}
@@ -39,13 +41,5 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderColor: "black",
-    borderWidth: StyleSheet.hairlineWidth,
-    flex: 1,
-  },
-});
 
 export default SvgCanvasElementsStretcherMode;

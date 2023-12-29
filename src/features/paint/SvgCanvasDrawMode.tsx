@@ -1,11 +1,12 @@
 import { FunctionComponent, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 
-import paintStore from "./paint.store";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
+import paintStore from "./paint.store";
+import { paintCommonStyles } from "./paint.styles";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
@@ -28,7 +29,7 @@ const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   };
 
   return (
-    <View style={[styles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
+    <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
       <PathGestureDrawer
         gesturePoints={gesturePoints}
         strokeColor="black"
@@ -40,13 +41,5 @@ const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderColor: "black",
-    borderWidth: StyleSheet.hairlineWidth,
-    flex: 1,
-  },
-});
 
 export default SvgCanvasDrawMode;

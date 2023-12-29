@@ -1,17 +1,22 @@
 import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
-import { StyleSheet } from "react-native";
 
-import { useSelectedElements } from "./hooks/useSelectedElement";
 import SvgViewer from "./SvgViewer/SvgViewer";
-import paintStore, { ZoomPanInfoType } from "./paint.store";
+import { useSelectedElements } from "./hooks/useSelectedElement";
+import paintStore from "./paint.store";
+import { paintCommonStyles } from "./paint.styles";
+import { ZoomPanInfoType } from "./zoom-pan.store";
 
 const SvgCanvasZoomMode = () => {
   const { elementsWithSelectedFlag } = useSelectedElements();
   const { zoomLevel, offsetX, offsetY } = paintStore.zoomAndPanInfo;
 
-  const onZoomPanInfoUpdate = (zoomPanInfo: ZoomPanInfoType) => {
-    const { zoomLevel, offsetX, offsetY, translateX, translateY } = zoomPanInfo;
-    paintStore.zoomAndPanInfo = { zoomLevel, offsetX, offsetY, translateX, translateY };
+  const onZoomPanInfoUpdate = (newZoomPanInfo: ZoomPanInfoType) => {
+    const { zoomAndPanInfo } = paintStore;
+    zoomAndPanInfo.zoomLevel = newZoomPanInfo.zoomLevel;
+    zoomAndPanInfo.offsetX = newZoomPanInfo.offsetX;
+    zoomAndPanInfo.offsetY = newZoomPanInfo.offsetY;
+    zoomAndPanInfo.translateX = newZoomPanInfo.translateX;
+    zoomAndPanInfo.translateY = newZoomPanInfo.translateY;
   };
 
   return (
@@ -28,18 +33,10 @@ const SvgCanvasZoomMode = () => {
       zoomStep={0.25}
       bindToBorders={true}
       onTranslateXY={onZoomPanInfoUpdate}
-      style={styles.container}>
+      style={paintCommonStyles.container}>
       <SvgViewer elements={elementsWithSelectedFlag} />
     </ReactNativeZoomableView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderColor: "black",
-    borderWidth: StyleSheet.hairlineWidth,
-    flex: 1,
-  },
-});
 
 export default SvgCanvasZoomMode;
