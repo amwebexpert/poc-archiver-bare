@@ -9,10 +9,12 @@ import SvgSnapshot from "./SvgViewer/SvgSnapshot";
 import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./paint.store";
-import { IconButton } from "react-native-paper";
+import { IconButton, useTheme } from "react-native-paper";
 import { ExpandableToolbar } from "./components/ExpandableToolbar";
+import { AppTheme } from "../../theme";
 
 const CanvasEdit = () => {
+  const styles = useStyles();
   const {
     isDrawMode,
     isZoomPanMode,
@@ -87,34 +89,38 @@ const CanvasEdit = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  buttonRow: {
-    alignContent: "flex-end",
-    bottom: 8,
-    flexDirection: "row",
-    position: "absolute",
-    right: 8,
-  },
-  buttonRowTop: {
-    alignContent: "space-between",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    position: "absolute",
-    right: 8,
-    top: 8,
-  },
-  canvasWrapper: {
-    backgroundColor: "white",
-    borderColor: "lightgray",
-    borderWidth: StyleSheet.hairlineWidth,
-    overflow: "hidden",
-    padding: 0,
-  },
-  container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
-  },
-});
+const useStyles = () => {
+  const theme = useTheme() as AppTheme;
+
+  return StyleSheet.create({
+    buttonRow: {
+      alignContent: "flex-end",
+      bottom: theme.spacing(1),
+      flexDirection: "row",
+      position: "absolute",
+      right: theme.spacing(1),
+    },
+    buttonRowTop: {
+      alignContent: "space-between",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      position: "absolute",
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+    },
+    canvasWrapper: {
+      backgroundColor: "white",
+      borderColor: "lightgray",
+      borderWidth: StyleSheet.hairlineWidth,
+      overflow: "hidden",
+      padding: 0,
+    },
+    container: {
+      alignItems: "center",
+      flex: 1,
+      justifyContent: "center",
+    },
+  });
+};
 
 export default CanvasEdit;
