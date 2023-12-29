@@ -11,14 +11,16 @@ export type ZoomPanInfoType = {
   translateY: number;
 };
 
+const DEFAULT_ZOOM_PAN: ZoomPanInfoType = {
+  zoomLevel: 0.95,
+  offsetX: 0, // offset from the zoomed subject center (@see openspacelabs/react-native-zoomable-view doc)
+  offsetY: 0,
+  translateX: 0, // <View> style "transform" attributes
+  translateY: 0,
+};
+
 class PaintStore {
-  zoomAndPanInfo: ZoomPanInfoType = {
-    zoomLevel: 0.95,
-    offsetX: 0, // offset from the zoomed subject center (@see openspacelabs/react-native-zoomable-view doc)
-    offsetY: 0,
-    translateX: 0, // <View> style "transform" attributes
-    translateY: 0,
-  };
+  zoomAndPanInfo = DEFAULT_ZOOM_PAN;
 
   canvasMode: CanvasMode = CanvasMode.DRAW;
   elements: SvgElement[] = [];
@@ -30,6 +32,20 @@ class PaintStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  reset(elements: SvgElement[] = []) {
+    runInAction(() => {
+      this.zoomAndPanInfo = DEFAULT_ZOOM_PAN;
+
+      this.canvasMode = CanvasMode.DRAW;
+      this.elements = elements;
+      this.selectedElementIDs = [];
+      this.undoHistory = [];
+
+      this.isDrawGestureDirty = false;
+      this.isSaved = true;
+    });
   }
 
   addDrawElement(newElement: SvgElement) {
