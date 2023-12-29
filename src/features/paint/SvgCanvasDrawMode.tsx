@@ -7,7 +7,7 @@ import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
 import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./paint.styles";
+import { paintCommonStyles } from "./constants";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {

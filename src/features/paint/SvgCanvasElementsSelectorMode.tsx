@@ -5,7 +5,7 @@ import { FunctionComponent } from "react";
 import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./paint.styles";
+import { paintCommonStyles } from "./constants";
 
 const SvgCanvasElementsSelectorMode: FunctionComponent<{}> = () => {
   const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;

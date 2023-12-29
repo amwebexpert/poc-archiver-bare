@@ -8,7 +8,7 @@ import { CanvasDimensions } from "./types/canvas.types";
 import { DEFAULT_DIMENSIONS } from "./constants";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./paint.styles";
+import { paintCommonStyles } from "./constants";
 import { SvgPathElement } from "./types/svg.types";
 
 type SvgCanvasElementsStretcherModeProps = {

@@ -1,4 +1,13 @@
+import { StyleSheet } from "react-native";
 import { BoundingBox, CanvasDimensions, XYCoordinates } from "./types/canvas.types";
+
+export const paintCommonStyles = StyleSheet.create({
+  container: {
+    borderColor: "black",
+    borderWidth: StyleSheet.hairlineWidth,
+    flex: 1,
+  },
+});
 
 // match 8.5" x 11" at 300 dpi
 export const CANVAS_DIMENSIONS: CanvasDimensions = { width: 2550, height: 3300, snapshotScale: 1, screenScale: 1 };
