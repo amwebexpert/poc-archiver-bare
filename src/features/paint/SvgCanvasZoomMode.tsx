@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import SvgViewer from "./SvgViewer/SvgViewer";
-import paintStore, { ZoomPanInfoType } from "./Paint.store";
+import paintStore, { ZoomPanInfoType } from "./paint.store";
 
 const SvgCanvasZoomMode = () => {
   const { elementsWithSelectedFlag } = useSelectedElements();

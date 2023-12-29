@@ -1,6 +1,6 @@
 import pathParser from "parse-svg-path";
 
-import { normalizePath } from "./svgPathUtils";
+import { normalizePath } from "./svg-path.utils";
 import {
   SvgCircleElement,
   SvgElementType,

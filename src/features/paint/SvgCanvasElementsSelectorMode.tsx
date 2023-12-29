@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import SvgViewer from "./SvgViewer/SvgViewer";
-import paintStore from "./Paint.store";
+import paintStore from "./paint.store";
 import { FunctionComponent } from "react";
 
 const SvgCanvasElementsSelectorMode: FunctionComponent<{}> = () => {

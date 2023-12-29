@@ -12,8 +12,8 @@ import {
 } from "../constants";
 
 import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../svg.types";
-import { buildCircleElementFromSingleTapPath } from "./svgCircleUtils";
-import { buildPathElement, getPathPoints, normalizePath } from "./svgPathUtils";
+import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
+import { buildPathElement, getPathPoints, normalizePath } from "./svg-path.utils";
 
 export const computeMaxDimensionsForAspectRatio_16_9 = ({ width, height }: CanvasSurface): CanvasDimensions => {
   const computedHeightBasedOnWidth = (width * 16) / 9;

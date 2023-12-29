@@ -2,8 +2,8 @@ import { XMLParser } from "fast-xml-parser";
 
 import { CANVAS_DIMENSIONS } from "../constants";
 
-import { CIRCLE_SERIALIZER } from "./svgCircleUtils";
-import { PATH_SERIALIZER } from "./svgPathUtils";
+import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
+import { PATH_SERIALIZER } from "./svg-path.utils";
 import { SvgElement, SvgElementType, XmlSerializationHandler } from "../svg.types";
 
 const { width, height } = CANVAS_DIMENSIONS;

@@ -12,7 +12,7 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 
 import { BoundingBox, CanvasDimensions, DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../constants";
-import { fromCoordinatesArray, getPathPoints } from "../utils/svgPathUtils";
+import { fromCoordinatesArray, getPathPoints } from "../utils/svg-path.utils";
 
 import { SelectorMoveType } from "./constants";
 import { MovableHandle } from "./MovableHandle";
@@ -25,7 +25,7 @@ import {
   setupRegionContext,
 } from "./selectorUtils";
 import { SvgElement, SvgPathElement } from "../svg.types";
-import paintStore from "../Paint.store";
+import paintStore from "../paint.store";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedPath = Animated.createAnimatedComponent(Path);

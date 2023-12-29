@@ -2,11 +2,11 @@ import { FunctionComponent, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 
-import paintStore from "./Paint.store";
+import paintStore from "./paint.store";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
-import { createElementFromPathGesture } from "./utils/canvasUtils";
+import { createElementFromPathGesture } from "./utils/canvas.utils";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   const { elements, zoomAndPanInfo, isDrawGestureDirty } = paintStore;

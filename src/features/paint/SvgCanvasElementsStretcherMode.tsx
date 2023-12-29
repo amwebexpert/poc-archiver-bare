@@ -4,7 +4,7 @@ import { CanvasDimensions, DEFAULT_DIMENSIONS } from "./constants";
 import { Selector } from "./ElementsSelectorGesture/Selector";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import SvgViewer from "./SvgViewer/SvgViewer";
-import paintStore from "./Paint.store";
+import paintStore from "./paint.store";
 import { FunctionComponent } from "react";
 import { SvgPathElement } from "./svg.types";
 
