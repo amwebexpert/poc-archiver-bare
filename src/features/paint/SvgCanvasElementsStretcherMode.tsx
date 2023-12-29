@@ -4,12 +4,12 @@ import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
 import { Selector } from "./ElementsSelectorGesture/Selector";
 import SvgViewer from "./SvgViewer/SvgViewer";
-import { CanvasDimensions } from "./canvas.types";
+import { CanvasDimensions } from "./types/canvas.types";
 import { DEFAULT_DIMENSIONS } from "./constants";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";
-import { SvgPathElement } from "./svg.types";
+import { SvgPathElement } from "./types/svg.types";
 
 type SvgCanvasElementsStretcherModeProps = {
   canvasDimensions?: CanvasDimensions;

@@ -4,7 +4,7 @@ import { CANVAS_DIMENSIONS } from "../constants";
 
 import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
 import { PATH_SERIALIZER } from "./svg-path.utils";
-import { SvgElement, SvgElementType, XmlSerializationHandler } from "../svg.types";
+import { SvgElement, SvgElementType, XmlSerializationHandler } from "../types/svg.types";
 
 const { width, height } = CANVAS_DIMENSIONS;
 const DEFAULT_VIEW_BOX = `0 0 ${width} ${height}`;

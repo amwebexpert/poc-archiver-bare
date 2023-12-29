@@ -7,7 +7,7 @@ import {
   XmlDeserializer,
   XmlSerializationHandler,
   XmlSerializer,
-} from "../svg.types";
+} from "../types/svg.types";
 
 export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenScale = 1 }) => {
   const { id, cx, cy, radius, strokeColor: stroke, strokeWidth: width, fill } = element;

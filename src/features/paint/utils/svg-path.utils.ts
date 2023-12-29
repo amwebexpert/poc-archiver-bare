@@ -1,8 +1,14 @@
 import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
-import { SvgElementType, SvgPathElement, XmlDeserializer, XmlSerializationHandler, XmlSerializer } from "../svg.types";
+import {
+  SvgElementType,
+  SvgPathElement,
+  XmlDeserializer,
+  XmlSerializationHandler,
+  XmlSerializer,
+} from "../types/svg.types";
 
-import { XYCoordinates } from "../canvas.types";
+import { XYCoordinates } from "../types/canvas.types";
 import { PathSimplificationConfigs } from "../constants";
 
 export const serializer: XmlSerializer<SvgPathElement> = ({ element, screenScale = 1 }) => {

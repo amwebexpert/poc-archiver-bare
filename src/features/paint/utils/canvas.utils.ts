@@ -3,8 +3,8 @@ import { PixelRatio, Platform } from "react-native";
 
 import { CANVAS_DIMENSIONS, DEFAULT_BOUNDING_BOX, DEFAULT_COORDINATES, SINGLE_TAP_MAX_DISTANCE } from "../constants";
 
-import { BoundingBox, CanvasDimensions, CanvasSurface } from "../canvas.types";
-import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../svg.types";
+import { BoundingBox, CanvasDimensions, CanvasSurface } from "../types/canvas.types";
+import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
 import { buildPathElement, getPathPoints, normalizePath } from "./svg-path.utils";
 

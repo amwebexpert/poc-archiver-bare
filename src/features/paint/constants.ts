@@ -1,4 +1,4 @@
-import { BoundingBox, CanvasDimensions, XYCoordinates } from "./canvas.types";
+import { BoundingBox, CanvasDimensions, XYCoordinates } from "./types/canvas.types";
 
 // match 8.5" x 11" at 300 dpi
 export const CANVAS_DIMENSIONS: CanvasDimensions = { width: 2550, height: 3300, snapshotScale: 1, screenScale: 1 };

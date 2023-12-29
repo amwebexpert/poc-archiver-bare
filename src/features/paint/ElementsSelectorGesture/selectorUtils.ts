@@ -1,5 +1,5 @@
 import { SharedValue } from "react-native-reanimated";
-import { XYCoordinates } from "../canvas.types";
+import { XYCoordinates } from "../types/canvas.types";
 import { DEFAULT_COORDINATES } from "../constants";
 import { SNAP_DELTA } from "./constants";
 import { AnimationEventType, ContextType } from "./selectors.types";
