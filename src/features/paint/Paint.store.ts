@@ -40,6 +40,14 @@ class PaintStore {
     });
   }
 
+  updateDrawElement(updated: SvgElement) {
+    runInAction(() => {
+      this.undoHistory = [...this.undoHistory, this.elements];
+      this.elements = this.elements.map(elem => (elem.id === updated.id ? updated : elem));
+      this.isSaved = false;
+    });
+  }
+
   selectElement(element: SvgElement) {
     // multiple elements selection not supported (yet)
     runInAction(() => {
