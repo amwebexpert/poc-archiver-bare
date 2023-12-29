@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "pod": "npx pod-install",
-    "postinstall": "npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
+    "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
     "@openspacelabs/react-native-zoomable-view": "^2.1.5",
