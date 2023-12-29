@@ -1,6 +1,6 @@
 import { Circle } from "react-native-svg";
 
-import { DEFAULT_SELECTION_DASH_ARRAY, DEFAULT_STROKE_WIDTH } from "../constants";
+import { DEFAULT_SELECTION_DASH_ARRAY, DEFAULT_STROKE_WIDTH } from "../../constants";
 import { FunctionComponent } from "react";
 
 export const SIMPLE_DOT_SELECTED_EXTRA_RADIUS = 5;

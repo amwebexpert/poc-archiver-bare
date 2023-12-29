@@ -1,7 +1,7 @@
 import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
 
 import { observer } from "mobx-react";
-import SvgViewer from "./SvgViewer/SvgViewer";
+import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./paint.styles";

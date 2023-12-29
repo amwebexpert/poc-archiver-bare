@@ -2,10 +2,10 @@ import { useWindowDimensions } from "react-native";
 import { Portal } from "react-native-paper";
 import Svg, { G, Rect } from "react-native-svg";
 
-import { CANVAS_DIMENSIONS } from "../constants";
+import { CANVAS_DIMENSIONS } from "../../constants";
 
 import { FunctionComponent } from "react";
-import { SvgElement } from "../types/svg.types";
+import { SvgElement } from "../../types/svg.types";
 import { EmptyView } from "./EmptyView";
 import { ELEMENT_VIEWERS } from "./constants";
 

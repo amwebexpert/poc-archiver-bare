@@ -9,7 +9,7 @@ import SvgCanvasDrawMode from "./SvgCanvasDrawMode";
 import SvgCanvasElementsSelectorMode from "./SvgCanvasElementsSelectorMode";
 import SvgCanvasElementsStretcherMode from "./SvgCanvasElementsStretcherMode";
 import SvgCanvasZoomMode from "./SvgCanvasZoomMode";
-import SvgSnapshot from "./SvgViewer/SvgSnapshot";
+import SvgSnapshot from "./components/SvgViewer/SvgSnapshot";
 import { ExpandableToolbar } from "./components/ExpandableToolbar";
 import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";

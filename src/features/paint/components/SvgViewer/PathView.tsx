@@ -1,6 +1,6 @@
 import { Path } from "react-native-svg";
 
-import { DEFAULT_SELECTION_DASH_ARRAY } from "../constants";
+import { DEFAULT_SELECTION_DASH_ARRAY } from "../../constants";
 import { FunctionComponent } from "react";
 
 type PathViewProps = {

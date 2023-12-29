@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 
 import { observer } from "mobx-react";
-import SvgViewer from "./SvgViewer/SvgViewer";
+import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
 import paintStore from "./stores/paint.store";
