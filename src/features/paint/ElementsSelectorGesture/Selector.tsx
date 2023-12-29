@@ -44,7 +44,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
   selectedElement,
   onDrawElementUpdate = () => {},
 }) => {
-  const zoomLevel = paintStore.zoomLevel;
+  const zoomLevel = paintStore.zoomAndPanInfo.zoomLevel;
   const { width: MAX_X, height: MAX_Y } = canvasDimensions;
   const context = useSharedValue<Record<string, any>>({});
 
