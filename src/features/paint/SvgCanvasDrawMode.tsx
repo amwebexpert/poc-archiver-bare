@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect } from "react";
 import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 
+import { observer } from "mobx-react";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
@@ -42,4 +43,4 @@ const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   );
 };
 
-export default SvgCanvasDrawMode;
+export default observer(SvgCanvasDrawMode);

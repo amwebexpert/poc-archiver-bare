@@ -1,5 +1,6 @@
 import { View } from "react-native";
 
+import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
 import { Selector } from "./ElementsSelectorGesture/Selector";
 import SvgViewer from "./SvgViewer/SvgViewer";
@@ -42,4 +43,4 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
   );
 };
 
-export default SvgCanvasElementsStretcherMode;
+export default observer(SvgCanvasElementsStretcherMode);

@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-import { observer } from "mobx-react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Paragraph, useTheme } from "react-native-paper";
 
@@ -117,4 +116,4 @@ const useStyles = () => {
   });
 };
 
-export default observer(OtherFeaturesScreen);
+export default OtherFeaturesScreen;
