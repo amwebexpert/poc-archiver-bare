@@ -1,7 +1,13 @@
 import pathParser from "parse-svg-path";
 
 import { normalizePath } from "./svgPathUtils";
-import { SvgCircleElement, SvgElementType, XmlDeserializer, XmlSerializationHandler, XmlSerializer } from "./svg.types";
+import {
+  SvgCircleElement,
+  SvgElementType,
+  XmlDeserializer,
+  XmlSerializationHandler,
+  XmlSerializer,
+} from "../svg.types";
 
 export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenScale = 1 }) => {
   const { id, cx, cy, radius, strokeColor: stroke, strokeWidth: width, fill } = element;

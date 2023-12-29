@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { SvgElementType } from "../utils/svg.types";
+import { SvgElementType } from "../svg.types";
 import { CircleView } from "./CircleView";
 import { PathView } from "./PathView";
 

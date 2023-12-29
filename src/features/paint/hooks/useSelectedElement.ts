@@ -1,6 +1,6 @@
 import { computeBoundingBox } from "../utils/canvasUtils";
 import paintStore from "../Paint.store";
-import { SvgElement, SvgElementType } from "../utils/svg.types";
+import { SvgElement, SvgElementType } from "../svg.types";
 
 export type SvgElementWithSelectedFlag = SvgElement & { isSelected: boolean };
 

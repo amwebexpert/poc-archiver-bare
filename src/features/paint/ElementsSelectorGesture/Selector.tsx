@@ -24,7 +24,7 @@ import {
   onTopLeftDrag,
   setupRegionContext,
 } from "./selectorUtils";
-import { SvgElement, SvgPathElement } from "../utils/svg.types";
+import { SvgElement, SvgPathElement } from "../svg.types";
 import paintStore from "../Paint.store";
 
 const AnimatedView = Animated.createAnimatedComponent(View);

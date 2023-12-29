@@ -1,4 +1,4 @@
-import { SvgElementType, SvgPathElement, XmlDeserializer, XmlSerializationHandler, XmlSerializer } from "./svg.types";
+import { SvgElementType, SvgPathElement, XmlDeserializer, XmlSerializationHandler, XmlSerializer } from "../svg.types";
 import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
 

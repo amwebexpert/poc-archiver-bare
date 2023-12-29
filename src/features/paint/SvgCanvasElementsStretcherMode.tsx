@@ -6,7 +6,7 @@ import { useSelectedElements } from "./hooks/useSelectedElement";
 import SvgViewer from "./SvgViewer/SvgViewer";
 import paintStore from "./Paint.store";
 import { FunctionComponent } from "react";
-import { SvgPathElement } from "./utils/svg.types";
+import { SvgPathElement } from "./svg.types";
 
 type SvgCanvasElementsStretcherModeProps = {
   canvasDimensions?: CanvasDimensions;

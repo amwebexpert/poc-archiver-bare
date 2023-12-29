@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import Svg from "react-native-svg";
 
 import { ELEMENT_VIEWERS } from "./constants";
-import { SvgElement } from "../utils/svg.types";
+import { SvgElement } from "../svg.types";
 import { EmptyView } from "./EmptyView";
 
 type SvgViewerProps = {

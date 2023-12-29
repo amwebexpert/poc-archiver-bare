@@ -11,7 +11,7 @@ import {
   SINGLE_TAP_MAX_DISTANCE,
 } from "../constants";
 
-import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "./svg.types";
+import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svgCircleUtils";
 import { buildPathElement, getPathPoints, normalizePath } from "./svgPathUtils";
 

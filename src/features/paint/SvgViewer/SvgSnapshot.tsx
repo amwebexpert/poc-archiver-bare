@@ -5,7 +5,7 @@ import Svg, { G, Rect } from "react-native-svg";
 import { CANVAS_DIMENSIONS } from "../constants";
 
 import { ELEMENT_VIEWERS } from "./constants";
-import { SvgElement } from "../utils/svg.types";
+import { SvgElement } from "../svg.types";
 import { FunctionComponent, LegacyRef, Ref } from "react";
 import { EmptyView } from "./EmptyView";
 
