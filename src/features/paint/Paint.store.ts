@@ -3,7 +3,7 @@ import { createMobxDebugger } from "mobx-flipper";
 import { CanvasMode } from "./constants";
 import { SvgElement } from "./utils/svg.types";
 
-type ZoomAndPanInfoType = {
+export type ZoomPanInfoType = {
   zoomLevel: number;
   offsetX: number;
   offsetY: number;
@@ -12,7 +12,7 @@ type ZoomAndPanInfoType = {
 };
 
 class PaintStore {
-  zoomAndPanInfo: ZoomAndPanInfoType = {
+  zoomAndPanInfo: ZoomPanInfoType = {
     zoomLevel: 0.95,
     offsetX: 0, // offset from the zoomed subject center (@see openspacelabs/react-native-zoomable-view doc)
     offsetY: 0,
