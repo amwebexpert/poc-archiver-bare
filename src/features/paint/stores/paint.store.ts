@@ -171,7 +171,7 @@ class PaintStore {
       this._selectedElementIDs = [];
       this._undoHistory = [];
 
-      this._isDrawGestureDirty = false;
+      this._isDrawGestureDirty = true;
       this._isSaved = true;
     });
   }

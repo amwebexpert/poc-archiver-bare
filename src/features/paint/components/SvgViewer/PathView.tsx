@@ -24,6 +24,7 @@ export const PathView: FunctionComponent<PathViewProps> = ({
     d={d}
     stroke={strokeColor}
     strokeWidth={strokeWidth}
+    fill="none"
     scale={scale}
     onPress={onPress}
     strokeDasharray={isSelected ? DEFAULT_SELECTION_DASH_ARRAY : undefined}

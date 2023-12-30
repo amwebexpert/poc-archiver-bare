@@ -53,7 +53,7 @@ export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
       <GestureDetector gesture={Gesture.Race(tapGesture, panGesture)}>
         <Animated.View style={styles.container}>
           <AnimatedSvg height="100%" width="100%">
-            <AnimatedPath animatedProps={animatedProps} stroke={strokeColor} strokeWidth={strokeWidth} />
+            <AnimatedPath animatedProps={animatedProps} fill="none" stroke={strokeColor} strokeWidth={strokeWidth} />
           </AnimatedSvg>
         </Animated.View>
       </GestureDetector>
