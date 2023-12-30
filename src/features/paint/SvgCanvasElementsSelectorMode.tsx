@@ -13,7 +13,7 @@ const SvgCanvasElementsSelectorMode: FunctionComponent<{}> = () => {
 
   return (
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
-      <SvgViewer elements={elementsWithSelectedFlag} onElementPress={paintStore.selectElement} />
+      <SvgViewer elements={elementsWithSelectedFlag} onElementPress={e => paintStore.selectElement(e)} />
     </View>
   );
 };

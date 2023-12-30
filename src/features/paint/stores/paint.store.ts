@@ -91,7 +91,7 @@ class PaintStore {
   }
 
   get isZoomPanMode(): boolean {
-    return this._canvasMode === CanvasMode.TRANSFORM;
+    return this._canvasMode === CanvasMode.ZOOM_PAN;
   }
 
   get isSelectorMode(): boolean {

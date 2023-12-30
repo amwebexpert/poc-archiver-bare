@@ -192,6 +192,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
       <Animated.View style={styles.animatedViewContainer}>
         <AnimatedSvg height="100%" width="100%">
           <AnimatedPath
+            fill="none"
             animatedProps={animatedProps}
             stroke={selectedElement.strokeColor}
             strokeWidth={selectedElement.strokeWidth}

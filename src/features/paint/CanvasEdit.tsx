@@ -52,6 +52,10 @@ const CanvasEdit = () => {
   };
 
   const onUndo = () => paintStore.undo();
+  const onDraw = () => paintStore.setCanvasModeToDraw();
+  const onSelector = () => paintStore.setCanvasModeToSelector();
+  const onTransform = () => paintStore.setCanvasModeToTransform();
+  const onZoomPan = () => paintStore.setCanvasModeToZoomPan();
 
   return (
     <GestureHandlerRootView style={styles.root}>
@@ -68,32 +72,22 @@ const CanvasEdit = () => {
         <ExpandableToolbar style={styles.expandableToolbar} fullWidth={308}>
           <IconButton mode="contained" icon="undo" onPress={onUndo} disabled={!hasUndoHistory} />
           <IconButton mode="contained" icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
-          <IconButton
-            mode="contained"
-            icon="grease-pencil"
-            onPress={paintStore.setCanvasModeToDraw}
-            selected={isDrawMode}
-          />
+          <IconButton mode="contained" icon="grease-pencil" onPress={onDraw} selected={isDrawMode} />
           <IconButton
             mode="contained"
             icon="vector-selection"
-            onPress={paintStore.setCanvasModeToSelector}
+            onPress={onSelector}
             selected={isSelectorMode}
             disabled={isCanvasEmpty}
           />
           <IconButton
             mode="contained"
             icon="move-resize-variant"
-            onPress={paintStore.setCanvasModeToTransform}
+            onPress={onTransform}
             selected={isTransformMode}
             disabled={!hasSingleSelectedPath}
           />
-          <IconButton
-            mode="contained"
-            icon="gesture-swipe"
-            onPress={paintStore.setCanvasModeToZoomPan}
-            selected={isZoomPanMode}
-          />
+          <IconButton mode="contained" icon="gesture-swipe" onPress={onZoomPan} selected={isZoomPanMode} />
         </ExpandableToolbar>
 
         {isSaveProcessStarted && (
