@@ -28,17 +28,20 @@ export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
   gesturePoints = { value: [] },
 }) => {
   const panGesture = Gesture.Pan()
+    .minDistance(SINGLE_TAP_MAX_DISTANCE + 1)
     .onStart(({ x, y }) => {
       gesturePoints.value = [`M ${x},${y}`]; // M = "move to"
     })
     .onChange(({ x, y }) => {
       gesturePoints.value = [...gesturePoints.value, `L ${x},${y}`]; // L = "line to"
-    });
+    })
+    .onEnd((_event, _ctx) => runOnJS(addElementFromGesture)(gesturePoints.value.join(" ")));
 
-  // since the single tap is also a gesture, the onStart and onActive of the gestureHandler will
-  // be called before the onEnd of the tapHandler (so coordinates have already been added to the gesturePoints)
   const tapGesture = Gesture.Tap()
     .maxDistance(SINGLE_TAP_MAX_DISTANCE)
+    .onStart(({ x, y }) => {
+      gesturePoints.value = [`M ${x},${y} L ${x},${y}`]; // M = "move to"
+    })
     .onEnd((_event, _ctx) => runOnJS(addElementFromGesture)(gesturePoints.value.join(" ")));
 
   const animatedProps = useAnimatedProps(() => ({

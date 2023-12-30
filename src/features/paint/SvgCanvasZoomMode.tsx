@@ -6,8 +6,9 @@ import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { paintCommonStyles } from "./constants";
 import { ZoomPanInfoType } from "./stores/zoom-pan.store";
+import { FunctionComponent } from "react";
 
-const SvgCanvasZoomMode = () => {
+const SvgCanvasZoomMode: FunctionComponent<{}> = () => {
   const { elementsWithSelectedFlag } = useSelectedElements();
   const { zoomLevel, offsetX, offsetY } = paintStore.zoomAndPanInfo;
 

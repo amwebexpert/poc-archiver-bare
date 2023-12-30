@@ -48,7 +48,10 @@ const CanvasEdit = () => {
 
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
     paintStore.save(base64Snapshot);
+    setIsSaveProcessStarted(false);
   };
+
+  const onUndo = () => paintStore.undo();
 
   return (
     <GestureHandlerRootView style={styles.root}>
@@ -62,23 +65,35 @@ const CanvasEdit = () => {
           </View>
         )}
 
-        <ExpandableToolbar style={styles.buttonRowTop} fullWidth={400}>
-          <IconButton icon="undo" onPress={paintStore.undo} disabled={!hasUndoHistory} />
-          <IconButton icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
-          <IconButton icon="grease-pencil" onPress={paintStore.setCanvasModeToDraw} selected={isDrawMode} />
+        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={308}>
+          <IconButton mode="contained" icon="undo" onPress={onUndo} disabled={!hasUndoHistory} />
+          <IconButton mode="contained" icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
           <IconButton
+            mode="contained"
+            icon="grease-pencil"
+            onPress={paintStore.setCanvasModeToDraw}
+            selected={isDrawMode}
+          />
+          <IconButton
+            mode="contained"
             icon="vector-selection"
             onPress={paintStore.setCanvasModeToSelector}
             selected={isSelectorMode}
             disabled={isCanvasEmpty}
           />
           <IconButton
+            mode="contained"
             icon="move-resize-variant"
             onPress={paintStore.setCanvasModeToTransform}
             selected={isTransformMode}
             disabled={!hasSingleSelectedPath}
           />
-          <IconButton icon="gesture-swipe" onPress={paintStore.setCanvasModeToZoomPan} selected={isZoomPanMode} />
+          <IconButton
+            mode="contained"
+            icon="gesture-swipe"
+            onPress={paintStore.setCanvasModeToZoomPan}
+            selected={isZoomPanMode}
+          />
         </ExpandableToolbar>
 
         {isSaveProcessStarted && (
@@ -107,8 +122,9 @@ const useStyles = () => {
       position: "absolute",
       right: theme.spacing(1),
     },
-    buttonRowTop: {
+    expandableToolbar: {
       alignContent: "space-between",
+      backgroundColor: "black",
       flexDirection: "row",
       justifyContent: "flex-end",
       position: "absolute",

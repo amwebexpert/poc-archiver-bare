@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction, spy } from "mobx";
+import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
 import { CanvasMode } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
@@ -8,42 +8,106 @@ import zoomPanInfoStore from "./zoom-pan.store";
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
 
-  canvasMode: CanvasMode = CanvasMode.DRAW;
-  elements: SvgElement[] = [];
-  selectedElementIDs: number[] = [];
-  undoHistory: SvgElement[][] = [];
+  _canvasMode: CanvasMode = CanvasMode.DRAW;
+  _elements: SvgElement[] = [];
+  _selectedElementIDs: number[] = [];
+  _undoHistory: SvgElement[][] = [];
 
-  isDrawGestureDirty = false;
+  _isDrawGestureDirty = false;
 
-  isSaved = true;
-  isSaving = false;
+  _isSaved = true;
+  _isSaving = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  // getters and setters
+  // ------------------------------
+  get canvasMode(): CanvasMode {
+    return this._canvasMode;
+  }
+
+  set canvasMode(mode: CanvasMode) {
+    runInAction(() => {
+      this._canvasMode = mode;
+    });
+  }
+
+  get elements(): SvgElement[] {
+    return this._elements;
+  }
+
+  set elements(elements: SvgElement[]) {
+    runInAction(() => {
+      this._elements = elements;
+    });
+  }
+
+  get selectedElementIDs(): number[] {
+    return this._selectedElementIDs;
+  }
+
+  set selectedElementIDs(ids: number[]) {
+    runInAction(() => {
+      this._selectedElementIDs = ids;
+    });
+  }
+
+  get isDrawGestureDirty(): boolean {
+    return this._isDrawGestureDirty;
+  }
+
+  set isDrawGestureDirty(isDirty: boolean) {
+    runInAction(() => {
+      this._isDrawGestureDirty = isDirty;
+    });
+  }
+
+  get isSaved(): boolean {
+    return this._isSaved;
+  }
+
+  set isSaved(isSaved: boolean) {
+    runInAction(() => {
+      this._isSaved = isSaved;
+    });
+  }
+
+  get isSaving(): boolean {
+    return this._isSaving;
+  }
+
+  set isSaving(isSaving: boolean) {
+    runInAction(() => {
+      this._isSaving = isSaving;
+    });
+  }
+
+  // computed values
+  // ------------------------------
   get isDrawMode(): boolean {
-    return this.canvasMode === CanvasMode.DRAW;
+    return this._canvasMode === CanvasMode.DRAW;
   }
 
   get isZoomPanMode(): boolean {
-    return this.canvasMode === CanvasMode.TRANSFORM;
+    return this._canvasMode === CanvasMode.TRANSFORM;
   }
 
   get isSelectorMode(): boolean {
-    return this.canvasMode === CanvasMode.SELECTOR;
+    return this._canvasMode === CanvasMode.SELECTOR;
   }
 
   get isTransformMode(): boolean {
-    return this.canvasMode === CanvasMode.TRANSFORM;
+    return this._canvasMode === CanvasMode.TRANSFORM;
   }
 
   get hasSelectedElements(): boolean {
-    return this.selectedElementIDs.length > 0;
+    return this._selectedElementIDs.length > 0;
   }
 
   get elementsCount(): number {
-    return this.elements.length;
+    return this._elements.length;
   }
 
   get isCanvasEmpty(): boolean {
@@ -51,7 +115,34 @@ class PaintStore {
   }
 
   get hasUndoHistory(): boolean {
-    return this.undoHistory.length > 0;
+    return this._undoHistory.length > 0;
+  }
+
+  // actions
+  // ------------------------------
+  setCanvasModeToDraw() {
+    runInAction(() => {
+      this._selectedElementIDs = [];
+      this._canvasMode = CanvasMode.DRAW;
+    });
+  }
+
+  setCanvasModeToTransform() {
+    runInAction(() => {
+      this._canvasMode = CanvasMode.TRANSFORM;
+    });
+  }
+
+  setCanvasModeToSelector() {
+    runInAction(() => {
+      this._canvasMode = CanvasMode.SELECTOR;
+    });
+  }
+
+  setCanvasModeToZoomPan() {
+    runInAction(() => {
+      this._canvasMode = CanvasMode.ZOOM_PAN;
+    });
   }
 
   async save(base64Snapshot: string) {
@@ -59,37 +150,37 @@ class PaintStore {
       this.isSaving = true;
       console.info("saving simulation");
       console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
-      console.info("\t *.svg content", toSvgFormat({ elements: this.elements }).substring(0, 200) + "...");
+      console.info("\t *.svg content", toSvgFormat({ elements: this._elements }).substring(0, 200) + "...");
     });
 
     setTimeout(() => {
       runInAction(() => {
-        this.isSaved = true;
+        this._isSaved = true;
         this.isSaving = false;
         console.info("saving simulation completed");
       });
     }, 3000);
   }
 
-  reset(elements: SvgElement[] = []) {
+  reset(_elements: SvgElement[] = []) {
     this.zoomAndPanInfo.reset();
 
     runInAction(() => {
-      this.canvasMode = CanvasMode.DRAW;
-      this.elements = elements;
-      this.selectedElementIDs = [];
-      this.undoHistory = [];
+      this._canvasMode = CanvasMode.DRAW;
+      this._elements = _elements;
+      this._selectedElementIDs = [];
+      this._undoHistory = [];
 
-      this.isDrawGestureDirty = false;
-      this.isSaved = true;
+      this._isDrawGestureDirty = false;
+      this._isSaved = true;
     });
   }
 
   addDrawElement(newElement: SvgElement) {
     runInAction(() => {
-      this.undoHistory = [...this.undoHistory, this.elements];
-      this.elements = [...this.elements, newElement];
-      this.isSaved = false;
+      this._undoHistory = [...this._undoHistory, this._elements];
+      this._elements = [...this._elements, newElement];
+      this._isSaved = false;
     });
   }
 
@@ -99,81 +190,60 @@ class PaintStore {
     }
 
     runInAction(() => {
-      const lastElements = this.undoHistory[this.undoHistory.length - 1];
+      const lastElements = this._undoHistory[this._undoHistory.length - 1];
 
-      this.undoHistory = this.undoHistory.slice(0, -1);
-      this.elements = lastElements;
-      this.isSaved = false;
+      this._undoHistory = this._undoHistory.slice(0, -1);
+      this._elements = lastElements;
+      this._isSaved = false;
+      this._isDrawGestureDirty = true;
     });
   }
 
   deleteSelectedElements() {
     runInAction(() => {
-      this.undoHistory = [...this.undoHistory, this.elements];
-      this.elements = this.elements.filter(elem => !this.selectedElementIDs.includes(elem.id));
-      this.isSaved = false;
+      this._undoHistory = [...this._undoHistory, this._elements];
+      this._elements = this._elements.filter(elem => !this._selectedElementIDs.includes(elem.id));
+      this._isSaved = false;
     });
   }
 
   updateDrawElement(updated: SvgElement) {
     runInAction(() => {
-      this.undoHistory = [...this.undoHistory, this.elements];
-      this.elements = this.elements.map(elem => (elem.id === updated.id ? updated : elem));
-      this.isSaved = false;
+      this._undoHistory = [...this._undoHistory, this._elements];
+      this._elements = this._elements.map(elem => (elem.id === updated.id ? updated : elem));
+      this._isSaved = false;
     });
   }
 
   selectElement(element: SvgElement) {
-    // multiple elements selection not supported (yet)
+    // multiple _elements selection not supported (yet)
     runInAction(() => {
-      this.selectedElementIDs = [];
+      this._selectedElementIDs = [];
+      this._canvasMode = CanvasMode.TRANSFORM;
     });
 
     this.toggleElementSelection(element);
-    this.changeCanvasMode(CanvasMode.TRANSFORM);
   }
 
   toggleElementSelection(element: SvgElement) {
     const elementID = element.id;
-    const selections = this.selectedElementIDs;
+    const selections = this._selectedElementIDs;
 
     const newSelectedElementIDs = selections.includes(elementID)
       ? selections.filter(id => id !== elementID)
       : [...selections, elementID];
 
     runInAction(() => {
-      this.selectedElementIDs = newSelectedElementIDs;
+      this._selectedElementIDs = newSelectedElementIDs;
     });
-  }
-
-  changeCanvasMode(newCanvasMode: CanvasMode) {
-    runInAction(() => {
-      // if we switch to draw mode, we reset the selected elements
-      if (newCanvasMode === CanvasMode.DRAW) {
-        this.selectedElementIDs = [];
-      }
-      this.canvasMode = newCanvasMode;
-    });
-  }
-
-  setCanvasModeToDraw() {
-    this.changeCanvasMode(CanvasMode.DRAW);
-  }
-
-  setCanvasModeToTransform() {
-    this.changeCanvasMode(CanvasMode.TRANSFORM);
-  }
-
-  setCanvasModeToSelector() {
-    this.changeCanvasMode(CanvasMode.SELECTOR);
-  }
-
-  setCanvasModeToZoomPan() {
-    this.changeCanvasMode(CanvasMode.ZOOM_PAN);
   }
 }
 
 const paintStore = new PaintStore();
+
+autorun(() => {
+  console.info("elements", paintStore.elements.length);
+});
 
 if (__DEV__) {
   spy(createMobxDebugger(paintStore) as any);

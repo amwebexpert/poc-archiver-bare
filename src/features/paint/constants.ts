@@ -10,7 +10,7 @@ export const paintCommonStyles = StyleSheet.create({
 });
 
 // match 8.5" x 11" at 300 dpi
-export const CANVAS_DIMENSIONS: CanvasDimensions = { width: 2550, height: 3300, snapshotScale: 1, screenScale: 1 };
+export const CANVAS_DIMENSIONS: CanvasDimensions = { width: 900, height: 1600, snapshotScale: 1, screenScale: 1 };
 
 export const DEFAULT_DIMENSIONS: CanvasDimensions = { width: 0, height: 0, snapshotScale: 1, screenScale: 1 };
 export const DEFAULT_BOUNDING_BOX: BoundingBox = { left: 0, top: 0, width: 0, height: 0 };
