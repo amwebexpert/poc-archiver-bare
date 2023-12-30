@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction, spy } from "mobx";
+import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { createMobxDebugger } from "mobx-flipper";
 
 export type ZoomPanInfoType = {
@@ -78,16 +78,20 @@ class ZoomPanInfoStore {
   // ------------------------------
   reset() {
     runInAction(() => {
-      this.zoomLevel = DEFAULT_ZOOM_LEVEL;
-      this.offsetX = 0;
-      this.offsetY = 0;
-      this.translateX = 0;
-      this.translateY = 0;
+      this._zoomLevel = DEFAULT_ZOOM_LEVEL;
+      this._offsetX = 0;
+      this._offsetY = 0;
+      this._translateX = 0;
+      this._translateY = 0;
     });
   }
 }
 
 const zoomPanInfoStore = new ZoomPanInfoStore();
+
+autorun(() => {
+  console.info("zoomLevel", zoomPanInfoStore.zoomLevel);
+});
 
 if (__DEV__) {
   spy(createMobxDebugger(zoomPanInfoStore) as any);

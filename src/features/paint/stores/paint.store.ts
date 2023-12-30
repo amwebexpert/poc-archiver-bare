@@ -162,16 +162,16 @@ class PaintStore {
     }, 3000);
   }
 
-  reset(_elements: SvgElement[] = []) {
+  reset(elements: SvgElement[] = []) {
     this.zoomAndPanInfo.reset();
 
     runInAction(() => {
       this._canvasMode = CanvasMode.DRAW;
-      this._elements = _elements;
+      this._elements = elements;
       this._selectedElementIDs = [];
       this._undoHistory = [];
 
-      this._isDrawGestureDirty = true;
+      this._isDrawGestureDirty = false;
       this._isSaved = true;
     });
   }
@@ -243,6 +243,7 @@ const paintStore = new PaintStore();
 
 autorun(() => {
   console.info("elements", paintStore.elements.length);
+  //console.info("_isDrawGestureDirty", paintStore._isDrawGestureDirty);
 });
 
 if (__DEV__) {

@@ -14,6 +14,7 @@ import { ExpandableToolbar } from "./components/ExpandableToolbar";
 import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
+import { SvgElement } from "./types/svg.types";
 
 const CanvasEdit = () => {
   const styles = useStyles();
@@ -33,8 +34,13 @@ const CanvasEdit = () => {
 
   useEffect(() => {
     if (isCanvasDimensionsAvailable) {
-      paintStore.zoomAndPanInfo.zoomLevel = canvasDimensions!.screenScale;
-      // paintStore.reset(elements)
+      const { screenScale } = canvasDimensions!;
+      console.log("canvasDimensions!.screenScale", screenScale);
+
+      // TODO when loading existing XML file content
+      // const elements = fromSvgFormat({ content: svgXmlContent, screenScale });
+      const elements: SvgElement[] = [];
+      paintStore.reset(elements);
     }
   }, [isCanvasDimensionsAvailable, canvasDimensions]);
 
