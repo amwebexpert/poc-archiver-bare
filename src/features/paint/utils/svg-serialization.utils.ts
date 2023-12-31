@@ -6,6 +6,15 @@ import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
 import { PATH_SERIALIZER } from "./svg-path.utils";
 import { SvgElement, SvgElementType, XmlSerializationHandler } from "../types/svg.types";
 
+type XmlAttributes = Record<string, string>;
+type extractNumericAttributeParams<T extends XmlAttributes> = { xmlElementAttributes: T; key: keyof T };
+export const extractNumericAttribute = <T extends XmlAttributes>({
+  xmlElementAttributes,
+  key,
+}: extractNumericAttributeParams<T>): number | undefined => {
+  return key in xmlElementAttributes ? Number(xmlElementAttributes[key]) : undefined;
+};
+
 const { width, height } = CANVAS_DIMENSIONS;
 const DEFAULT_VIEW_BOX = `0 0 ${width} ${height}`;
 const DEFAULT_ELEMENT_NOOP_SERIALIZER: XmlSerializationHandler = {

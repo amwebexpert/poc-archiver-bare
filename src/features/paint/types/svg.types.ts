@@ -12,8 +12,9 @@ export enum SvgElementType {
 export type SvgElement = {
   id: number;
   type: SvgElementType;
-  strokeColor: string;
-  strokeWidth: number;
+  strokeColor?: string;
+  strokeWidth?: number;
+  fill?: string;
 };
 
 export type SvgPathElement = SvgElement & {
@@ -30,7 +31,6 @@ export type SvgCircleElement = SvgElement & {
   cx: number;
   cy: number;
   radius: number;
-  fill: string;
 };
 
 export type SerializerInputs<E extends SvgElement = SvgElement> = {

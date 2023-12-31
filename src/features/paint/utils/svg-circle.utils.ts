@@ -1,6 +1,5 @@
 import pathParser from "parse-svg-path";
 
-import { normalizePath } from "./svg-path.utils";
 import {
   SvgCircleElement,
   SvgElementType,
@@ -8,6 +7,8 @@ import {
   XmlSerializationHandler,
   XmlSerializer,
 } from "../types/svg.types";
+import { normalizePath } from "./svg-path.utils";
+import { extractNumericAttribute } from "./svg-serialization.utils";
 
 export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenScale = 1 }) => {
   const { id, cx, cy, radius, strokeColor: stroke, strokeWidth: width, fill } = element;
@@ -19,13 +20,13 @@ export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenSca
 };
 
 export const deserializer: XmlDeserializer<SvgCircleElement> = ({ xmlElementAttributes, screenScale = 1 }) => {
-  const cx = Number(xmlElementAttributes["@_cx"]) * screenScale;
-  const cy = Number(xmlElementAttributes["@_cy"]) * screenScale;
-  const radius = Number(xmlElementAttributes["@_r"]) * screenScale;
-  const id = Number(xmlElementAttributes["@_id"]);
+  const cx = extractNumericAttribute({ xmlElementAttributes, key: "@_cx" }) ?? 0 * screenScale;
+  const cy = extractNumericAttribute({ xmlElementAttributes, key: "@_cy" }) ?? 0 * screenScale;
+  const radius = extractNumericAttribute({ xmlElementAttributes, key: "@_r" }) ?? 0 * screenScale;
+  const id = extractNumericAttribute({ xmlElementAttributes, key: "@_id" }) ?? 0;
   const strokeColor = xmlElementAttributes["@_stroke"];
-  const strokeWidth = Number(xmlElementAttributes["@_stroke-width"]);
-  const fill = xmlElementAttributes["@_fill"];
+  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" });
+  const fill = xmlElementAttributes["@_fill"] ?? "none";
 
   return { type: SvgElementType.circle, id, cx, cy, radius, strokeColor, strokeWidth, fill };
 };
