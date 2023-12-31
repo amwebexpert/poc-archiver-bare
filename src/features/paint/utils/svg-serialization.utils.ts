@@ -2,17 +2,39 @@ import { XMLParser } from "fast-xml-parser";
 
 import { CANVAS_DIMENSIONS } from "../constants";
 
+import { SvgElement, SvgElementType } from "../types/svg.types";
 import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
 import { PATH_SERIALIZER } from "./svg-path.utils";
-import { SvgElement, SvgElementType, XmlSerializationHandler } from "../types/svg.types";
 
-type XmlAttributes = Record<string, string>;
-type extractNumericAttributeParams<T extends XmlAttributes> = { xmlElementAttributes: T; key: keyof T };
-export const extractNumericAttribute = <T extends XmlAttributes>({
+export type XmlAttributeName = `@_${string}`;
+export type XmlAttributes = Record<XmlAttributeName, string>;
+export type extractNumericAttributeParams<T extends XmlAttributes = XmlAttributes> = {
+  xmlElementAttributes: T;
+  key: keyof T;
+};
+export const extractNumericAttribute = <T extends XmlAttributes = XmlAttributes>({
   xmlElementAttributes,
   key,
 }: extractNumericAttributeParams<T>): number | undefined => {
   return key in xmlElementAttributes ? Number(xmlElementAttributes[key]) : undefined;
+};
+
+export type SerializerInputs<E extends SvgElement = SvgElement> = {
+  element: E;
+  screenScale?: number;
+};
+
+export type DeserializerInputs = {
+  xmlElementAttributes: XmlAttributes;
+  screenScale?: number;
+};
+
+export type XmlSerializer<E extends SvgElement = SvgElement> = (inputs: SerializerInputs<E>) => string;
+export type XmlDeserializer<E extends SvgElement = SvgElement> = (inputs: DeserializerInputs) => E | undefined;
+
+export type XmlSerializationHandler<E extends SvgElement = any> = {
+  serializer: XmlSerializer<E>;
+  deserializer: XmlDeserializer<E>;
 };
 
 const { width, height } = CANVAS_DIMENSIONS;

@@ -32,21 +32,3 @@ export type SvgCircleElement = SvgElement & {
   cy: number;
   radius: number;
 };
-
-export type SerializerInputs<E extends SvgElement = SvgElement> = {
-  element: E;
-  screenScale?: number;
-};
-
-export type DeserializerInputs = {
-  xmlElementAttributes: Record<string, string>;
-  screenScale?: number;
-};
-
-export type XmlSerializer<E extends SvgElement = SvgElement> = (inputs: SerializerInputs<E>) => string;
-export type XmlDeserializer<E extends SvgElement = SvgElement> = (inputs: DeserializerInputs) => E | undefined;
-
-export type XmlSerializationHandler<E extends SvgElement = any> = {
-  serializer: XmlSerializer<E>;
-  deserializer: XmlDeserializer<E>;
-};

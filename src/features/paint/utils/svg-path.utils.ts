@@ -1,16 +1,15 @@
 import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
+import { SvgElementType, SvgPathElement } from "../types/svg.types";
+
+import { PathSimplificationConfigs } from "../constants";
+import { XYCoordinates } from "../types/canvas.types";
 import {
-  SvgElementType,
-  SvgPathElement,
   XmlDeserializer,
   XmlSerializationHandler,
   XmlSerializer,
-} from "../types/svg.types";
-
-import { XYCoordinates } from "../types/canvas.types";
-import { PathSimplificationConfigs } from "../constants";
-import { extractNumericAttribute } from "./svg-serialization.utils";
+  extractNumericAttribute,
+} from "./svg-serialization.utils";
 
 export const serializer: XmlSerializer<SvgPathElement> = ({ element, screenScale = 1 }) => {
   const { id, d, strokeColor, strokeWidth } = element;
