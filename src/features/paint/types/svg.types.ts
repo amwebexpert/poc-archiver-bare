@@ -22,13 +22,13 @@ export type SvgPathElement = SvgElement & {
   d: string;
 };
 
-export const isPath = (element?: SvgElement): element is SvgPathElement => element?.type === SvgElementType.path;
-
-export const isCircle = (element?: SvgElement): element is SvgCircleElement => element?.type === SvgElementType.circle;
-
 export type SvgCircleElement = SvgElement & {
   type: SvgElementType.circle;
   cx: number;
   cy: number;
   radius: number;
 };
+
+export const isPath = (element?: SvgElement): element is SvgPathElement => element?.type === SvgElementType.path;
+
+export const isCircle = (element?: SvgElement): element is SvgCircleElement => element?.type === SvgElementType.circle;
