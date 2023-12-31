@@ -23,8 +23,8 @@ const DEFAULT_XML_PARSER_OPTIONS = {
 const XML_ELEMENT_ATTRIBUTES_KEY = ":@";
 
 const SVG_ELEMENTS = new Map<SvgElementType, XmlSerializationHandler>([
-  [SvgElementType.path, PATH_SERIALIZER as unknown as XmlSerializationHandler],
-  [SvgElementType.circle, CIRCLE_SERIALIZER as unknown as XmlSerializationHandler],
+  [SvgElementType.path, PATH_SERIALIZER],
+  [SvgElementType.circle, CIRCLE_SERIALIZER],
 ]);
 
 const svgWrapper = ({ content = "", viewBox = DEFAULT_VIEW_BOX }) =>
