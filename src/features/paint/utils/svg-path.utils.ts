@@ -10,6 +10,7 @@ import {
 
 import { XYCoordinates } from "../types/canvas.types";
 import { PathSimplificationConfigs } from "../constants";
+import { extractNumericAttribute } from "./svg-serialization.utils";
 
 export const serializer: XmlSerializer<SvgPathElement> = ({ element, screenScale = 1 }) => {
   const { id, d, strokeColor, strokeWidth } = element;
@@ -51,9 +52,9 @@ export const fromCoordinatesArray = (points: XYCoordinates[]): string => {
 
 export const deserializer: XmlDeserializer<SvgPathElement> = ({ xmlElementAttributes, screenScale = 1 }) => {
   const d = toDeviceDependentPixel({ d: xmlElementAttributes["@_d"], screenScale });
-  const id = Number(xmlElementAttributes["@_id"]);
+  const id = extractNumericAttribute({ xmlElementAttributes, key: "@_id" }) ?? 0;
   const strokeColor = xmlElementAttributes["@_stroke"];
-  const strokeWidth = Number(xmlElementAttributes["@_stroke-width"]);
+  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" });
 
   return { type: SvgElementType.path, id, d, strokeColor, strokeWidth };
 };
