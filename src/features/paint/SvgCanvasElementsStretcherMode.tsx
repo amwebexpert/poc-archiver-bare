@@ -19,8 +19,10 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
   canvasDimensions = ZERO_DIMENSIONS,
 }) => {
   const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;
-  const { selectedElements, unselectedElements, originalBoundingBox, isBoundingBoxReady } = useSelectedElements();
+  const { selectedElements, unselectedElements, originalBoundingBox, isBoundingBoxReady, hasSingleSelectedPath } =
+    useSelectedElements();
   const [firstSelectedElement] = selectedElements;
+  const showSelector = isBoundingBoxReady && hasSingleSelectedPath;
 
   const onDrawElementUpdate = (d = "") => {
     const updatedElement = { ...firstSelectedElement, d };
@@ -29,7 +31,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
 
   return (
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
-      {isBoundingBoxReady && (
+      {showSelector && (
         <Selector
           canvasDimensions={canvasDimensions}
           originalBoundingBox={originalBoundingBox!}
