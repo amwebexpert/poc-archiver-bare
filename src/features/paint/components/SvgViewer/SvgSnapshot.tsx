@@ -2,7 +2,7 @@ import { useWindowDimensions } from "react-native";
 import { Portal } from "react-native-paper";
 import Svg, { G, Rect } from "react-native-svg";
 
-import { CANVAS_DIMENSIONS } from "../../constants";
+import { DEFAULT_CANVAS_DIMENSIONS } from "../../constants";
 
 import { FunctionComponent } from "react";
 import { SvgElement } from "../../types/svg.types";
@@ -25,7 +25,7 @@ const SvgSnapshot: FunctionComponent<SvgSnapshotProps> = ({
 
   // as soon as we have a ref to the generated svg, we can take a
   // snapshot and callback onBase64Generated with the result
-  const onRefUpdate = (ref: Svg) => ref?.toDataURL(onBase64Generated, CANVAS_DIMENSIONS);
+  const onRefUpdate = (ref: Svg) => ref?.toDataURL(onBase64Generated, DEFAULT_CANVAS_DIMENSIONS);
 
   return (
     <Portal>

@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { DEFAULT_BOUNDING_BOX, DEFAULT_DIMENSIONS } from "../../constants";
+import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../constants";
 import { fromCoordinatesArray, getPathPoints } from "../../utils/svg-path.utils";
 
 import { BoundingBox, CanvasDimensions } from "../../types/canvas.types";
@@ -39,8 +39,8 @@ type SelectorProps = {
 };
 
 export const Selector: FunctionComponent<SelectorProps> = ({
-  canvasDimensions = DEFAULT_DIMENSIONS,
-  originalBoundingBox = DEFAULT_BOUNDING_BOX,
+  canvasDimensions = ZERO_DIMENSIONS,
+  originalBoundingBox = ZERO_BOUNDING_BOX,
   selectedElement,
   onDrawElementUpdate = () => {},
 }) => {

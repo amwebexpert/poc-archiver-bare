@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BoundingBox, CanvasDimensions, XYCoordinates } from "./types/canvas.types";
+import { BoundingBox, CanvasDimensions, DEFAULT_ASPECT_RATIO, XYCoordinates } from "./types/canvas.types";
 
 export const paintCommonStyles = StyleSheet.create({
   container: {
@@ -9,19 +9,19 @@ export const paintCommonStyles = StyleSheet.create({
   },
 });
 
-// match 8.5" x 11" at 300 dpi
-export const CANVAS_DIMENSIONS: Readonly<CanvasDimensions> = {
-  width: 900,
-  height: 1600,
+// @see https://www.selfemployedartist.com/blog/best-canvas-sizes
+export const DEFAULT_CANVAS_DIMENSIONS: Readonly<CanvasDimensions> = {
+  width: DEFAULT_ASPECT_RATIO.width * 100,
+  height: DEFAULT_ASPECT_RATIO.height * 100,
   snapshotScale: 1,
   screenScale: 1,
 };
 
-export const DEFAULT_DIMENSIONS: Readonly<CanvasDimensions> = { width: 0, height: 0, snapshotScale: 1, screenScale: 1 };
-export const DEFAULT_BOUNDING_BOX: Readonly<BoundingBox> = { left: 0, top: 0, width: 0, height: 0 };
+export const ZERO_DIMENSIONS: Readonly<CanvasDimensions> = { width: 0, height: 0, snapshotScale: 1, screenScale: 1 };
+export const ZERO_BOUNDING_BOX: Readonly<BoundingBox> = { left: 0, top: 0, width: 0, height: 0 };
 export const CANVAS_WRAPPER_PADDING = 8;
 
-export const DEFAULT_COORDINATES: Readonly<XYCoordinates> = { x: 0, y: 0 };
+export const ZERO_COORDINATES: Readonly<XYCoordinates> = { x: 0, y: 0 };
 
 export const SINGLE_TAP_MAX_DISTANCE = 5;
 

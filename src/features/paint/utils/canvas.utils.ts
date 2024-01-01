@@ -1,34 +1,40 @@
 import pathParser from "parse-svg-path";
 import { PixelRatio, Platform } from "react-native";
 
-import { CANVAS_DIMENSIONS, DEFAULT_BOUNDING_BOX, DEFAULT_COORDINATES, SINGLE_TAP_MAX_DISTANCE } from "../constants";
+import { DEFAULT_CANVAS_DIMENSIONS, SINGLE_TAP_MAX_DISTANCE, ZERO_BOUNDING_BOX, ZERO_COORDINATES } from "../constants";
 
-import { BoundingBox, CanvasDimensions, CanvasSurface } from "../types/canvas.types";
+import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
 import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
 import { buildPathElement, getPathPoints, normalizePath } from "./svg-path.utils";
 
-export const computeMaxDimensionsForAspectRatio_16_9 = ({ width, height }: CanvasSurface): CanvasDimensions => {
-  const computedHeightBasedOnWidth = (width * 16) / 9;
-  const computedWidthBasedOnHeight = (height * 9) / 16;
+type MaxDimensionsForAspectRatioInputTypes = {
+  width: number;
+  height: number;
+  aspectRatio?: AspectRatio;
+};
+export const computeMaxDimensionsForAspectRatio = (inputs: MaxDimensionsForAspectRatioInputTypes): CanvasDimensions => {
+  const { width, height, aspectRatio = DEFAULT_CANVAS_DIMENSIONS } = inputs;
+  const computedHeightBasedOnWidth = (width * aspectRatio.height) / aspectRatio.width;
+  const computedWidthBasedOnHeight = (height * aspectRatio.width) / aspectRatio.height;
 
   // @see https://github.com/software-mansion/react-native-svg/issues/855#issuecomment-445340830
   const svgSnapshotPlatformScaleFactor = Platform.select({ ios: 1, android: 1 / PixelRatio.get() }) ?? 1;
 
   if (computedHeightBasedOnWidth <= height) {
     // take full width and adjust height
-    const screenScale = width / CANVAS_DIMENSIONS.width;
-    const snapshotScale = (CANVAS_DIMENSIONS.width / width) * svgSnapshotPlatformScaleFactor;
+    const screenScale = width / aspectRatio.width;
+    const snapshotScale = (aspectRatio.width / width) * svgSnapshotPlatformScaleFactor;
     return { width, height: computedHeightBasedOnWidth, snapshotScale, screenScale };
   } else {
     // take full height and adjust width
-    const screenScale = height / CANVAS_DIMENSIONS.height;
-    const snapshotScale = (CANVAS_DIMENSIONS.height / height) * svgSnapshotPlatformScaleFactor;
+    const screenScale = height / aspectRatio.height;
+    const snapshotScale = (aspectRatio.height / height) * svgSnapshotPlatformScaleFactor;
     return { width: computedWidthBasedOnHeight, height, snapshotScale, screenScale };
   }
 };
 
-export const computeDistance = ({ p1 = DEFAULT_COORDINATES, p2 = DEFAULT_COORDINATES }) => {
+export const computeDistance = ({ p1 = ZERO_COORDINATES, p2 = ZERO_COORDINATES }) => {
   const dx = p2.x - p1.x;
   const dy = p2.y - p1.y;
 
@@ -70,14 +76,14 @@ export const computeBoundingBox = (element: SvgElement): BoundingBox => {
     return computeBoundingBoxOfCircleElement(element);
   }
 
-  return DEFAULT_BOUNDING_BOX;
+  return ZERO_BOUNDING_BOX;
 };
 
 export const computeBoundingBoxOfCircleElement = (element: SvgCircleElement): BoundingBox => {
   const radius = element.radius ?? 0;
   const size = radius * 2;
   if (radius <= 0) {
-    return DEFAULT_BOUNDING_BOX;
+    return ZERO_BOUNDING_BOX;
   }
 
   return {

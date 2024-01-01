@@ -35,7 +35,7 @@ const CanvasEdit = () => {
   useEffect(() => {
     if (isCanvasDimensionsAvailable) {
       const { screenScale } = canvasDimensions!;
-      console.log("canvasDimensions!.screenScale", screenScale);
+      console.info("canvasDimensions!.screenScale", screenScale);
 
       // TODO when loading existing XML file content
       // const elements = fromSvgFormat({ content: svgXmlContent, screenScale });

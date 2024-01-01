@@ -1,6 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
 
-import { CANVAS_DIMENSIONS } from "../constants";
+import { DEFAULT_CANVAS_DIMENSIONS } from "../constants";
 
 import { SvgElement, SvgElementType } from "../types/svg.types";
 import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
@@ -37,7 +37,7 @@ export type XmlSerializationHandler = {
   deserializer: XmlDeserializer;
 };
 
-const { width, height } = CANVAS_DIMENSIONS;
+const { width, height } = DEFAULT_CANVAS_DIMENSIONS;
 const DEFAULT_VIEW_BOX = `0 0 ${width} ${height}`;
 const DEFAULT_ELEMENT_NOOP_SERIALIZER: XmlSerializationHandler = {
   serializer: () => "",

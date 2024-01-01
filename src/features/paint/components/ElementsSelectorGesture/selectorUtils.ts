@@ -1,6 +1,6 @@
 import { SharedValue } from "react-native-reanimated";
 import { XYCoordinates } from "../../types/canvas.types";
-import { DEFAULT_COORDINATES } from "../../constants";
+import { ZERO_COORDINATES } from "../../constants";
 import { SNAP_DELTA } from "./constants";
 import { AnimationEventType, ContextType } from "./selectors.types";
 
@@ -61,7 +61,7 @@ export const onRegionDrag = (event: AnimationEventType, context: ContextType) =>
   "worklet";
 
   const {
-    topLeft = DEFAULT_COORDINATES,
+    topLeft = ZERO_COORDINATES,
     rectangleWidth = 0,
     rectangleHeight = 0,
     MAX_X = 0,
@@ -90,7 +90,7 @@ export const onRegionDrag = (event: AnimationEventType, context: ContextType) =>
 export const onTopLeftDrag = (event: AnimationEventType, context: ContextType) => {
   "worklet";
 
-  const { topLeft = DEFAULT_COORDINATES, bottomRight = DEFAULT_COORDINATES, zoomLevel = 1 } = context;
+  const { topLeft = ZERO_COORDINATES, bottomRight = ZERO_COORDINATES, zoomLevel = 1 } = context;
 
   const unboundedX = event.translationX / zoomLevel + topLeft.x;
   let x = unboundedX < 0 ? 0 : unboundedX;
@@ -110,13 +110,7 @@ export const onTopLeftDrag = (event: AnimationEventType, context: ContextType) =
 export const onBottomRightDrag = (event: AnimationEventType, context: ContextType) => {
   "worklet";
 
-  const {
-    topLeft = DEFAULT_COORDINATES,
-    bottomRight = DEFAULT_COORDINATES,
-    MAX_X = 0,
-    MAX_Y = 0,
-    zoomLevel = 0,
-  } = context;
+  const { topLeft = ZERO_COORDINATES, bottomRight = ZERO_COORDINATES, MAX_X = 0, MAX_Y = 0, zoomLevel = 0 } = context;
 
   const unboundedX = event.translationX / zoomLevel + bottomRight.x;
   let x = unboundedX > MAX_X ? MAX_X : unboundedX;
