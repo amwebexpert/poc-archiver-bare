@@ -201,6 +201,7 @@ class PaintStore {
 
   deleteSelectedElements() {
     runInAction(() => {
+      this._canvasMode = CanvasMode.SELECTOR;
       this._undoHistory = [...this._undoHistory, this._elements];
       this._elements = this._elements.filter(elem => !this._selectedElementIDs.includes(elem.id));
       this._isSaved = false;
