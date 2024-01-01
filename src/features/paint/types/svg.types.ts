@@ -15,6 +15,7 @@ export type SvgElement = {
   strokeColor?: string;
   strokeWidth?: number;
   fill?: string;
+  isSelected?: boolean;
 };
 
 export type SvgPathElement = SvgElement & {

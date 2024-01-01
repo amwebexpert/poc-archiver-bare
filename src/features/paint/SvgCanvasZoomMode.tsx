@@ -9,7 +9,7 @@ import { ZoomPanInfoType } from "./stores/zoom-pan.store";
 import { FunctionComponent } from "react";
 
 const SvgCanvasZoomMode: FunctionComponent<{}> = () => {
-  const { elementsWithSelectedFlag } = useSelectedElements();
+  const { elements } = paintStore;
   const { zoomLevel, offsetX, offsetY } = paintStore.zoomAndPanInfo;
 
   const onZoomPanInfoUpdate = (newZoomPanInfo: ZoomPanInfoType) => {
@@ -36,7 +36,7 @@ const SvgCanvasZoomMode: FunctionComponent<{}> = () => {
       bindToBorders={true}
       onTranslateXY={onZoomPanInfoUpdate}
       style={paintCommonStyles.container}>
-      <SvgViewer elements={elementsWithSelectedFlag} />
+      <SvgViewer elements={elements} />
     </ReactNativeZoomableView>
   );
 };

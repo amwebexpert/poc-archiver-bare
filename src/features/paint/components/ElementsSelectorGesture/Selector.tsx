@@ -34,7 +34,7 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 type SelectorProps = {
   canvasDimensions: CanvasDimensions;
   originalBoundingBox: BoundingBox;
-  selectedElement: SvgPathElement;
+  selectedElement?: SvgPathElement;
   onDrawElementUpdate?: (d: string) => void;
 };
 
@@ -50,7 +50,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
 
   const isSelectionAreaDirty = useSharedValue(false);
   const moveType = useSharedValue(SelectorMoveType.NONE);
-  const originalPathPoints = useSharedValue(getPathPoints(selectedElement.d));
+  const originalPathPoints = useSharedValue(getPathPoints(selectedElement?.d));
   const topLeft = useSharedValue({ x: originalBoundingBox.left, y: originalBoundingBox.top });
   const bottomRight = useSharedValue({
     x: originalBoundingBox.left + originalBoundingBox.width,
@@ -78,7 +78,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
     // to solve this, we need to recompute all the following values within a "worklet" and then we
     // also need to migrate the dependencies library code we use within a worklet
     // (like pathParser from "parse-svg-path")
-    originalPathPoints.value = getPathPoints(selectedElement.d);
+    originalPathPoints.value = getPathPoints(selectedElement?.d);
     topLeft.value = { x: originalBoundingBox.left, y: originalBoundingBox.top };
     bottomRight.value = {
       x: originalBoundingBox.left + originalBoundingBox.width,
@@ -89,7 +89,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
 
   const d = useDerivedValue<string>(() => {
     if (moveType.value === SelectorMoveType.NONE) {
-      return selectedElement.d;
+      return selectedElement?.d ?? "";
     }
 
     if (moveType.value === SelectorMoveType.BOUNDING_BOX) {
@@ -183,6 +183,10 @@ export const Selector: FunctionComponent<SelectorProps> = ({
     });
 
   const animatedProps = useAnimatedProps(() => ({ d: isSelectionAreaDirty.value ? "" : d.value }));
+
+  if (!selectedElement) {
+    return null;
+  }
 
   return (
     <>

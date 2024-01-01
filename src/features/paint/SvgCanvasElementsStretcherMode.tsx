@@ -23,7 +23,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
   const [firstSelectedElement] = selectedElements;
 
   const onDrawElementUpdate = (d = "") => {
-    const updatedElement = { ...firstSelectedElement, isSelected: false, d };
+    const updatedElement = { ...firstSelectedElement, d };
     paintStore.updateDrawElement(updatedElement);
   };
 

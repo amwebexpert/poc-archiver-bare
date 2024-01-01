@@ -22,6 +22,12 @@ class PaintStore {
     makeAutoObservable(this);
   }
 
+  // helpers
+  // ------------------------------
+  isElementSelected(element: SvgElement) {
+    return this._selectedElementIDs.includes(element.id);
+  }
+
   // getters and setters
   // ------------------------------
   get canvasMode(): CanvasMode {
@@ -35,7 +41,7 @@ class PaintStore {
   }
 
   get elements(): SvgElement[] {
-    return this._elements;
+    return this._elements.map(elem => ({ ...elem, isSelected: this.isElementSelected(elem) }));
   }
 
   set elements(elements: SvgElement[]) {
@@ -196,15 +202,17 @@ class PaintStore {
       this._elements = lastElements;
       this._isSaved = false;
       this._isDrawGestureDirty = true;
+      this._selectedElementIDs = [];
     });
   }
 
   deleteSelectedElements() {
     runInAction(() => {
-      this._canvasMode = CanvasMode.SELECTOR;
       this._undoHistory = [...this._undoHistory, this._elements];
       this._elements = this._elements.filter(elem => !this._selectedElementIDs.includes(elem.id));
       this._isSaved = false;
+      this._selectedElementIDs = [];
+      this._canvasMode = CanvasMode.SELECTOR;
     });
   }
 
