@@ -19,8 +19,8 @@ export const extractNumericAttribute = <T extends XmlAttributes = XmlAttributes>
   return key in xmlElementAttributes ? Number(xmlElementAttributes[key]) : undefined;
 };
 
-export type SerializerInputs<E extends SvgElement = SvgElement> = {
-  element: E;
+export type SerializerInputs = {
+  element: SvgElement;
   screenScale?: number;
 };
 
@@ -29,12 +29,12 @@ export type DeserializerInputs = {
   screenScale?: number;
 };
 
-export type XmlSerializer<E extends SvgElement = SvgElement> = (inputs: SerializerInputs<E>) => string;
-export type XmlDeserializer<E extends SvgElement = SvgElement> = (inputs: DeserializerInputs) => E | undefined;
+export type XmlSerializer = (inputs: SerializerInputs) => string;
+export type XmlDeserializer = (inputs: DeserializerInputs) => SvgElement | undefined;
 
-export type XmlSerializationHandler<E extends SvgElement = any> = {
-  serializer: XmlSerializer<E>;
-  deserializer: XmlDeserializer<E>;
+export type XmlSerializationHandler = {
+  serializer: XmlSerializer;
+  deserializer: XmlDeserializer;
 };
 
 const { width, height } = CANVAS_DIMENSIONS;
