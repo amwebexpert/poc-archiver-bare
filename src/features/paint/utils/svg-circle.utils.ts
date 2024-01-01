@@ -1,6 +1,6 @@
 import pathParser from "parse-svg-path";
 
-import { SvgCircleElement, SvgElementType } from "../types/svg.types";
+import { SvgCircleElement, SvgElementType, isCircle } from "../types/svg.types";
 import { normalizePath } from "./svg-path.utils";
 import {
   XmlDeserializer,
@@ -9,7 +9,11 @@ import {
   extractNumericAttribute,
 } from "./svg-serialization.utils";
 
-export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenScale = 1 }) => {
+export const serializer: XmlSerializer = ({ element, screenScale = 1 }) => {
+  if (!isCircle(element)) {
+    throw new Error(`Cannot serialize non-circle element: ${JSON.stringify(element)}`);
+  }
+
   const { id, cx, cy, radius, strokeColor: stroke, strokeWidth: width, fill } = element;
   const x = cx / screenScale;
   const y = cy / screenScale;
@@ -18,7 +22,7 @@ export const serializer: XmlSerializer<SvgCircleElement> = ({ element, screenSca
   return `<circle id="${id}" cx="${x}" cy="${y}" r="${r}" stroke="${stroke}" stroke-width="${width}" fill="${fill}" />`;
 };
 
-export const deserializer: XmlDeserializer<SvgCircleElement> = ({ xmlElementAttributes, screenScale = 1 }) => {
+export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScale = 1 }) => {
   const cx = extractNumericAttribute({ xmlElementAttributes, key: "@_cx" }) ?? 0 * screenScale;
   const cy = extractNumericAttribute({ xmlElementAttributes, key: "@_cy" }) ?? 0 * screenScale;
   const radius = extractNumericAttribute({ xmlElementAttributes, key: "@_r" }) ?? 0 * screenScale;
@@ -30,7 +34,7 @@ export const deserializer: XmlDeserializer<SvgCircleElement> = ({ xmlElementAttr
   return { type: SvgElementType.circle, id, cx, cy, radius, strokeColor, strokeWidth, fill };
 };
 
-export const CIRCLE_SERIALIZER: XmlSerializationHandler<SvgCircleElement> = { serializer, deserializer };
+export const CIRCLE_SERIALIZER: XmlSerializationHandler = { serializer, deserializer };
 
 export const buildCircleElementFromSingleTapPath = ({
   d = "",

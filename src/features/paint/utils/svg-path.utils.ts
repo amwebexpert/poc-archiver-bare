@@ -1,6 +1,6 @@
 import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
-import { SvgElementType, SvgPathElement } from "../types/svg.types";
+import { SvgElementType, SvgPathElement, isPath } from "../types/svg.types";
 
 import { PathSimplificationConfigs } from "../constants";
 import { XYCoordinates } from "../types/canvas.types";
@@ -11,7 +11,11 @@ import {
   extractNumericAttribute,
 } from "./svg-serialization.utils";
 
-export const serializer: XmlSerializer<SvgPathElement> = ({ element, screenScale = 1 }) => {
+export const serializer: XmlSerializer = ({ element, screenScale = 1 }) => {
+  if (!isPath(element)) {
+    throw new Error(`Cannot serialize non-path element: ${JSON.stringify(element)}`);
+  }
+
   const { id, d, strokeColor, strokeWidth } = element;
   const normalizedPath = toDeviceIndependentPixel({ d, screenScale });
 
@@ -49,7 +53,7 @@ export const fromCoordinatesArray = (points: XYCoordinates[]): string => {
   return [firstCommand, ...restCommands].join(" ");
 };
 
-export const deserializer: XmlDeserializer<SvgPathElement> = ({ xmlElementAttributes, screenScale = 1 }) => {
+export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScale = 1 }) => {
   const d = toDeviceDependentPixel({ d: xmlElementAttributes["@_d"], screenScale });
   const id = extractNumericAttribute({ xmlElementAttributes, key: "@_id" }) ?? 0;
   const strokeColor = xmlElementAttributes["@_stroke"];
@@ -74,7 +78,7 @@ export const applyScale = ({ d = "", scale = 1 }) => {
     .trim();
 };
 
-export const PATH_SERIALIZER: XmlSerializationHandler<SvgPathElement> = { serializer, deserializer };
+export const PATH_SERIALIZER: XmlSerializationHandler = { serializer, deserializer };
 
 export const normalizePath = (d = "") => d?.trim().toUpperCase() ?? "";
 
