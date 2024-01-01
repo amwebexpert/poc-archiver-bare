@@ -1,7 +1,12 @@
 import pathParser from "parse-svg-path";
-import { PixelRatio, Platform } from "react-native";
 
-import { DEFAULT_CANVAS_DIMENSIONS, SINGLE_TAP_MAX_DISTANCE, ZERO_BOUNDING_BOX, ZERO_COORDINATES } from "../constants";
+import {
+  DEFAULT_CANVAS_DIMENSIONS,
+  SINGLE_TAP_MAX_DISTANCE,
+  SVG_SNAPSHOT_SCALE_FACTOR,
+  ZERO_BOUNDING_BOX,
+  ZERO_COORDINATES,
+} from "../constants";
 
 import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
 import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
@@ -11,25 +16,22 @@ import { buildPathElement, getPathPoints, normalizePath } from "./svg-path.utils
 type MaxDimensionsForAspectRatioInputTypes = {
   width: number;
   height: number;
-  aspectRatio?: AspectRatio;
+  targetDimensionsForScale?: AspectRatio;
 };
 export const computeMaxDimensionsForAspectRatio = (inputs: MaxDimensionsForAspectRatioInputTypes): CanvasDimensions => {
-  const { width, height, aspectRatio = DEFAULT_CANVAS_DIMENSIONS } = inputs;
-  const computedHeightBasedOnWidth = (width * aspectRatio.height) / aspectRatio.width;
-  const computedWidthBasedOnHeight = (height * aspectRatio.width) / aspectRatio.height;
-
-  // @see https://github.com/software-mansion/react-native-svg/issues/855#issuecomment-445340830
-  const svgSnapshotPlatformScaleFactor = Platform.select({ ios: 1, android: 1 / PixelRatio.get() }) ?? 1;
+  const { width, height, targetDimensionsForScale = DEFAULT_CANVAS_DIMENSIONS } = inputs;
+  const computedHeightBasedOnWidth = (width * targetDimensionsForScale.height) / targetDimensionsForScale.width;
+  const computedWidthBasedOnHeight = (height * targetDimensionsForScale.width) / targetDimensionsForScale.height;
 
   if (computedHeightBasedOnWidth <= height) {
     // take full width and adjust height
-    const screenScale = width / aspectRatio.width;
-    const snapshotScale = (aspectRatio.width / width) * svgSnapshotPlatformScaleFactor;
+    const screenScale = width / targetDimensionsForScale.width;
+    const snapshotScale = (targetDimensionsForScale.width / width) * SVG_SNAPSHOT_SCALE_FACTOR;
     return { width, height: computedHeightBasedOnWidth, snapshotScale, screenScale };
   } else {
     // take full height and adjust width
-    const screenScale = height / aspectRatio.height;
-    const snapshotScale = (aspectRatio.height / height) * svgSnapshotPlatformScaleFactor;
+    const screenScale = height / targetDimensionsForScale.height;
+    const snapshotScale = (targetDimensionsForScale.height / height) * SVG_SNAPSHOT_SCALE_FACTOR;
     return { width: computedWidthBasedOnHeight, height, snapshotScale, screenScale };
   }
 };

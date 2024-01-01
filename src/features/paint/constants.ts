@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { PixelRatio, Platform, StyleSheet } from "react-native";
 import { BoundingBox, CanvasDimensions, DEFAULT_ASPECT_RATIO, XYCoordinates } from "./types/canvas.types";
 
 export const paintCommonStyles = StyleSheet.create({
@@ -9,11 +9,14 @@ export const paintCommonStyles = StyleSheet.create({
   },
 });
 
+// @see https://github.com/software-mansion/react-native-svg/issues/855#issuecomment-445340830
+export const SVG_SNAPSHOT_SCALE_FACTOR = Platform.select({ ios: 1, android: 1 / PixelRatio.get() }) ?? 1;
+
 // @see https://www.selfemployedartist.com/blog/best-canvas-sizes
 export const DEFAULT_CANVAS_DIMENSIONS: Readonly<CanvasDimensions> = {
   width: DEFAULT_ASPECT_RATIO.width * 100,
   height: DEFAULT_ASPECT_RATIO.height * 100,
-  snapshotScale: 1,
+  snapshotScale: SVG_SNAPSHOT_SCALE_FACTOR,
   screenScale: 1,
 };
 
