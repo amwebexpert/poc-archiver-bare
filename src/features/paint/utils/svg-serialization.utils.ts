@@ -53,7 +53,7 @@ const DEFAULT_XML_PARSER_OPTIONS = {
 };
 const XML_ELEMENT_ATTRIBUTES_KEY = ":@";
 
-const SVG_ELEMENTS = new Map<SvgElementType, XmlSerializationHandler>([
+const SERIALIZERS = new Map<SvgElementType, XmlSerializationHandler>([
   [SvgElementType.path, PATH_SERIALIZER],
   [SvgElementType.circle, CIRCLE_SERIALIZER],
 ]);
@@ -68,7 +68,7 @@ type toSvgFormatProps = {
 export const toSvgFormat = ({ elements = [], screenScale = 1 }: toSvgFormatProps) => {
   const elementsCollection = elements ?? [];
   const serializedElements = elementsCollection.map(element => {
-    const { serializer } = SVG_ELEMENTS.get(element.type) ?? DEFAULT_ELEMENT_NOOP_SERIALIZER;
+    const { serializer } = SERIALIZERS.get(element.type) ?? DEFAULT_ELEMENT_NOOP_SERIALIZER;
     return serializer({ element, screenScale });
   });
 
@@ -92,7 +92,7 @@ export const fromSvgFormat = ({ content = "", screenScale = 1 }): SvgElement[] =
   const elements = xmlElements.map(xmlElement => {
     const type = getXMLElementName(xmlElement) as SvgElementType;
     const xmlElementAttributes = xmlElement[XML_ELEMENT_ATTRIBUTES_KEY] as Record<string, string>;
-    const { deserializer } = SVG_ELEMENTS.get(type) ?? DEFAULT_ELEMENT_NOOP_SERIALIZER;
+    const { deserializer } = SERIALIZERS.get(type) ?? DEFAULT_ELEMENT_NOOP_SERIALIZER;
 
     return deserializer({ xmlElementAttributes, screenScale });
   });
