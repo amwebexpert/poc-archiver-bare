@@ -64,7 +64,7 @@ const CanvasEdit = () => {
   const onZoomPan = () => paintStore.setCanvasModeToZoomPan();
 
   return (
-    <GestureHandlerRootView style={styles.root}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={styles.container} onLayout={e => onCanvasParentLayoutDimensions(e.nativeEvent.layout)}>
         {isCanvasDimensionsAvailable && (
           <View style={[styles.canvasWrapper, canvasDimensions]}>
@@ -112,24 +112,18 @@ const useStyles = () => {
   const theme = useTheme() as AppTheme;
 
   return StyleSheet.create({
-    root: {
+    container: {
       flex: 1,
     },
-    buttonRow: {
-      alignContent: "flex-end",
-      bottom: theme.spacing(1),
-      flexDirection: "row",
-      position: "absolute",
-      right: theme.spacing(1),
-    },
     expandableToolbar: {
-      alignContent: "space-between",
       backgroundColor: "black",
       flexDirection: "row",
       justifyContent: "flex-end",
       position: "absolute",
-      right: theme.spacing(1),
-      top: theme.spacing(1),
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: "green",
+      right: 0,
+      bottom: 0,
     },
     canvasWrapper: {
       backgroundColor: "white",
@@ -137,11 +131,6 @@ const useStyles = () => {
       borderWidth: StyleSheet.hairlineWidth,
       overflow: "hidden",
       padding: 0,
-    },
-    container: {
-      alignItems: "center",
-      flex: 1,
-      justifyContent: "center",
     },
   });
 };
