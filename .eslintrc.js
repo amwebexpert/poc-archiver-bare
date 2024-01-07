@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   plugins: ["import"],
   extends: [
+    "@react-native",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-native/all",

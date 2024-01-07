@@ -53,7 +53,7 @@
         "licenseUrl": "https://github.com/welldone-software/why-did-you-render/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "axios@1.6.3": {
+    "axios@1.6.5": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
         "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
@@ -71,7 +71,7 @@
         "licenseUrl": "https://github.com/entronad/crypto-es/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "date-fns@3.0.6": {
+    "date-fns@3.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/date-fns/date-fns",
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
@@ -83,7 +83,7 @@
         "licenseUrl": "https://github.com/GantMan/jail-monkey/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "lottie-react-native@6.4.1": {
+    "lottie-react-native@6.5.1": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/react-native-community/lottie-react-native",
         "licenseUrl": "https://github.com/react-native-community/lottie-react-native",
@@ -155,7 +155,7 @@
         "licenseUrl": "https://github.com/alexbrazier/react-native-network-logger/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-paper@5.11.4": {
+    "react-native-paper@5.11.6": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
@@ -209,7 +209,7 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "styled-components@6.1.5": {
+    "styled-components@6.1.6": {
         "licenses": "MIT",
         "repository": "https://github.com/styled-components/styled-components",
         "licenseUrl": "https://github.com/styled-components/styled-components/raw/master/LICENSE",
