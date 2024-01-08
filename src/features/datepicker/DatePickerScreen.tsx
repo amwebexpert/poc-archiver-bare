@@ -1,16 +1,12 @@
 import { FunctionComponent, useState } from "react";
 
-import { observer } from "mobx-react";
 import { StyleSheet, View } from "react-native";
-import { Button, useTheme, Text } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 
 import DatePicker from "react-native-date-picker";
 import { AppLayout } from "../../components/layout/AppLayout";
-import { AppTheme } from "../../theme";
 
 const DatePickerScreen: FunctionComponent = () => {
-  const styles = useStyles();
-
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
 
@@ -18,6 +14,7 @@ const DatePickerScreen: FunctionComponent = () => {
     <AppLayout title="Settings screen">
       <View style={styles.root}>
         <Text>{date.toISOString()}</Text>
+
         <DatePicker
           modal
           open={open}
@@ -28,6 +25,7 @@ const DatePickerScreen: FunctionComponent = () => {
           }}
           onCancel={() => setOpen(false)}
         />
+
         <Button icon="calendar" mode="outlined" onPress={() => setOpen(true)}>
           Pick date
         </Button>
@@ -36,16 +34,12 @@ const DatePickerScreen: FunctionComponent = () => {
   );
 };
 
-const useStyles = () => {
-  const theme = useTheme() as AppTheme;
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
-  return StyleSheet.create({
-    root: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-  });
-};
-
-export default observer(DatePickerScreen);
+export default DatePickerScreen;

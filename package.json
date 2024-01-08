@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "pod": "npx pod-install",
-    "postinstall": "npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
+    "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
     "@openspacelabs/react-native-zoomable-view": "^2.1.5",
@@ -27,8 +27,8 @@
     "jail-monkey": "^2.8.0",
     "lottie-react-native": "^6.4.1",
     "mobx": "^6.12.0",
-    "mobx-flipper": "^1.2.6",
     "mobx-react": "^9.1.0",
+    "parse-svg-path": "^0.1.2",
     "react": "18.2.0",
     "react-native": "0.73.1",
     "react-native-color-matrix-image-filters": "^6.0.3",
@@ -36,7 +36,6 @@
     "react-native-device-info": "^10.12.0",
     "react-native-email-link": "^1.14.8",
     "react-native-fast-image": "^8.6.3",
-    "react-native-flipper": "^0.212.0",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-network-logger": "^1.15.0",
     "react-native-paper": "^5.11.4",
@@ -46,6 +45,7 @@
     "react-native-svg": "14.1.0",
     "react-native-vector-icons": "^10.0.3",
     "react-native-webview": "13.6.3",
+    "simplify-js": "^1.2.4",
     "styled-components": "^6.1.5"
   },
   "devDependencies": {

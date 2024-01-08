@@ -89,12 +89,6 @@
         "licenseUrl": "https://github.com/react-native-community/lottie-react-native",
         "parents": "poc-archiver-bare"
     },
-    "mobx-flipper@1.2.6": {
-        "licenses": "MIT",
-        "repository": "https://github.com/khorark/mobx-flipper",
-        "licenseUrl": "https://github.com/khorark/mobx-flipper",
-        "parents": "poc-archiver-bare"
-    },
     "mobx-react@9.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/mobxjs/mobx",
@@ -105,6 +99,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/mobxjs/mobx",
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "parse-svg-path@0.1.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/jkroso/parse-svg-path",
+        "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
         "parents": "poc-archiver-bare"
     },
     "react-native-color-matrix-image-filters@6.0.3": {
@@ -135,12 +135,6 @@
         "licenses": "(MIT AND Apache-2.0)",
         "repository": "https://github.com/DylanVann/react-native-fast-image",
         "licenseUrl": "https://github.com/DylanVann/react-native-fast-image/raw/master/LICENSE",
-        "parents": "poc-archiver-bare"
-    },
-    "react-native-flipper@0.212.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/facebook/flipper",
-        "licenseUrl": "https://github.com/facebook/flipper/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "react-native-gesture-handler@2.14.0": {
@@ -207,6 +201,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react",
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "simplify-js@1.2.4": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/mourner/simplify-js",
+        "licenseUrl": "https://github.com/mourner/simplify-js/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "styled-components@6.1.6": {
