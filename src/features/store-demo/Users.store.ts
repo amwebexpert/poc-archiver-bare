@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { spy } from "mobx";
-import { createMobxDebugger } from "mobx-flipper";
 import { USERS_API_URL } from "@env";
 
 export type User = {
@@ -68,9 +67,5 @@ const observableUsersStore = new UsersStore();
 autorun(() => {
   console.info("usersLoadCompleted: ", observableUsersStore.usersLoadCompleted);
 });
-
-if (__DEV__) {
-  spy(createMobxDebugger(observableUsersStore) as any);
-}
 
 export default observableUsersStore;

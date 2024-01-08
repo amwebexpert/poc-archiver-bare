@@ -1,5 +1,4 @@
 import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
-import { createMobxDebugger } from "mobx-flipper";
 import { CanvasMode } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
 import { toSvgFormat } from "../utils/svg-serialization.utils";
@@ -254,9 +253,5 @@ autorun(() => {
   console.info("elements", paintStore.elements.length);
   //console.info("_isDrawGestureDirty", paintStore._isDrawGestureDirty);
 });
-
-if (__DEV__) {
-  spy(createMobxDebugger(paintStore) as any);
-}
 
 export default paintStore;

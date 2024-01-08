@@ -1,5 +1,4 @@
 import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
-import { createMobxDebugger } from "mobx-flipper";
 
 export type ZoomPanInfoType = {
   zoomLevel: number;
@@ -92,9 +91,5 @@ const zoomPanInfoStore = new ZoomPanInfoStore();
 autorun(() => {
   console.info("zoomLevel", zoomPanInfoStore.zoomLevel);
 });
-
-if (__DEV__) {
-  spy(createMobxDebugger(zoomPanInfoStore) as any);
-}
 
 export default zoomPanInfoStore;

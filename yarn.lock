@@ -5822,15 +5822,6 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-mobx-flipper@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/mobx-flipper/-/mobx-flipper-1.2.6.tgz#9802cee0f258a5668f1190f40a3179fbca12dda1"
-  integrity sha512-k4yR1pU/o4j6AAOofrHeIeMvCg44pNdZcuieiSlBmCElHEqCMPMJFlxOT38wjoJSOJe+LOSv2OKIOFqqufuqXw==
-  dependencies:
-    mobx "^6.3.0"
-    mobx-state-tree "^5.0.1"
-    react-native-flipper "^0.87.0"
-
 mobx-react-lite@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-4.0.5.tgz#e2cb98f813e118917bcc463638f5bf6ea053a67b"
@@ -5845,12 +5836,7 @@ mobx-react@^9.1.0:
   dependencies:
     mobx-react-lite "^4.0.4"
 
-mobx-state-tree@^5.0.1:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-5.4.0.tgz#d41b7fd90b8d4b063bc32526758417f1100751df"
-  integrity sha512-2VuUhAqFklxgGqFNqaZUXYYSQINo8C2SUEP9YfCQrwatHWHqJLlEC7Xb+5WChkev7fubzn3aVuby26Q6h+JeBg==
-
-mobx@^6.12.0, mobx@^6.3.0:
+mobx@^6.12.0:
   version "6.12.0"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.12.0.tgz#72b2685ca5af031aaa49e77a4d76ed67fcbf9135"
   integrity sha512-Mn6CN6meXEnMa0a5u6a5+RKrqRedHBhZGd15AWLk9O6uFY4KYHzImdt8JI8WODo1bjTSRnwXhJox+FCUZhCKCQ==
@@ -6520,16 +6506,6 @@ react-native-fast-image@^8.6.3:
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.6.3.tgz#6edc3f9190092a909d636d93eecbcc54a8822255"
   integrity sha512-Sdw4ESidXCXOmQ9EcYguNY2swyoWmx53kym2zRsvi+VeFCHEdkO+WG1DK+6W81juot40bbfLNhkc63QnWtesNg==
-
-react-native-flipper@^0.212.0:
-  version "0.212.0"
-  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.212.0.tgz#b3fdd47676ecd09a25edd77a1466acace6276762"
-  integrity sha512-bDRfIgE3v/jjEEdnvGP0T6maDD+bXhDAQ/SZUYTKd/CQ6YIU1c0EF+e0urU62LNMv6XEFQKz226McdddyVhYZA==
-
-react-native-flipper@^0.87.0:
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.87.0.tgz#7442994a5dd3fadd64b78293835af36bcf7fa891"
-  integrity sha512-WCi0j/4gRxYbEizVHN9kNWKx7m/sBajxXXhhTQBmhNLywSData+za62e5XtTGTnHoS8bDC5ev65PKAA7ncM9Lg==
 
 react-native-gesture-handler@~2.14.0:
   version "2.14.0"

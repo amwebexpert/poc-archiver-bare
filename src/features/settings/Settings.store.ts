@@ -1,6 +1,5 @@
 import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { AppTheme, darkTheme, lightTheme } from "../../theme";
-import { createMobxDebugger } from "mobx-flipper";
 import { loadData, storeData, StorageKey } from "../../utils/storage";
 
 class SettingsStore {
@@ -33,9 +32,5 @@ const observableSettingsStore = new SettingsStore();
 autorun(() => {
   console.info("DarkMode: ", observableSettingsStore.darkMode);
 });
-
-if (__DEV__) {
-  spy(createMobxDebugger(observableSettingsStore) as any);
-}
 
 export default observableSettingsStore;

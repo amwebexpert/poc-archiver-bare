@@ -968,8 +968,6 @@ PODS:
     - React-Core
   - react-native-date-picker (4.3.5):
     - React-Core
-  - react-native-flipper (0.212.0):
-    - React-Core
   - react-native-netinfo (11.2.1):
     - React-Core
   - react-native-safe-area-context (4.8.2):
@@ -1236,7 +1234,6 @@ DEPENDENCIES:
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-color-matrix-image-filters (from `../node_modules/react-native-color-matrix-image-filters`)
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
-  - react-native-flipper (from `../node_modules/react-native-flipper`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -1355,8 +1352,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-color-matrix-image-filters"
   react-native-date-picker:
     :path: "../node_modules/react-native-date-picker"
-  react-native-flipper:
-    :path: "../node_modules/react-native-flipper"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -1470,7 +1465,6 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 9731a0a63ebaf8976014623c4d637744d7353a7c
   react-native-color-matrix-image-filters: c945260077dabac82d8e25af937c18fff4021707
   react-native-date-picker: 90d1d60802a20085125657940b944f2bb4e5c113
-  react-native-flipper: 9c1957af24b76493ba74f46d000a5c1d485e7731
   react-native-netinfo: 8a7fd3f7130ef4ad2fb4276d5c9f8d3f28d2df3d
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
