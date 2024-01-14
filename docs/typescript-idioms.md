@@ -2,9 +2,7 @@
 
 Collection of promoted TypeScript patterns with concrete examples
 
-## 01 - Using Type Guard to refer non-nullable attribute
-
-#### :white_check_mark: prefer
+## :bulb: 01 - Using Type Guard to refer non-nullable attribute
 
 ```typescript
 type ProductStats = {
@@ -23,7 +21,8 @@ type SafeSProductStats = Omit<Product, "stats"> & {
   stats: NonNullable<ProductStats[]>;
 };
 
-export const hasStats = (product?: Product): product is SafeSProductStats => !!product?.stats?.length;
+// instead of returning a regular `boolean` we return `product is SafeSProductStats` (type guard)
+export const hasStats = (product?: Product):  => !!product?.stats?.length;
 
 const monthlyStatsSorter = (a: ProductStats, b: ProductStats) => a.salesPerMonth - b.salesPerMonth;
 
