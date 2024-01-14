@@ -2,7 +2,7 @@
 
 This section list coding patterns promoted in the project.
 
-## Avoid renderXyx patterns
+## Avoid `const renderXyx = () => {...}` pattern
 
 #### :x: avoid
 
