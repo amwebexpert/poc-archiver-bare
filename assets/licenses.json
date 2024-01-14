@@ -47,6 +47,12 @@
         "licenseUrl": "https://github.com/Shopify/flash-list/raw/master/LICENSE.md",
         "parents": "poc-archiver-bare"
     },
+    "@types/jest@29.5.11": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "@welldone-software/why-did-you-render@8.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/welldone-software/why-did-you-render",

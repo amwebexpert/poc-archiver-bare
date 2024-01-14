@@ -2,7 +2,35 @@
 
 Collection of promoted TypeScript patterns with concrete examples
 
-## :bulb: 01 - Using Type Guard to refer non-nullable attribute
+- [TypeScript idioms](#typescript-idioms)
+  - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
+  - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
+
+## :bulb: Enforce string input shape
+
+```typescript
+type SemanticVersion = `v${number}.${number}.${number}`;
+
+export const getPatch = (version: SemanticVersion) => {
+  const [, , patch] = version.split(".");
+  return Number(patch);
+};
+
+describe("Enforce string input shape", () => {
+  it("should work", () => {
+    // arrange
+    const version: SemanticVersion = "v1.2.3";
+
+    // act
+    const result = getPatch(version);
+
+    // assert
+    expect(result).toBe(3);
+  });
+});
+```
+
+## :bulb: Using Type Guard to refer non-nullable attribute
 
 ```typescript
 type ProductStats = {
