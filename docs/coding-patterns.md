@@ -42,13 +42,13 @@ return (
 )```
 ````
 
-#### :books:
+#### :thinking: :information: Explanation
 
 the `useCallback` hook:
 
 - should be used around _user interactions_ and not for rendering optimizations
 
-References
+:books: References
 
 - [3 React Mistakes, 1 App Killer](https://youtube.com/watch?v=QuLfCUh-iwI&si=JofynxnU-J58sA53)
 
