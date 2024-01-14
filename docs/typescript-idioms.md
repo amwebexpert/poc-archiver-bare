@@ -20,10 +20,12 @@ type IconSize = "sm" | "md" | "lg" | "xl";
 type ExtendedIconSizeWrongWayLoosingAutoComplete = IconSize | string;
 
 type ExtendedIconSize = IconSize | Omit<string, IconSize>;
+type LooseAutoComplete<T extends string> = T | Omit<string, T>;
 
 interface IMySuperComponentProps {
   size: ExtendedIconSize;
-  size2?: ExtendedIconSizeWrongWayLoosingAutoComplete;
+  size2?: LooseAutoComplete<IconSize>;
+  sizeWithoutAutoComplete?: ExtendedIconSizeWrongWayLoosingAutoComplete;
 }
 
 const MySuperComponent: FunctionComponent<IMySuperComponentProps> = ({ size }) => {
@@ -33,8 +35,8 @@ const MySuperComponent: FunctionComponent<IMySuperComponentProps> = ({ size }) =
 export const App: FunctionComponent = ({}) => {
   return (
     <View>
-      <MySuperComponent size="sm" size2="no-ide-auto-completion" />
-      <MySuperComponent size="md" size2="no intellisence since that prop is a string" />
+      <MySuperComponent size="sm" size2="sm" sizeWithoutAutoComplete="no-ide-auto-completion" />
+      <MySuperComponent size="md" size2="md" sizeWithoutAutoComplete="no intellisence since that prop is a string" />
       <MySuperComponent size="freeValue" />
     </View>
   );
