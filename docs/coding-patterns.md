@@ -42,7 +42,7 @@ return (
 )```
 ````
 
-#### :thinking: :information: Explanation
+#### :thinking: :information_source: Explanation
 
 the `useCallback` hook:
 
