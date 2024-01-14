@@ -47,12 +47,6 @@
         "licenseUrl": "https://github.com/Shopify/flash-list/raw/master/LICENSE.md",
         "parents": "poc-archiver-bare"
     },
-    "@types/jest@29.5.11": {
-        "licenses": "MIT",
-        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
-        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
-        "parents": "poc-archiver-bare"
-    },
     "@welldone-software/why-did-you-render@8.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/welldone-software/why-did-you-render",
@@ -77,7 +71,7 @@
         "licenseUrl": "https://github.com/entronad/crypto-es/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "date-fns@3.1.0": {
+    "date-fns@3.2.0": {
         "licenses": "MIT",
         "repository": "https://github.com/date-fns/date-fns",
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
@@ -113,7 +107,7 @@
         "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
         "parents": "poc-archiver-bare"
     },
-    "react-native-color-matrix-image-filters@6.0.3": {
+    "react-native-color-matrix-image-filters@6.0.6": {
         "licenses": "MIT",
         "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
         "licenseUrl": "https://github.com/iyegoroff/react-native-color-matrix-image-filters/raw/master/LICENSE",
@@ -143,7 +137,7 @@
         "licenseUrl": "https://github.com/DylanVann/react-native-fast-image/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-gesture-handler@2.14.0": {
+    "react-native-gesture-handler@2.14.1": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-gesture-handler",
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
@@ -155,7 +149,7 @@
         "licenseUrl": "https://github.com/alexbrazier/react-native-network-logger/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-paper@5.11.6": {
+    "react-native-paper@5.12.1": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
@@ -215,7 +209,7 @@
         "licenseUrl": "https://github.com/mourner/simplify-js/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "styled-components@6.1.6": {
+    "styled-components@6.1.8": {
         "licenses": "MIT",
         "repository": "https://github.com/styled-components/styled-components",
         "licenseUrl": "https://github.com/styled-components/styled-components/raw/master/LICENSE",

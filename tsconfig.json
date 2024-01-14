@@ -1,7 +1,9 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    // "experimentalDecorators": true // tried with MobX and react-native and onluy makeAutoObservable was working
+    "experimentalDecorators": true, // tried with MobX and react-native and only makeAutoObservable was working
+    "types": ["react-native", "node", "jest"],
     "typeRoots": ["./src/types"]
-  }
+  },
+  "include": ["src/**/*", "**/*.test.ts"]
 }
