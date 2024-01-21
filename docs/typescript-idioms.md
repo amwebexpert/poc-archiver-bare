@@ -6,6 +6,7 @@ Collection of promoted TypeScript patterns with concrete examples, inspired from
 - https://www.youtube.com/playlist?list=PLYvdvJlnTOjF6aJsWWAt7kZRJvzw-en8B
 
 - [TypeScript idioms](#typescript-idioms)
+  - [:bulb: Reuse previous type to force next type shape](#bulb-reuse-previous-type-to-force-next-type-shape)
   - [:bulb: Combine litteral enums with generic string](#bulb-combine-litteral-enums-with-generic-string)
   - [:bulb: Remove item from litteral enums](#bulb-remove-item-from-litteral-enums)
   - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
