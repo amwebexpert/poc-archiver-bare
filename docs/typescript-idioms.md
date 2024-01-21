@@ -1,12 +1,37 @@
 # TypeScript idioms
 
-Collection of promoted TypeScript patterns with concrete examples
+Collection of promoted TypeScript patterns with concrete examples, inspired from these playlists:
+
+- https://www.youtube.com/playlist?list=PLIvujZeVDLMx040-j1W4WFs1BxuTGdI_b
+- https://www.youtube.com/playlist?list=PLYvdvJlnTOjF6aJsWWAt7kZRJvzw-en8B
 
 - [TypeScript idioms](#typescript-idioms)
   - [:bulb: Combine litteral enums with generic string](#bulb-combine-litteral-enums-with-generic-string)
   - [:bulb: Remove item from litteral enums](#bulb-remove-item-from-litteral-enums)
   - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
   - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
+
+## :bulb: Reuse previous type to force next type shape
+
+```typescript
+export const getDeepValue = <T, K extends keyof T, L extends keyof T[K]>(obj: T, key: K, subkey: L): T[K][L] => {
+  return obj[key][subkey];
+};
+
+const objExample = {
+  a: {
+    b: 1,
+    c: "hello",
+  },
+  d: {
+    e: true,
+    f: new Date(),
+  },
+};
+
+const aDate = getDeepValue(objExample, "d", "f"); // const aDate: Date
+const aString = getDeepValue(objExample, "a", "c"); // const aString: string
+```
 
 ## :bulb: Combine litteral enums with generic string
 
