@@ -2,8 +2,8 @@
 
 Collection of promoted TypeScript patterns with concrete examples, inspired from these playlists:
 
-- https://www.youtube.com/playlist?list=PLIvujZeVDLMx040-j1W4WFs1BxuTGdI_b
-- https://www.youtube.com/playlist?list=PLYvdvJlnTOjF6aJsWWAt7kZRJvzw-en8B
+- [Advanced TypeScript - Matt Pockok](https://www.youtube.com/playlist?list=PLIvujZeVDLMx040-j1W4WFs1BxuTGdI_b)
+- [Advanced TypeScript Tutorials - Basarat](https://www.youtube.com/playlist?list=PLYvdvJlnTOjF6aJsWWAt7kZRJvzw-en8B)
 
 - [TypeScript idioms](#typescript-idioms)
   - [:bulb: Reuse previous type to force next type shape](#bulb-reuse-previous-type-to-force-next-type-shape)
