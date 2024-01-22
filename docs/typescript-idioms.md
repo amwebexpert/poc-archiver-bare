@@ -15,7 +15,11 @@ Collection of promoted TypeScript patterns with concrete examples, inspired from
 ## :bulb: Reuse previous type to force next type shape
 
 ```typescript
-export const getDeepValue = <T, K extends keyof T, L extends keyof T[K]>(obj: T, key: K, subkey: L): T[K][L] => {
+export const getDeepValue = <T, TKey extends keyof T, TSecondKey extends keyof T[TKey]>(
+  obj: T,
+  key: TKey,
+  subkey: TSecondKey,
+): T[TKey][TSecondKey] => {
   return obj[key][subkey];
 };
 
