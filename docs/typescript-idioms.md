@@ -5,6 +5,8 @@ Collection of promoted TypeScript patterns with concrete examples, inspired from
 - [Advanced TypeScript - Matt Pockok](https://www.youtube.com/playlist?list=PLIvujZeVDLMx040-j1W4WFs1BxuTGdI_b)
 - [Advanced TypeScript Tutorials - Basarat](https://www.youtube.com/playlist?list=PLYvdvJlnTOjF6aJsWWAt7kZRJvzw-en8B)
 
+Table of content
+
 - [TypeScript idioms](#typescript-idioms)
   - [:bulb: Reuse previous type to force next type shape](#bulb-reuse-previous-type-to-force-next-type-shape)
   - [:bulb: Combine litteral enums with generic string](#bulb-combine-litteral-enums-with-generic-string)
