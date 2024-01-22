@@ -187,4 +187,11 @@ const myProps: PropsFrom<typeof AppProgressBar> = {
   rowReverseValue: 2,
   isReverseVisible: true,
 };
+
+// so usefull that React has a built-in type for this
+const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
+  rowValue: 1,
+  rowReverseValue: 2,
+  isReverseVisible: true,
+};
 ```
