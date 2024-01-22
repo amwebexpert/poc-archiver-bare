@@ -13,6 +13,7 @@ Table of content
   - [:bulb: Remove item from litteral enums](#bulb-remove-item-from-litteral-enums)
   - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
   - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
+  - [:bulb: Infer React Component props](#bulb-infer-react-component-props)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -157,5 +158,33 @@ export const getProductMonthlyStats = (product?: Product): ProductStats[] => {
 
   // here product is narrowed to SafeSProductStats
   return [...product.stats].sort(monthlyStatsSorter);
+};
+```
+
+## :bulb: Infer React Component props
+
+```typescript
+import { FunctionComponent } from "react";
+
+type Props = {
+  rowValue: number;
+  rowReverseValue?: number;
+  isReverseVisible?: boolean;
+};
+
+export const AppProgressBar: FunctionComponent<Props> = ({ rowValue, rowReverseValue, isReverseVisible }) => {
+  console.info("====>>> info", { rowValue, rowReverseValue, isReverseVisible });
+  return null;
+};
+
+// -------------------------
+// elsewhere in the codebase...
+
+type PropsFrom<TComponent> = TComponent extends FunctionComponent<infer P> ? P : never;
+
+const myProps: PropsFrom<typeof AppProgressBar> = {
+  rowValue: 1,
+  rowReverseValue: 2,
+  isReverseVisible: true,
 };
 ```
