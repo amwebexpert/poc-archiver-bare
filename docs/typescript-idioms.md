@@ -34,8 +34,8 @@ const objExample = {
   },
 };
 
-const aDate = getDeepValue(objExample, "d", "f"); // const aDate: Date
-const aString = getDeepValue(objExample, "a", "c"); // const aString: string
+const theDate = getDeepValue(objExample, "d", "f"); // const theDate: Date
+const theString = getDeepValue(objExample, "a", "c"); // const theString: string
 ```
 
 ## :bulb: Combine litteral enums with generic string
