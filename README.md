@@ -71,3 +71,10 @@ yarn ios
 #### `CocoaPods could not find compatible versions for pod xyz`
 
 - https://stackoverflow.com/a/67027937/704681
+
+#### `➜ Implicit dependency on target 'React-runtimescheduler' in project 'Pods' via options... in build setting 'OTHER_LDFLAGS`
+
+- https://stackoverflow.com/a/67027937/704681
+  - Delete cocoa pods cache: `rm -rf ~/Library/Caches/CocoaPods`
+  - Delete the Pods folder and the `Podfile.lock` usually located in `<project_root>/ios`.
+  - Reinstall pods: `pod update`

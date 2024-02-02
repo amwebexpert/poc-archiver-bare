@@ -1,17 +1,23 @@
-import { FunctionComponent } from "react";
 import { FlashList } from "@shopify/flash-list";
+import { FunctionComponent } from "react";
 import { Linking, StyleSheet, View } from "react-native";
-import { List, Paragraph, useTheme } from "react-native-paper";
+import { List, useTheme } from "react-native-paper";
 
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 
+import { observer } from "mobx-react";
+import Markdown from "react-native-markdown-display";
 import { LightHouseAnimation } from "../../components/light-house/LightHouseAnimation";
 import { parseLicenceData } from "./service";
 
-export const AboutScreen: FunctionComponent = () => {
+import settingsStore from "../settings/Settings.store";
+
+export const AboutScreen: FunctionComponent = observer(() => {
   const styles = useStyles();
   const data = parseLicenceData();
+
+  const textColor = settingsStore.darkMode ? "white" : "black";
 
   return (
     <AppLayout title="About this app…">
@@ -20,7 +26,9 @@ export const AboutScreen: FunctionComponent = () => {
           <LightHouseAnimation />
         </View>
 
-        <Paragraph style={styles.paragraph}>List of open source dependencies</Paragraph>
+        <View style={styles.paragraph}>
+          <Markdown style={{ text: { color: textColor } }}>List of **_open source_** dependencies</Markdown>
+        </View>
 
         <FlashList
           data={data}
@@ -37,7 +45,7 @@ export const AboutScreen: FunctionComponent = () => {
       </View>
     </AppLayout>
   );
-};
+});
 
 const useStyles = () => {
   const theme = useTheme() as AppTheme;

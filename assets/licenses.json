@@ -143,6 +143,12 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
+    "react-native-markdown-display@7.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/iamacup/react-native-markdown-display",
+        "licenseUrl": "https://github.com/iamacup/react-native-markdown-display/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-network-logger@1.15.0": {
         "licenses": "MIT",
         "repository": "https://github.com/alexbrazier/react-native-network-logger",
