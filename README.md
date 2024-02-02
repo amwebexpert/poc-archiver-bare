@@ -14,6 +14,7 @@
 - `axios`
 - `@shopify/flash-list`
 - `@react-native-clipboard/clipboard`
+- `react-native-markdown-display`
 - and many more...
 
 ## TODOs
