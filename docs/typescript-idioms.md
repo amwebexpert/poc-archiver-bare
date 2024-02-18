@@ -14,7 +14,9 @@ Table of content
   - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
   - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
   - [:bulb: Infer React Component props](#bulb-infer-react-component-props)
-  - [:bulb: deep Readonly type](#bulb-deep-readonly-type)
+  - [:bulb: deep Partial type](#bulb-deep-partial-type)
+  - [:bulb: Infer React Component props](#bulb-infer-react-component-props-1)
+  - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -197,7 +199,86 @@ const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
 };
 ```
 
-## :bulb: deep Readonly type
+## :bulb: deep Partial type
+
+```typescript
+export type DeepPartial<T> = T extends Function ? T : DeepPartialArrayOrObject<T>;
+
+export type DeepPartialArrayOrObject<TArrayOrObject> = TArrayOrObject extends Array<infer TElement>
+  ? DeepPartialArray<TElement>
+  : DeepPartialObject<TArrayOrObject>;
+
+export type DeepPartialArray<TElement> = Array<DeepPartial<TElement>>;
+
+export type DeepPartialObject<TObject> = {
+  [Key in keyof TObject]?: DeepPartial<TObject[Key]>;
+};
+
+// -------------------------
+// elsewhere in the codebase...
+
+type ConfigsType = {
+  title: string;
+  key: string;
+  subConfigs: {
+    title: string;
+    key: string;
+  };
+};
+
+export const fullConfigs: ConfigsType = {
+  title: "my-title",
+  key: "my-key",
+  subConfigs: {
+    title: "my-sub-title",
+    key: "my-sub-key", // try to comment key: Property 'key' is required in type '{ title: string; key: string; }'
+  },
+};
+
+export const partialConfigs: DeepPartial<ConfigsType> = {
+  key: "my-key",
+  subConfigs: {
+    title: "my-sub-title",
+  },
+};
+```
+
+## :bulb: Infer React Component props
+
+```typescript
+import { FunctionComponent } from "react";
+
+type Props = {
+  rowValue: number;
+  rowReverseValue?: number;
+  isReverseVisible?: boolean;
+};
+
+export const AppProgressBar: FunctionComponent<Props> = ({ rowValue, rowReverseValue, isReverseVisible }) => {
+  console.info("====>>> info", { rowValue, rowReverseValue, isReverseVisible });
+  return null;
+};
+
+// -------------------------
+// elsewhere in the codebase...
+
+type PropsFrom<TComponent> = TComponent extends FunctionComponent<infer P> ? P : never;
+
+const myProps: PropsFrom<typeof AppProgressBar> = {
+  rowValue: 1,
+  rowReverseValue: 2,
+  isReverseVisible: true,
+};
+
+// so usefull that React has a built-in type for this
+const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
+  rowValue: 1,
+  rowReverseValue: 2,
+  isReverseVisible: true,
+};
+```
+
+## :bulb: Deep Readonly type
 
 ```typescript
 // -----------------------------------------------------
