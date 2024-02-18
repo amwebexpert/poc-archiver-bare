@@ -16,6 +16,7 @@ Table of content
   - [:bulb: Infer React Component props](#bulb-infer-react-component-props)
   - [:bulb: Deep Partial type](#bulb-deep-partial-type)
   - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
+  - [:bulb: Remove union member](#bulb-remove-union-member)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -288,4 +289,14 @@ CONFIGS.elements.forEach(console.info); // 1 2 3
 // CONFIGS.elements = [] // Cannot assign to 'elements' because it is a read-only property.ts(2540)
 // CONFIGS.elements.push(4); // Property 'push' does not exist on type 'readonly number[]'.ts(2339)
 // CONFIGS.title = "7 Eleven"; // Cannot assign to 'title' because it is a read-only property.ts(2540)
+```
+
+## :bulb: Remove union member
+
+```typescript
+type TPlanets = "earth" | "mars" | "jupiter" | "saturn" | "uranus" | "neptune" | "pluto";
+type TPlanetsButEarth = Exclude<TPlanets, "earth">; // "mars" | "jupiter" | "saturn" | "uranus" | "neptune" | "pluto"
+
+type TRemoveEarth<TName> = TName extends "earth" ? never : TName;
+type TPlanetsButEarthV2 = TRemoveEarth<TPlanets>; // "mars" | "jupiter" | "saturn" | "uranus" | "neptune" | "pluto"
 ```
