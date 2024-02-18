@@ -14,7 +14,7 @@ Table of content
   - [:bulb: Enforce string input shape](#bulb-enforce-string-input-shape)
   - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
   - [:bulb: Infer React Component props](#bulb-infer-react-component-props)
-  - [:bulb: deep Partial type](#bulb-deep-partial-type)
+  - [:bulb: Deep Partial type](#bulb-deep-partial-type)
   - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
 
 ## :bulb: Reuse previous type to force next type shape
@@ -198,7 +198,7 @@ const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
 };
 ```
 
-## :bulb: deep Partial type
+## :bulb: Deep Partial type
 
 ```typescript
 export type DeepPartial<T> = T extends Function ? T : DeepPartialArrayOrObject<T>;
