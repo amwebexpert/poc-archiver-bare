@@ -15,7 +15,6 @@ Table of content
   - [:bulb: Using Type Guard to refer non-nullable attribute](#bulb-using-type-guard-to-refer-non-nullable-attribute)
   - [:bulb: Infer React Component props](#bulb-infer-react-component-props)
   - [:bulb: deep Partial type](#bulb-deep-partial-type)
-  - [:bulb: Infer React Component props](#bulb-infer-react-component-props-1)
   - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
 
 ## :bulb: Reuse previous type to force next type shape
@@ -240,41 +239,6 @@ export const partialConfigs: DeepPartial<ConfigsType> = {
   subConfigs: {
     title: "my-sub-title",
   },
-};
-```
-
-## :bulb: Infer React Component props
-
-```typescript
-import { FunctionComponent } from "react";
-
-type Props = {
-  rowValue: number;
-  rowReverseValue?: number;
-  isReverseVisible?: boolean;
-};
-
-export const AppProgressBar: FunctionComponent<Props> = ({ rowValue, rowReverseValue, isReverseVisible }) => {
-  console.info("====>>> info", { rowValue, rowReverseValue, isReverseVisible });
-  return null;
-};
-
-// -------------------------
-// elsewhere in the codebase...
-
-type PropsFrom<TComponent> = TComponent extends FunctionComponent<infer P> ? P : never;
-
-const myProps: PropsFrom<typeof AppProgressBar> = {
-  rowValue: 1,
-  rowReverseValue: 2,
-  isReverseVisible: true,
-};
-
-// so usefull that React has a built-in type for this
-const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
-  rowValue: 1,
-  rowReverseValue: 2,
-  isReverseVisible: true,
 };
 ```
 
