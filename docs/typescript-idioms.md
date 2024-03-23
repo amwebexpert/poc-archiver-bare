@@ -18,6 +18,7 @@ Table of content
   - [:bulb: Deep Partial type](#bulb-deep-partial-type)
   - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
   - [:bulb: Remove union member](#bulb-remove-union-member)
+  - [Usage of `Omit<P, K>` for attribute removal transformer function pattern](#usage-of-omitp-k-for-attribute-removal-transformer-function-pattern)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -333,4 +334,41 @@ type TPlanetsButEarth = Exclude<TPlanets, "earth">; // "mars" | "jupiter" | "sat
 
 type TRemoveEarth<TName> = TName extends "earth" ? never : TName;
 type TPlanetsButEarthV2 = TRemoveEarth<TPlanets>; // "mars" | "jupiter" | "saturn" | "uranus" | "neptune" | "pluto"
+```
+
+## Usage of `Omit<P, K>` for attribute removal transformer function pattern
+
+```typescript
+// -----------------------------------------------------
+// Explicit and specific version
+// -----------------------------------------------------
+type WithTimestamp = { timestamp?: string };
+
+export const withoutTimestamp = <TObj extends WithTimestamp>(object: TObj): Omit<TObj, "timestamp"> => {
+  const { timestamp: _, ...rest } = object;
+  return rest;
+};
+
+// -----------------------------------------------------
+// More generic better version
+// -----------------------------------------------------
+export const keyRemover = <TObj extends Record<string, any>, TObjKey extends keyof TObj>(
+  object: TObj,
+  keys: TObjKey[],
+): Omit<TObj, TObjKey> => {
+  const newObject = { ...object };
+  keys.forEach(key => delete newObject[key]);
+
+  return newObject;
+};
+
+const myObject = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+const result = keyRemover(myObject, ["a", "c"]);
+console.info("====>>> info", result.b);
+// result.a // Property 'a' does not exist on type 'Omit<{ a: number; b: number; c: number; }, "a" | "c">'
 ```
