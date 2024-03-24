@@ -18,7 +18,8 @@ Table of content
   - [:bulb: Deep Partial type](#bulb-deep-partial-type)
   - [:bulb: Deep Readonly type](#bulb-deep-readonly-type)
   - [:bulb: Remove union member](#bulb-remove-union-member)
-  - [Usage of `Omit<P, K>` for attribute removal transformer function pattern](#usage-of-omitp-k-for-attribute-removal-transformer-function-pattern)
+  - [:bulb: Usage of `Omit<P, K>` for attribute removal transformer function pattern](#bulb-usage-of-omitp-k-for-attribute-removal-transformer-function-pattern)
+  - [:bulb: Pure TS function inputs validation](#bulb-pure-ts-function-inputs-validation)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -336,7 +337,7 @@ type TRemoveEarth<TName> = TName extends "earth" ? never : TName;
 type TPlanetsButEarthV2 = TRemoveEarth<TPlanets>; // "mars" | "jupiter" | "saturn" | "uranus" | "neptune" | "pluto"
 ```
 
-## Usage of `Omit<P, K>` for attribute removal transformer function pattern
+## :bulb: Usage of `Omit<P, K>` for attribute removal transformer function pattern
 
 ```typescript
 // -----------------------------------------------------
@@ -371,4 +372,10 @@ const myObject = {
 const result = keyRemover(myObject, ["a", "c"]);
 console.info("====>>> info", result.b);
 // result.a // Property 'a' does not exist on type 'Omit<{ a: number; b: number; c: number; }, "a" | "c">'
+```
+
+## :bulb: Pure TS function inputs validation
+
+```typescript
+
 ```
