@@ -20,6 +20,7 @@ Table of content
   - [:bulb: Remove union member](#bulb-remove-union-member)
   - [:bulb: Usage of `Omit<P, K>` for attribute removal transformer function pattern](#bulb-usage-of-omitp-k-for-attribute-removal-transformer-function-pattern)
   - [:bulb: Pure TS function inputs validation](#bulb-pure-ts-function-inputs-validation)
+  - [:bulb: Class \& this with asserts on class attributes](#bulb-class--this-with-asserts-on-class-attributes)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -404,4 +405,36 @@ console.info("====>>> info", isEqual(new Date(), new Date()));
 
 // Argument of type 'RegExp' is not assignable to parameter of type '"Objects are not supported for this method"'
 console.info("====>>> info", isEqual(/myregex/, /myregex/));
+```
+
+## :bulb: Class & this with asserts on class attributes
+
+```typescript
+type ProfileInfo = {
+  name: string;
+  userToken: string;
+};
+
+export class AppUser {
+  userToken?: string;
+
+  get isUserAuthenticated(): boolean {
+    return !!this.userToken;
+  }
+
+  assertsUserLoggedIn(): asserts this is this & { userToken: string } {
+    if (!this.isUserAuthenticated) {
+      throw new Error("User is not logged in");
+    }
+  }
+
+  getProfileInfo(): ProfileInfo {
+    this.assertsUserLoggedIn();
+
+    return {
+      name: "John Doe",
+      userToken: this.userToken,
+    };
+  }
+}
 ```
