@@ -6,9 +6,13 @@ import { ActivityIndicator, Button, Text, TextInput, useTheme } from "react-nati
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 import usersStore from "./Users.store";
+import { useUserLogger } from "./useUsersLogger";
 
 const StoreDemoScreen: FunctionComponent = () => {
   const styles = useStyles();
+
+  console.info(`====>>> re-rendering StoreDemoScreen. Users count: ${usersStore.users.length}`);
+  useUserLogger(usersStore.users);
 
   return (
     <AppLayout title="Settings screen">
