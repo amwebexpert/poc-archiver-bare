@@ -13,7 +13,7 @@ const StoreDemoScreen: FunctionComponent = () => {
   const styles = useStyles();
 
   console.info(`====>>> re-rendering StoreDemoScreen. Users count: ${usersStore.users.length}`);
-  useUserLogger(usersStore.users);
+  //useUserLogger(usersStore.users);
   useUserLoggerWithDirectStoreUsage();
 
   return (

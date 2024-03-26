@@ -5,6 +5,8 @@ export const useUserLoggerWithDirectStoreUsage = () => {
   const { users } = usersStore;
 
   useEffect(() => {
-    console.log(`useUserLoggerWithDirectStoreUsage.useEffect. users: ${users.length}`, { firstUser: users[0] });
+    console.log(`useUserLoggerWithDirectStoreUsage.useEffect. users: ${users.length}`, {
+      firstUserEmail: users[0]?.email,
+    });
   }, [users]);
 };
