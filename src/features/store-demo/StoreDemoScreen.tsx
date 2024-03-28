@@ -6,7 +6,6 @@ import { ActivityIndicator, Button, Text, TextInput, useTheme } from "react-nati
 import { AppLayout } from "../../components/layout/AppLayout";
 import { AppTheme } from "../../theme";
 import usersStore from "./Users.store";
-import { useUserLogger } from "./useUsersLogger";
 import { useUserLoggerWithDirectStoreUsage } from "./useUserLoggerWithDirectStoreUsage";
 
 const StoreDemoScreen: FunctionComponent = () => {
@@ -14,6 +13,7 @@ const StoreDemoScreen: FunctionComponent = () => {
 
   console.info(`====>>> re-rendering StoreDemoScreen. Users count: ${usersStore.users.length}`);
   //useUserLogger(usersStore.users);
+  // useCounterWithDirectStoreUsage();
   useUserLoggerWithDirectStoreUsage();
 
   return (

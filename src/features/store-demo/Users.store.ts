@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { autorun, makeAutoObservable, runInAction } from "mobx";
-import { spy } from "mobx";
 import { USERS_API_URL } from "@env";
 
 export type User = {
