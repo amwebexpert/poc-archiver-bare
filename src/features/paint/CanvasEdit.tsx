@@ -45,20 +45,14 @@ const CanvasEdit = () => {
     }
   }, [isCanvasDimensionsAvailable, canvasDimensions]);
 
-  const onDelete = () => {
-    if (hasSelectedElements) {
-      paintStore.deleteSelectedElements();
-    } else {
-      paintStore.reset();
-    }
-  };
-
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
     paintStore.save(base64Snapshot);
     setIsSaveProcessStarted(false);
   };
 
+  const onSave = () => setIsSaveProcessStarted(true);
   const onUndo = () => paintStore.undo();
+  const onDelete = () => paintStore.deleteSelectedElements();
   const onDraw = () => paintStore.setCanvasModeToDraw();
   const onSelector = () => paintStore.setCanvasModeToSelector();
   const onTransform = () => paintStore.setCanvasModeToTransform();
@@ -76,9 +70,11 @@ const CanvasEdit = () => {
           </View>
         )}
 
-        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={316}>
+        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={368}>
+          <ToolbarAction icon="folder-open-outline" onPress={onSave} />
+          <ToolbarAction icon="content-save" onPress={onSave} disabled={!hasUndoHistory} />
           <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
-          <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={isCanvasEmpty} />
+          <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
           <ToolbarAction icon="lead-pencil" onPress={onDraw} selected={isDrawMode} />
           <ToolbarAction
             icon="vector-selection"
