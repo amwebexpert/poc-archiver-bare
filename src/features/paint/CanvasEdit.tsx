@@ -77,9 +77,9 @@ const CanvasEdit = () => {
         )}
 
         <ExpandableToolbar style={styles.expandableToolbar} fullWidth={316}>
-          <ToolbarAction icon="undo" onPress={onUndo} disabled={!hasUndoHistory} />
-          <ToolbarAction icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
-          <ToolbarAction icon="grease-pencil" onPress={onDraw} selected={isDrawMode} />
+          <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
+          <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={isCanvasEmpty} />
+          <ToolbarAction icon="lead-pencil" onPress={onDraw} selected={isDrawMode} />
           <ToolbarAction
             icon="vector-selection"
             onPress={onSelector}
