@@ -107,6 +107,12 @@
         "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
         "parents": "poc-archiver-bare"
     },
+    "react-native-blob-util@0.19.8": {
+        "licenses": "MIT",
+        "repository": "https://github.com/RonRadtke/react-native-blob-util",
+        "licenseUrl": "https://github.com/RonRadtke/react-native-blob-util/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-color-matrix-image-filters@6.0.6": {
         "licenses": "MIT",
         "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
@@ -123,6 +129,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/react-native-device-info/react-native-device-info",
         "licenseUrl": "https://github.com/react-native-device-info/react-native-device-info/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "react-native-document-picker@9.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/rnmods/react-native-document-picker",
+        "licenseUrl": "https://github.com/rnmods/react-native-document-picker/raw/master/LICENSE.md",
         "parents": "poc-archiver-bare"
     },
     "react-native-email-link@1.14.8": {

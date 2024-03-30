@@ -50,6 +50,7 @@ const CanvasEdit = () => {
     setIsSaveProcessStarted(false);
   };
 
+  const onOpen = () => paintStore.open();
   const onSave = () => setIsSaveProcessStarted(true);
   const onUndo = () => paintStore.undo();
   const onDelete = () => paintStore.deleteSelectedElements();
@@ -71,7 +72,7 @@ const CanvasEdit = () => {
         )}
 
         <ExpandableToolbar style={styles.expandableToolbar} fullWidth={368}>
-          <ToolbarAction icon="folder-open-outline" onPress={onSave} />
+          <ToolbarAction icon="folder-open-outline" onPress={onOpen} />
           <ToolbarAction icon="content-save" onPress={onSave} disabled={!hasUndoHistory} />
           <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
           <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />

@@ -1,8 +1,11 @@
+import { pick, types } from "react-native-document-picker";
+import RNFetchBlob from "react-native-blob-util";
 import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
 import { CanvasMode } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
 import { toSvgFormat } from "../utils/svg-serialization.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
+import { Platform } from "react-native";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
@@ -16,6 +19,7 @@ class PaintStore {
 
   _isSaved = true;
   _isSaving = false;
+  _isOpening = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -89,6 +93,16 @@ class PaintStore {
     });
   }
 
+  get isOpening(): boolean {
+    return this._isOpening;
+  }
+
+  set isOpening(isOpening: boolean) {
+    runInAction(() => {
+      this._isOpening = isOpening;
+    });
+  }
+
   // computed values
   // ------------------------------
   get isDrawMode(): boolean {
@@ -148,6 +162,24 @@ class PaintStore {
     runInAction(() => {
       this._canvasMode = CanvasMode.ZOOM_PAN;
     });
+  }
+
+  async open() {
+    this.isOpening = true;
+
+    try {
+      const [pickResult] = await pick({ type: types.allFiles, mode: "import" });
+      console.info("====>>> info", pickResult);
+
+      const file = Platform.OS === "ios" ? pickResult.uri.replace("file://", "") : pickResult.uri;
+      RNFetchBlob.fs.readFile(file, "utf8").then(data => {
+        console.info("====>>> info", data);
+      });
+    } catch (err: unknown) {
+      console.info("error opening file", err);
+    } finally {
+      this.isOpening = false;
+    }
   }
 
   async save(base64Snapshot: string) {
