@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { observer } from "mobx-react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { IconButton, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import { AppTheme } from "../../theme";
 import SvgCanvasDrawMode from "./SvgCanvasDrawMode";
 import SvgCanvasElementsSelectorMode from "./SvgCanvasElementsSelectorMode";
@@ -11,11 +11,11 @@ import SvgCanvasElementsStretcherMode from "./SvgCanvasElementsStretcherMode";
 import SvgCanvasZoomMode from "./SvgCanvasZoomMode";
 import SvgSnapshot from "./components/SvgViewer/SvgSnapshot";
 import { ExpandableToolbar } from "./components/ExpandableToolbar";
-import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
-import { SvgElement } from "./types/svg.types";
 import { ToolbarAction } from "./components/ToolbarAction";
+import { CanvasSurface } from "./types/canvas.types";
+import { computeMaxDimensionsForAspectRatio } from "./utils/canvas.utils";
 
 const CanvasEdit = () => {
   const styles = useStyles();
@@ -28,22 +28,14 @@ const CanvasEdit = () => {
     hasSelectedElements,
     isCanvasEmpty,
     hasUndoHistory,
+    canvasDimensions,
+    isCanvasDimensionsAvailable,
   } = paintStore;
   const { hasSingleSelectedPath } = useSelectedElements();
-  const { isCanvasDimensionsAvailable, canvasDimensions, onCanvasParentLayoutDimensions } = useCanvasDimensions();
   const [isSaveProcessStarted, setIsSaveProcessStarted] = useState(false);
 
-  useEffect(() => {
-    if (isCanvasDimensionsAvailable) {
-      const { screenScale } = canvasDimensions!;
-      console.info("canvasDimensions!.screenScale", screenScale);
-
-      // TODO when loading existing XML file content
-      // const elements = fromSvgFormat({ content: svgXmlContent, screenScale });
-      const elements: SvgElement[] = [];
-      paintStore.reset(elements);
-    }
-  }, [isCanvasDimensionsAvailable, canvasDimensions]);
+  const onCanvasParentLayoutDimensions = ({ width, height }: CanvasSurface) =>
+    (paintStore.canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height }));
 
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
     paintStore.save(base64Snapshot);

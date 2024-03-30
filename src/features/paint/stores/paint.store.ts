@@ -1,9 +1,9 @@
 import { pick, types } from "react-native-document-picker";
 import RNFetchBlob from "react-native-blob-util";
-import { autorun, makeAutoObservable, runInAction, spy } from "mobx";
-import { CanvasMode } from "../types/canvas.types";
+import { autorun, makeAutoObservable, runInAction } from "mobx";
+import { CanvasDimensions, CanvasMode, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
-import { toSvgFormat } from "../utils/svg-serialization.utils";
+import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
 import { Platform } from "react-native";
 
@@ -20,6 +20,8 @@ class PaintStore {
   _isSaved = true;
   _isSaving = false;
   _isOpening = false;
+
+  _canvasDimensions: CanvasDimensions = DEFAULT_CANVAS_DIMENSIONS;
 
   constructor() {
     makeAutoObservable(this);
@@ -103,6 +105,20 @@ class PaintStore {
     });
   }
 
+  get canvasDimensions(): CanvasDimensions {
+    return this._canvasDimensions;
+  }
+
+  set canvasDimensions(dimensions: CanvasDimensions) {
+    runInAction(() => {
+      this._canvasDimensions = dimensions;
+    });
+  }
+
+  get isCanvasDimensionsAvailable(): boolean {
+    return !!this._canvasDimensions;
+  }
+
   // computed values
   // ------------------------------
   get isDrawMode(): boolean {
@@ -169,11 +185,15 @@ class PaintStore {
 
     try {
       const [pickResult] = await pick({ type: types.allFiles, mode: "import" });
-      console.info("====>>> info", pickResult);
-
       const file = Platform.OS === "ios" ? pickResult.uri.replace("file://", "") : pickResult.uri;
-      RNFetchBlob.fs.readFile(file, "utf8").then(data => {
-        console.info("====>>> info", data);
+
+      RNFetchBlob.fs.readFile(file, "utf8").then(content => {
+        // TODO when loading existing XML file content
+        console.info("====>>> info", content);
+
+        const { screenScale } = this.canvasDimensions;
+        const elements: SvgElement[] = fromSvgFormat({ content, screenScale });
+        paintStore.reset(elements);
       });
     } catch (err: unknown) {
       console.info("error opening file", err);
@@ -183,20 +203,18 @@ class PaintStore {
   }
 
   async save(base64Snapshot: string) {
-    runInAction(() => {
-      this.isSaving = true;
-      console.info("saving simulation");
-      console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
-      console.info("\t *.svg content", toSvgFormat({ elements: this._elements }).substring(0, 200) + "...");
-    });
+    this.isSaving = true;
 
-    setTimeout(() => {
-      runInAction(() => {
-        this._isSaved = true;
-        this.isSaving = false;
-        console.info("saving simulation completed");
-      });
-    }, 3000);
+    try {
+      console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
+      console.info("\t *.svg content", toSvgFormat({ elements: this._elements }).substring(0, 10000) + "...");
+
+      this.isSaved = true;
+    } catch (err: unknown) {
+      console.info("error saving file", err);
+    } finally {
+      this.isSaving = false;
+    }
   }
 
   reset(elements: SvgElement[] = []) {
