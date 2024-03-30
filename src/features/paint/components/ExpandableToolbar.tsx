@@ -39,11 +39,9 @@ const useStyles = () => {
 
   return StyleSheet.create({
     expandToggleButton: {
-      backgroundColor: "black",
-      borderRadius: 4,
-      height: "100%",
-      marginLeft: theme.spacing(1),
+      height: 32,
       width: 24,
+      borderColor: undefined,
     },
     fixedToolbarContainer: {
       flexDirection: "row",

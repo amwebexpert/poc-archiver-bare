@@ -15,6 +15,7 @@ import { useCanvasDimensions } from "./hooks/useCanvasDimensions";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { SvgElement } from "./types/svg.types";
+import { ToolbarAction } from "./components/ToolbarAction";
 
 const CanvasEdit = () => {
   const styles = useStyles();
@@ -75,25 +76,23 @@ const CanvasEdit = () => {
           </View>
         )}
 
-        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={308}>
-          <IconButton mode="contained" icon="undo" onPress={onUndo} disabled={!hasUndoHistory} />
-          <IconButton mode="contained" icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
-          <IconButton mode="contained" icon="grease-pencil" onPress={onDraw} selected={isDrawMode} />
-          <IconButton
-            mode="contained"
+        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={316}>
+          <ToolbarAction icon="undo" onPress={onUndo} disabled={!hasUndoHistory} />
+          <ToolbarAction icon="delete" onPress={onDelete} disabled={isCanvasEmpty} />
+          <ToolbarAction icon="grease-pencil" onPress={onDraw} selected={isDrawMode} />
+          <ToolbarAction
             icon="vector-selection"
             onPress={onSelector}
             selected={isSelectorMode}
             disabled={isCanvasEmpty}
           />
-          <IconButton
-            mode="contained"
+          <ToolbarAction
             icon="move-resize-variant"
             onPress={onTransform}
             selected={isTransformMode}
             disabled={!hasSingleSelectedPath}
           />
-          <IconButton mode="contained" icon="gesture-swipe" onPress={onZoomPan} selected={isZoomPanMode} />
+          <ToolbarAction icon="gesture-swipe" onPress={onZoomPan} selected={isZoomPanMode} />
         </ExpandableToolbar>
 
         {isSaveProcessStarted && (
@@ -122,8 +121,9 @@ const useStyles = () => {
       position: "absolute",
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: "green",
+      borderRadius: 4,
       right: 0,
-      bottom: 0,
+      bottom: -8,
     },
     canvasWrapper: {
       backgroundColor: "white",
