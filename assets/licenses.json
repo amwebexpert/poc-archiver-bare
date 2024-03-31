@@ -107,12 +107,6 @@
         "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
         "parents": "poc-archiver-bare"
     },
-    "react-native-blob-util@0.19.8": {
-        "licenses": "MIT",
-        "repository": "https://github.com/RonRadtke/react-native-blob-util",
-        "licenseUrl": "https://github.com/RonRadtke/react-native-blob-util/raw/master/LICENSE",
-        "parents": "poc-archiver-bare"
-    },
     "react-native-color-matrix-image-filters@6.0.6": {
         "licenses": "MIT",
         "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
@@ -147,6 +141,12 @@
         "licenses": "(MIT AND Apache-2.0)",
         "repository": "https://github.com/DylanVann/react-native-fast-image",
         "licenseUrl": "https://github.com/DylanVann/react-native-fast-image/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "react-native-fs@2.20.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/itinance/react-native-fs",
+        "licenseUrl": "https://github.com/itinance/react-native-fs/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "react-native-gesture-handler@2.14.1": {

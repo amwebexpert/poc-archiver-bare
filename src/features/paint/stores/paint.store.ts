@@ -1,5 +1,6 @@
 import { pick, types } from "react-native-document-picker";
-import RNFetchBlob from "react-native-blob-util";
+import { DocumentDirectoryPath, DownloadDirectoryPath, readFile, writeFile } from "react-native-fs";
+import { format } from "date-fns";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { CanvasDimensions, CanvasMode, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
@@ -186,17 +187,15 @@ class PaintStore {
     try {
       const [pickResult] = await pick({ type: types.allFiles, mode: "import" });
       const file = Platform.OS === "ios" ? pickResult.uri.replace("file://", "") : pickResult.uri;
+      // const file = "/data/user/0/com.pocarchiverbare/files/test-2024-03-31-07-51-33.svg";
 
-      RNFetchBlob.fs.readFile(file, "utf8").then(content => {
-        // TODO when loading existing XML file content
-        console.info("====>>> info", content);
+      const { screenScale } = this.canvasDimensions;
+      const content = await readFile(file, "utf8");
+      const elements: SvgElement[] = fromSvgFormat({ content, screenScale });
 
-        const { screenScale } = this.canvasDimensions;
-        const elements: SvgElement[] = fromSvgFormat({ content, screenScale });
-        paintStore.reset(elements);
-      });
+      paintStore.reset(elements);
     } catch (err: unknown) {
-      console.info("error opening file", err);
+      console.error("error opening file", err);
     } finally {
       this.isOpening = false;
     }
@@ -206,12 +205,20 @@ class PaintStore {
     this.isSaving = true;
 
     try {
-      console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
-      console.info("\t *.svg content", toSvgFormat({ elements: this._elements }).substring(0, 10000) + "...");
+      const data = toSvgFormat({ elements: this._elements });
+      // console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
+      console.info("Saving svg content", data.substring(0, 200) + "...");
+
+      const timestamp = format(new Date(), "yyyy-MM-dd-HH-mm-ss");
+      const filename = `test-${timestamp}.svg`;
+      const directory = Platform.OS === "ios" ? DocumentDirectoryPath : DownloadDirectoryPath;
+      const fullFilename = `${directory}/${filename}`;
+
+      await writeFile(fullFilename, data, "utf8");
 
       this.isSaved = true;
     } catch (err: unknown) {
-      console.info("error saving file", err);
+      console.error("error saving file", err);
     } finally {
       this.isSaving = false;
     }
@@ -300,7 +307,7 @@ class PaintStore {
 const paintStore = new PaintStore();
 
 autorun(() => {
-  console.info("elements", paintStore.elements.length);
+  // console.info("elements", paintStore.elements.length);
   //console.info("_isDrawGestureDirty", paintStore._isDrawGestureDirty);
 });
 
