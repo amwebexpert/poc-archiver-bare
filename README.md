@@ -21,7 +21,11 @@
 
 ## TODOs
 
-- NA
+- replace both `prettier` and `eslint` by [Biomejs](https://biomejs.dev/)
+- inside the Paint demo:
+  - have a vertical collapsible toolbar
+  - horizontal scrollable tool icons
+- upgrade dependencies to the latest stable versions like `react-native-svg` and `react-native-date-picker`
 
 # Getting Started
 
