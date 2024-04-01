@@ -15,6 +15,8 @@
 - `@shopify/flash-list`
 - `@react-native-clipboard/clipboard`
 - `react-native-markdown-display`
+- `react-native-document-picker`
+- `react-native-document-fs`
 - and many more...
 
 ## TODOs
