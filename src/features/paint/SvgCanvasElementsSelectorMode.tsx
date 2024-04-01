@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
 import SvgViewer from "./components/SvgViewer/SvgViewer";
 import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./constants";
+import { paintCommonStyles } from "./CanvasEdit.styles";
 
 const SvgCanvasElementsSelectorMode: FunctionComponent<{}> = () => {
   const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;

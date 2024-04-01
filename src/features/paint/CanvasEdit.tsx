@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 import { observer } from "mobx-react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useTheme } from "react-native-paper";
-import { AppTheme } from "../../theme";
 import SvgCanvasDrawMode from "./SvgCanvasDrawMode";
 import SvgCanvasElementsSelectorMode from "./SvgCanvasElementsSelectorMode";
 import SvgCanvasElementsStretcherMode from "./SvgCanvasElementsStretcherMode";
@@ -17,6 +15,7 @@ import { ToolbarAction } from "./components/ToolbarAction";
 import { CanvasSurface } from "./types/canvas.types";
 import { computeMaxDimensionsForAspectRatio } from "./utils/canvas.utils";
 import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
+import { useStyles } from "./CanvasEdit.styles";
 
 const CanvasEdit = () => {
   const styles = useStyles();
@@ -102,34 +101,6 @@ const CanvasEdit = () => {
       </View>
     </GestureHandlerRootView>
   );
-};
-
-const useStyles = () => {
-  const theme = useTheme() as AppTheme;
-
-  return StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    expandableToolbar: {
-      backgroundColor: "black",
-      flexDirection: "row",
-      justifyContent: "flex-end",
-      position: "absolute",
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: "green",
-      borderRadius: 4,
-      right: 0,
-      bottom: -8,
-    },
-    canvasWrapper: {
-      backgroundColor: "white",
-      borderColor: "lightgray",
-      borderWidth: StyleSheet.hairlineWidth,
-      overflow: "hidden",
-      padding: 0,
-    },
-  });
 };
 
 export default observer(CanvasEdit);

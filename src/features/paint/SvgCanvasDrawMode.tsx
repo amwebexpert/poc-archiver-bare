@@ -7,8 +7,8 @@ import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
 import { DEFAULT_STROKE_WIDTH } from "./constants";
 import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./constants";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
+import { paintCommonStyles } from "./CanvasEdit.styles";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   const { elements, zoomAndPanInfo, isDrawGestureDirty } = paintStore;

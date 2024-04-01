@@ -1,14 +1,6 @@
 import { PixelRatio, Platform, StyleSheet } from "react-native";
 import { BoundingBox, CanvasDimensions, DEFAULT_ASPECT_RATIO, XYCoordinates } from "./types/canvas.types";
 
-export const paintCommonStyles = StyleSheet.create({
-  container: {
-    borderColor: "black",
-    borderWidth: StyleSheet.hairlineWidth,
-    flex: 1,
-  },
-});
-
 // @see https://github.com/software-mansion/react-native-svg/issues/855#issuecomment-445340830
 export const SVG_SNAPSHOT_SCALE_FACTOR = Platform.select({ ios: 1, android: 1 / PixelRatio.get() }) ?? 1;
 
