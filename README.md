@@ -85,3 +85,12 @@ yarn ios
   - Delete cocoa pods cache: `rm -rf ~/Library/Caches/CocoaPods`
   - Delete the Pods folder and the `Podfile.lock` usually located in `<project_root>/ios`.
   - Reinstall pods: `pod update`
+
+### References links
+
+#### Upgrading RN
+
+- https://reactnative.dev/docs/upgrading
+- `npx react-native upgrade`
+- https://github.com/pmadruga/react-native-clean-project
+- https://react-native-community.github.io/upgrade-helper/?from=0.73.1&to=0.73.6
