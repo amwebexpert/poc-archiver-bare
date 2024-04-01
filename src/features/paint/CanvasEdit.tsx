@@ -12,8 +12,6 @@ import { ExpandableToolbar } from "./components/ExpandableToolbar";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { ToolbarAction } from "./components/ToolbarAction";
-import { CanvasSurface } from "./types/canvas.types";
-import { computeMaxDimensionsForAspectRatio } from "./utils/canvas.utils";
 import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 import { useStyles } from "./CanvasEdit.styles";
 
@@ -91,7 +89,7 @@ const CanvasEdit = () => {
         {isSaveProcessStarted && (
           <SvgSnapshot
             elements={elements}
-            scale={canvasDimensions!.snapshotScale}
+            scale={canvasDimensions.snapshotScale}
             onBase64Generated={onReadyToSaveWithCanvasSnapshot}
           />
         )}
