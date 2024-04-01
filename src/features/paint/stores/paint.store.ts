@@ -1,11 +1,12 @@
 import { readFile, writeFile, exists, unlink } from "react-native-fs";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
-import { CanvasDimensions, CanvasMode, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
+import { CanvasDimensions, CanvasMode, CanvasSurface, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
 import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
 import { PaintFile, newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
 import { askConfirmation } from "../../../utils/alert.utils";
+import { computeMaxDimensionsForAspectRatio } from "../utils/canvas.utils";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
@@ -193,6 +194,10 @@ class PaintStore {
     runInAction(() => {
       this._canvasMode = CanvasMode.ZOOM_PAN;
     });
+  }
+
+  onCanvasParentLayoutDimensions({ width, height }: CanvasSurface) {
+    this.canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height });
   }
 
   async open() {

@@ -21,24 +21,23 @@ const CanvasEdit = () => {
   const styles = useStyles();
   const { showSnackbarMessage } = useSnackbar();
   const {
-    isDrawMode,
-    isZoomPanMode,
-    isSelectorMode,
-    isTransformMode,
+    canvasDimensions,
     elements,
     hasSelectedElements,
-    isCanvasEmpty,
     hasUndoHistory,
-    canvasDimensions,
     isCanvasDimensionsAvailable,
+    isCanvasEmpty,
+    isDrawMode,
     isSaving,
+    isSelectorMode,
+    isTransformMode,
+    isZoomPanMode,
     paintFilename,
   } = paintStore;
-  const { hasSingleSelectedPath } = useSelectedElements();
-  const [isSaveProcessStarted, setIsSaveProcessStarted] = useState(false);
 
-  const onCanvasParentLayoutDimensions = ({ width, height }: CanvasSurface) =>
-    (paintStore.canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height }));
+  const { hasSingleSelectedPath } = useSelectedElements();
+
+  const [isSaveProcessStarted, setIsSaveProcessStarted] = useState(false);
 
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
     setIsSaveProcessStarted(false);
@@ -60,7 +59,7 @@ const CanvasEdit = () => {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <View style={styles.container} onLayout={e => onCanvasParentLayoutDimensions(e.nativeEvent.layout)}>
+      <View style={styles.container} onLayout={e => paintStore.onCanvasParentLayoutDimensions(e.nativeEvent.layout)}>
         {isCanvasDimensionsAvailable && (
           <View style={[styles.canvasWrapper, canvasDimensions]}>
             {isZoomPanMode && <SvgCanvasZoomMode />}
