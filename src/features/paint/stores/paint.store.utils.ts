@@ -33,12 +33,8 @@ export const pickFile = async (): Promise<string> => {
     const [pickResult] = await pick({ type: types.allFiles, mode: "open" });
     const { uri, name } = pickResult;
 
-    if (isAndroid()) {
-      const fullFilename = await getAndroidDownloadPath(name ?? "");
-      return fullFilename;
-    }
-
-    return getIosDocumentPath(uri);
+    const fullFilename = isAndroid() ? await getAndroidDownloadPath(name ?? "") : getIosDocumentPath(uri);
+    return fullFilename.endsWith(".png") ? fullFilename.replace(".png", ".svg") : fullFilename;
   } catch (error) {
     console.error("Error selecting file", error);
     return "";
