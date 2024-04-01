@@ -1,6 +1,8 @@
 import { format } from "date-fns";
 import { Platform } from "react-native";
-import { DocumentDirectoryPath, DownloadDirectoryPath } from "react-native-fs";
+import { pick, types } from "react-native-document-picker";
+import { DocumentDirectoryPath, DownloadDirectoryPath, exists } from "react-native-fs";
+import { isAndroid } from "../../../utils/platform.utils";
 
 export type PaintFile = {
   filename: string;
@@ -8,18 +10,11 @@ export type PaintFile = {
   fullFilenamePreview: string;
 };
 
-export const newPaintFile = (filePrefix: string): PaintFile => {
+export const newPaintFile = (filePrefix: string): string => {
   const timestamp = format(new Date(), "yyyy-MM-dd-HH-mm-ss");
   const filename = `${filePrefix}-${timestamp}.svg`;
   const directory = Platform.OS === "ios" ? DocumentDirectoryPath : DownloadDirectoryPath;
-  const fullFilename = `${directory}/${filename}`;
-  const fullFilenamePreview = fullFilename.replace(".svg", ".png");
-
-  return {
-    filename,
-    fullFilename,
-    fullFilenamePreview,
-  };
+  return `${directory}/${filename}`;
 };
 
 export const parsePaintFile = (fullFilename: string): PaintFile => {
@@ -31,4 +26,34 @@ export const parsePaintFile = (fullFilename: string): PaintFile => {
     fullFilename,
     fullFilenamePreview,
   };
+};
+
+export const pickFile = async (): Promise<string> => {
+  try {
+    const [pickResult] = await pick({ type: types.allFiles, mode: "open" });
+    const { uri, name } = pickResult;
+
+    if (isAndroid()) {
+      const fullFilename = await getAndroidDownloadPath(name ?? "");
+      return fullFilename;
+    }
+
+    return getIosDocumentPath(uri);
+  } catch (error) {
+    console.error("Error selecting file", error);
+    return "";
+  }
+};
+
+export const getIosDocumentPath = (uri: string): string => decodeURIComponent(uri).replace("file://", "");
+
+export const getAndroidDownloadPath = async (name: string): Promise<string> => {
+  const fullFilename = `${DownloadDirectoryPath}/${name}`;
+  const isFileExists = await exists(fullFilename);
+
+  if (!isFileExists) {
+    throw new Error("Only supporting files from the download directory on Android.");
+  }
+
+  return fullFilename;
 };

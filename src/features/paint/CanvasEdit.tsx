@@ -16,9 +16,11 @@ import paintStore from "./stores/paint.store";
 import { ToolbarAction } from "./components/ToolbarAction";
 import { CanvasSurface } from "./types/canvas.types";
 import { computeMaxDimensionsForAspectRatio } from "./utils/canvas.utils";
+import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 
 const CanvasEdit = () => {
   const styles = useStyles();
+  const { showSnackbarMessage } = useSnackbar();
   const {
     isDrawMode,
     isZoomPanMode,
@@ -30,6 +32,7 @@ const CanvasEdit = () => {
     hasUndoHistory,
     canvasDimensions,
     isCanvasDimensionsAvailable,
+    paintFilename,
   } = paintStore;
   const { hasSingleSelectedPath } = useSelectedElements();
   const [isSaveProcessStarted, setIsSaveProcessStarted] = useState(false);
@@ -38,8 +41,12 @@ const CanvasEdit = () => {
     (paintStore.canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height }));
 
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
-    paintStore.save(base64Snapshot);
     setIsSaveProcessStarted(false);
+    paintStore.save(base64Snapshot).then(isSuccess => {
+      if (isSuccess) {
+        showSnackbarMessage(`Saved ${paintFilename}`);
+      }
+    });
   };
 
   const onOpen = () => paintStore.open();
@@ -65,7 +72,7 @@ const CanvasEdit = () => {
 
         <ExpandableToolbar style={styles.expandableToolbar} fullWidth={368}>
           <ToolbarAction icon="folder-open-outline" onPress={onOpen} />
-          <ToolbarAction icon="content-save" onPress={onSave} disabled={!hasUndoHistory} />
+          <ToolbarAction icon="content-save" onPress={onSave} disabled={!hasUndoHistory || isSaveProcessStarted} />
           <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
           <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
           <ToolbarAction icon="lead-pencil" onPress={onDraw} selected={isDrawMode} />

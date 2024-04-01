@@ -1,12 +1,11 @@
-import { pick, types } from "react-native-document-picker";
-import { DocumentDirectoryPath, DownloadDirectoryPath, readFile, writeFile } from "react-native-fs";
-import { format } from "date-fns";
+import { readFile, writeFile, exists, unlink } from "react-native-fs";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { CanvasDimensions, CanvasMode, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
 import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
-import { Platform } from "react-native";
+import { PaintFile, newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
+import { askConfirmation } from "../../../utils/alert.utils";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
@@ -23,6 +22,7 @@ class PaintStore {
   _isOpening = false;
 
   _canvasDimensions: CanvasDimensions = DEFAULT_CANVAS_DIMENSIONS;
+  _paintFile = newPaintFile("test");
 
   constructor() {
     makeAutoObservable(this);
@@ -154,6 +154,20 @@ class PaintStore {
     return this._undoHistory.length > 0;
   }
 
+  get paintFile(): string {
+    return this._paintFile;
+  }
+
+  get paintFilename(): string {
+    return parsePaintFile(this.paintFile).filename;
+  }
+
+  set paintFile(paintFile: string) {
+    runInAction(() => {
+      this._paintFile = paintFile;
+    });
+  }
+
   // actions
   // ------------------------------
   setCanvasModeToDraw() {
@@ -182,15 +196,17 @@ class PaintStore {
   }
 
   async open() {
-    this.isOpening = true;
+    const paintFile = await pickFile();
+    if (!paintFile) {
+      return;
+    }
 
     try {
-      const [pickResult] = await pick({ type: types.allFiles, mode: "import" });
-      const file = Platform.OS === "ios" ? pickResult.uri.replace("file://", "") : pickResult.uri;
-      // const file = "/data/user/0/com.pocarchiverbare/files/test-2024-03-31-07-51-33.svg";
+      this.isOpening = true;
+      this.paintFile = paintFile;
 
       const { screenScale } = this.canvasDimensions;
-      const content = await readFile(file, "utf8");
+      const content = await readFile(paintFile, "utf8");
       const elements: SvgElement[] = fromSvgFormat({ content, screenScale });
 
       paintStore.reset(elements);
@@ -201,24 +217,30 @@ class PaintStore {
     }
   }
 
-  async save(base64Snapshot: string) {
+  async save(base64Snapshot: string): Promise<boolean> {
+    const isFileExists = await exists(this.paintFile);
+    const { filename, fullFilenamePreview } = parsePaintFile(this.paintFile);
+    if (isFileExists) {
+      const shouldReplaceExisting = await askConfirmation(`Override "${filename}" file?`);
+      if (!shouldReplaceExisting) {
+        return false;
+      }
+    }
+
     this.isSaving = true;
 
     try {
-      const data = toSvgFormat({ elements: this._elements });
-      // console.info("\t base64 snapshot", base64Snapshot.substring(0, 200) + "...");
-      console.info("Saving svg content", data.substring(0, 200) + "...");
+      const { screenScale } = this.canvasDimensions;
+      const data = toSvgFormat({ elements: this.elements, screenScale });
 
-      const timestamp = format(new Date(), "yyyy-MM-dd-HH-mm-ss");
-      const filename = `test-${timestamp}.svg`;
-      const directory = Platform.OS === "ios" ? DocumentDirectoryPath : DownloadDirectoryPath;
-      const fullFilename = `${directory}/${filename}`;
-
-      await writeFile(fullFilename, data, "utf8");
+      await writeFile(this.paintFile, data, "utf8");
+      await writeFile(fullFilenamePreview, base64Snapshot, "base64");
 
       this.isSaved = true;
+      return true;
     } catch (err: unknown) {
       console.error("error saving file", err);
+      return false;
     } finally {
       this.isSaving = false;
     }
@@ -233,7 +255,7 @@ class PaintStore {
       this._selectedElementIDs = [];
       this._undoHistory = [];
 
-      this._isDrawGestureDirty = false;
+      this._isDrawGestureDirty = true;
       this._isSaved = true;
     });
   }
@@ -307,6 +329,7 @@ class PaintStore {
 const paintStore = new PaintStore();
 
 autorun(() => {
+  console.info("paintStore.paintFile", paintStore.paintFile);
   // console.info("elements", paintStore.elements.length);
   //console.info("_isDrawGestureDirty", paintStore._isDrawGestureDirty);
 });
