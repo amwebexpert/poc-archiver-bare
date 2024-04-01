@@ -41,6 +41,8 @@ const useStyles = () => {
     expandToggleButton: {
       height: 32,
       width: 24,
+      padding: 0,
+      marginHorizontal: 0,
       borderColor: undefined,
     },
     fixedToolbarContainer: {

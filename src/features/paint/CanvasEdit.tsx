@@ -32,6 +32,7 @@ const CanvasEdit = () => {
     hasUndoHistory,
     canvasDimensions,
     isCanvasDimensionsAvailable,
+    isSaving,
     paintFilename,
   } = paintStore;
   const { hasSingleSelectedPath } = useSelectedElements();
@@ -72,7 +73,7 @@ const CanvasEdit = () => {
 
         <ExpandableToolbar style={styles.expandableToolbar} fullWidth={368}>
           <ToolbarAction icon="folder-open-outline" onPress={onOpen} />
-          <ToolbarAction icon="content-save" onPress={onSave} disabled={!hasUndoHistory || isSaveProcessStarted} />
+          <ToolbarAction icon="content-save" onPress={onSave} disabled={isSaveProcessStarted || isSaving} />
           <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
           <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
           <ToolbarAction icon="lead-pencil" onPress={onDraw} selected={isDrawMode} />
