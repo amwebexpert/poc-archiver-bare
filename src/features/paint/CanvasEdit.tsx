@@ -42,9 +42,7 @@ const CanvasEdit = () => {
   const onReadyToSaveWithCanvasSnapshot = (base64Snapshot = "") => {
     setIsSaveProcessStarted(false);
     paintStore.save(base64Snapshot).then(isSuccess => {
-      if (isSuccess) {
-        showSnackbarMessage(`Saved ${paintFilename}`);
-      }
+      if (isSuccess) showSnackbarMessage(`Saved ${paintFilename}`);
     });
   };
 
