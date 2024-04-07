@@ -11,7 +11,7 @@ type Product = {
 };
 
 type SafeSProductStats = Omit<Product, "stats"> & {
-  stats: NonNullable<ProductStats[]>;
+  stats: NonNullable<Product["stats"]>;
 };
 
 export const hasStats = (product?: Product): product is SafeSProductStats => !!product?.stats?.length;

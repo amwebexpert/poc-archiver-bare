@@ -150,11 +150,11 @@ type Product = {
 };
 
 type SafeSProductStats = Omit<Product, "stats"> & {
-  stats: NonNullable<ProductStats[]>;
+  stats: NonNullable<Product["stats"]>;
 };
 
 // instead of returning a regular `boolean` we return `product is SafeSProductStats` (type guard)
-export const hasStats = (product?: Product):  => !!product?.stats?.length;
+export const hasStats = (product?: Product): product is SafeSProductStats => !!product?.stats?.length;
 
 const monthlyStatsSorter = (a: ProductStats, b: ProductStats) => a.salesPerMonth - b.salesPerMonth;
 
