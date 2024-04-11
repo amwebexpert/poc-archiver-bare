@@ -8,6 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "pod": "npx pod-install",
+    "clean": "yarn react-native-clean-project --keep-node-modules --keep-brew --keep-pods --remove-iOS-build --remove-iOS-pods --keep-system-iOS-pods-cache --keep-user-iOS-pods-cache --remove-android-build --clean-android-project",
+    "clean:full": "yarn react-native-clean-project --remove-iOS-build --remove-iOS-pods --remove-android-build --clean-android-project",
     "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "parse-svg-path": "^0.1.2",
     "react": "18.2.0",
     "react-native": "0.73.1",
+    "react-native-clean-project": "^4.0.3",
     "react-native-color-matrix-image-filters": "^6.0.3",
     "react-native-date-picker": "^4.3.5",
     "react-native-device-info": "^10.12.0",

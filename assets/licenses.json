@@ -107,6 +107,12 @@
         "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
         "parents": "poc-archiver-bare"
     },
+    "react-native-clean-project@4.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/pmadruga/react-native-clean-project",
+        "licenseUrl": "https://github.com/pmadruga/react-native-clean-project/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
     "react-native-color-matrix-image-filters@6.0.6": {
         "licenses": "MIT",
         "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
