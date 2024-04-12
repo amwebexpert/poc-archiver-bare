@@ -9,11 +9,11 @@ import SvgCanvasElementsStretcherMode from "./SvgCanvasElementsStretcherMode";
 import SvgCanvasZoomMode from "./SvgCanvasZoomMode";
 import SvgSnapshot from "./components/SvgViewer/SvgSnapshot";
 import { ExpandableToolbar } from "./components/ExpandableToolbar";
-import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { ToolbarAction } from "./components/ToolbarAction";
 import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
 import { useStyles } from "./CanvasEdit.styles";
+import CanvasEditToolbarModes from "./CanvasEditToolbarModes";
 
 const CanvasEdit = () => {
   const styles = useStyles();
@@ -24,7 +24,6 @@ const CanvasEdit = () => {
     hasSelectedElements,
     hasUndoHistory,
     isCanvasDimensionsAvailable,
-    isCanvasEmpty,
     isDrawMode,
     isSaving,
     isSelectorMode,
@@ -32,8 +31,6 @@ const CanvasEdit = () => {
     isZoomPanMode,
     paintFilename,
   } = paintStore;
-
-  const { hasSingleSelectedPath } = useSelectedElements();
 
   const [isSaveProcessStarted, setIsSaveProcessStarted] = useState(false);
 
@@ -48,10 +45,6 @@ const CanvasEdit = () => {
   const onSave = () => setIsSaveProcessStarted(true);
   const onUndo = () => paintStore.undo();
   const onDelete = () => paintStore.deleteSelectedElements();
-  const onDraw = () => paintStore.setCanvasModeToDraw();
-  const onSelector = () => paintStore.setCanvasModeToSelector();
-  const onTransform = () => paintStore.setCanvasModeToTransform();
-  const onZoomPan = () => paintStore.setCanvasModeToZoomPan();
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -65,25 +58,13 @@ const CanvasEdit = () => {
           </View>
         )}
 
-        <ExpandableToolbar style={styles.expandableToolbar} fullWidth={368}>
+        <CanvasEditToolbarModes />
+
+        <ExpandableToolbar style={[styles.expandableToolbar, { bottom: 40 }]}>
           <ToolbarAction icon="folder-open-outline" onPress={onOpen} />
           <ToolbarAction icon="content-save" onPress={onSave} disabled={isSaveProcessStarted || isSaving} />
           <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
           <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
-          <ToolbarAction icon="lead-pencil" onPress={onDraw} selected={isDrawMode} />
-          <ToolbarAction
-            icon="vector-selection"
-            onPress={onSelector}
-            selected={isSelectorMode}
-            disabled={isCanvasEmpty}
-          />
-          <ToolbarAction
-            icon="move-resize-variant"
-            onPress={onTransform}
-            selected={isTransformMode}
-            disabled={!hasSingleSelectedPath}
-          />
-          <ToolbarAction icon="gesture-swipe" onPress={onZoomPan} selected={isZoomPanMode} />
         </ExpandableToolbar>
 
         {isSaveProcessStarted && (

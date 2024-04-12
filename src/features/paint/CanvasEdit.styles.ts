@@ -26,7 +26,7 @@ export const useStyles = () => {
       borderColor: "green",
       borderRadius: 4,
       right: 0,
-      bottom: -8,
+      bottom: 0,
     },
     canvasWrapper: {
       backgroundColor: "white",

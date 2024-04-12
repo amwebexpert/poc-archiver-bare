@@ -1,17 +1,21 @@
-import { FunctionComponent, PropsWithChildren, useState } from "react";
+import { Children, FunctionComponent, PropsWithChildren, useState } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 import { IconButton, useTheme } from "react-native-paper";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
 import { AppTheme } from "../../../theme";
 
-type ExpandableToolbarProps = PropsWithChildren<{ fullWidth?: number }> & ViewProps;
+type ExpandableToolbarProps = PropsWithChildren & ViewProps;
 
-export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ children, fullWidth = 0, ...rest }) => {
+const ICON_BUTTON_LAYOUT_WIDTH = 48;
+
+export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ children, ...rest }) => {
   const styles = useStyles();
   const [isExpanded, setIsExpanded] = useState(true);
   const expansion = useSharedValue(1);
+  const count = Children.count(children);
+  const toolbarWidth = count * ICON_BUTTON_LAYOUT_WIDTH;
   const animatedStyles = useAnimatedStyle(() => ({
-    width: fullWidth * expansion.value,
+    width: toolbarWidth * expansion.value,
   }));
 
   const toggleExpansion = () => {
