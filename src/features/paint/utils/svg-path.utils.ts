@@ -2,7 +2,7 @@ import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
 import { SvgElementType, SvgPathElement, isPath } from "../types/svg.types";
 
-import { PathSimplificationConfigs } from "../constants";
+import { DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH, PathSimplificationConfigs } from "../constants";
 import { XYCoordinates } from "../types/canvas.types";
 import {
   XmlDeserializer,
@@ -82,7 +82,11 @@ export const PATH_SERIALIZER: XmlSerializationHandler = { serializer, deserializ
 
 export const normalizePath = (d = "") => d?.trim().toUpperCase() ?? "";
 
-export const buildPathElement = ({ d = "", strokeColor = "black", strokeWidth = 1 }): SvgPathElement => {
+export const buildPathElement = ({
+  d = "",
+  strokeColor = DEFAULT_STROKE_COLOR,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
+}): SvgPathElement => {
   const id = Date.now();
   const simplifiedPath = simplifyPath({ d });
 

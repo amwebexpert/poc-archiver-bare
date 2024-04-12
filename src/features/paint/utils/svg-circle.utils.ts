@@ -1,5 +1,6 @@
 import pathParser from "parse-svg-path";
 
+import { DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH } from "../constants";
 import { SvgCircleElement, SvgElementType, isCircle } from "../types/svg.types";
 import { normalizePath } from "./svg-path.utils";
 import {
@@ -38,8 +39,8 @@ export const CIRCLE_SERIALIZER: XmlSerializationHandler = { serializer, deserial
 
 export const buildCircleElementFromSingleTapPath = ({
   d = "",
-  strokeColor = "black",
-  strokeWidth = 1,
+  strokeColor = DEFAULT_STROKE_COLOR,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
 }): SvgCircleElement => {
   const commands = pathParser(normalizePath(d));
   const [firstCommand] = commands;

@@ -1,4 +1,4 @@
-import { PixelRatio, Platform, StyleSheet } from "react-native";
+import { PixelRatio, Platform } from "react-native";
 import { BoundingBox, CanvasDimensions, DEFAULT_ASPECT_RATIO, XYCoordinates } from "./types/canvas.types";
 
 // @see https://github.com/software-mansion/react-native-svg/issues/855#issuecomment-445340830
@@ -23,6 +23,7 @@ export const SINGLE_TAP_MAX_DISTANCE = 5;
 export const DEFAULT_SELECTION_DASH_ARRAY = "3, 3";
 
 export const DEFAULT_STROKE_WIDTH = 3;
+export const DEFAULT_STROKE_COLOR = "black";
 
 // @see http://mourner.github.io/simplify-js/
 export const PathSimplificationConfigs = Object.freeze({ tolerance: 0.2, highQuality: true });

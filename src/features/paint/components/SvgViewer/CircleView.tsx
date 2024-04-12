@@ -1,6 +1,6 @@
 import { Circle } from "react-native-svg";
 
-import { DEFAULT_SELECTION_DASH_ARRAY, DEFAULT_STROKE_WIDTH } from "../../constants";
+import { DEFAULT_SELECTION_DASH_ARRAY, DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH } from "../../constants";
 import { FunctionComponent } from "react";
 
 export const SIMPLE_DOT_SELECTED_EXTRA_RADIUS = 5;
@@ -20,8 +20,8 @@ export const CircleView: FunctionComponent<CircleViewProps> = ({
   cx = 0,
   cy = 0,
   radius = 0,
-  strokeColor = "black",
-  strokeWidth = 1,
+  strokeColor = DEFAULT_STROKE_COLOR,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   scale = 1,
   onPress,
   isSelected = false,

@@ -1,9 +1,9 @@
 import { ColorValue, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, { useAnimatedProps, runOnJS } from "react-native-reanimated";
+import Animated, { runOnJS, useAnimatedProps } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { SINGLE_TAP_MAX_DISTANCE } from "../constants";
+import { DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH, SINGLE_TAP_MAX_DISTANCE } from "../constants";
 
 import { FunctionComponent } from "react";
 
@@ -22,8 +22,8 @@ type PathGestureDrawerProps = {
 };
 
 export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
-  strokeColor = "black",
-  strokeWidth = 1,
+  strokeColor = DEFAULT_STROKE_COLOR,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   addElementFromGesture = () => {},
   gesturePoints = { value: [] },
 }) => {

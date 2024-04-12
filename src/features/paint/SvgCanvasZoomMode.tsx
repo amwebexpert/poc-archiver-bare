@@ -1,12 +1,11 @@
 import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
 
 import { observer } from "mobx-react";
-import SvgViewer from "./components/SvgViewer/SvgViewer";
-import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./stores/paint.store";
-import { paintCommonStyles } from "./constants";
-import { ZoomPanInfoType } from "./stores/zoom-pan.store";
 import { FunctionComponent } from "react";
+import SvgViewer from "./components/SvgViewer/SvgViewer";
+import paintStore from "./stores/paint.store";
+import { ZoomPanInfoType } from "./stores/zoom-pan.store";
+import { paintCommonStyles } from "./CanvasEdit.styles";
 
 const SvgCanvasZoomMode: FunctionComponent<{}> = () => {
   const { elements } = paintStore;

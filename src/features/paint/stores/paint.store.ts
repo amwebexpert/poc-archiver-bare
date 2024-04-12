@@ -1,15 +1,17 @@
-import { readFile, writeFile, exists, unlink } from "react-native-fs";
 import { autorun, makeAutoObservable, runInAction } from "mobx";
+import { exists, readFile, writeFile } from "react-native-fs";
+import { askConfirmation } from "../../../utils/alert.utils";
 import { CanvasDimensions, CanvasMode, CanvasSurface, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
-import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
-import zoomPanInfoStore from "./zoom-pan.store";
-import { PaintFile, newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
-import { askConfirmation } from "../../../utils/alert.utils";
 import { computeMaxDimensionsForAspectRatio } from "../utils/canvas.utils";
+import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
+import brushStore from "./brush.store";
+import { newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
+import zoomPanInfoStore from "./zoom-pan.store";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
+  brushStore = brushStore;
 
   _canvasMode: CanvasMode = CanvasMode.DRAW;
   _elements: SvgElement[] = [];

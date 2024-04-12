@@ -9,8 +9,10 @@ import { DEFAULT_STROKE_WIDTH } from "./constants";
 import paintStore from "./stores/paint.store";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
 import { paintCommonStyles } from "./CanvasEdit.styles";
+import brushStore from "./stores/brush.store";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
+  const { size, color } = brushStore;
   const { elements, zoomAndPanInfo, isDrawGestureDirty } = paintStore;
   const { zoomLevel, translateX, translateY } = zoomAndPanInfo;
   const gesturePoints = useSharedValue<string[]>([]);
@@ -25,7 +27,7 @@ const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   }, [isDrawGestureDirty]);
 
   const addElementFromGesture = (d = "") => {
-    const newElement = createElementFromPathGesture({ d, strokeColor: "black", strokeWidth: DEFAULT_STROKE_WIDTH });
+    const newElement = createElementFromPathGesture({ d, strokeColor: color, strokeWidth: size });
     paintStore.addDrawElement(newElement);
   };
 
@@ -33,8 +35,8 @@ const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
       <PathGestureDrawer
         gesturePoints={gesturePoints}
-        strokeColor="black"
-        strokeWidth={3}
+        strokeColor={color}
+        strokeWidth={size}
         addElementFromGesture={addElementFromGesture}
       />
 
