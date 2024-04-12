@@ -10,6 +10,7 @@
     "pod": "npx pod-install",
     "clean": "yarn react-native-clean-project --keep-node-modules --keep-brew --keep-pods --remove-iOS-build --remove-iOS-pods --keep-system-iOS-pods-cache --keep-user-iOS-pods-cache --remove-android-build --clean-android-project",
     "clean:full": "yarn react-native-clean-project --remove-iOS-build --remove-iOS-pods --remove-android-build --clean-android-project",
+    "clean:node": "npx rimraf node_modules",
     "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
