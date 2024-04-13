@@ -167,7 +167,7 @@ class PaintStore {
 
   set paintFile(paintFile: string) {
     runInAction(() => {
-      this._paintFile = paintFile;
+      this.paintFile = paintFile;
     });
   }
 
@@ -181,21 +181,15 @@ class PaintStore {
   }
 
   setCanvasModeToTransform() {
-    runInAction(() => {
-      this._canvasMode = CanvasMode.TRANSFORM;
-    });
+    this.canvasMode = CanvasMode.TRANSFORM;
   }
 
   setCanvasModeToSelector() {
-    runInAction(() => {
-      this._canvasMode = CanvasMode.SELECTOR;
-    });
+    this.canvasMode = CanvasMode.SELECTOR;
   }
 
   setCanvasModeToZoomPan() {
-    runInAction(() => {
-      this._canvasMode = CanvasMode.ZOOM_PAN;
-    });
+    this.canvasMode = CanvasMode.ZOOM_PAN;
   }
 
   onCanvasParentLayoutDimensions({ width, height }: CanvasSurface) {
@@ -327,9 +321,7 @@ class PaintStore {
       ? selections.filter(id => id !== elementID)
       : [...selections, elementID];
 
-    runInAction(() => {
-      this._selectedElementIDs = newSelectedElementIDs;
-    });
+    this.selectedElementIDs = newSelectedElementIDs;
   }
 }
 
