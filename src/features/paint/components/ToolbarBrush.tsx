@@ -7,9 +7,12 @@ import { ExpandableToolbar } from "./ExpandableToolbar";
 import SvgSnapshot from "./SvgViewer/SvgSnapshot";
 import { ToolbarAction } from "./ToolbarAction";
 import paintStore from "../stores/paint.store";
+import { useModalToggler } from "../../../hooks/use-modal-toggler";
+import { BrushDialog } from "./brush-dialog/brush-dialog";
 
 const ToolbarBrush = () => {
   const styles = useStyles();
+  const [isBrushModalVisible, hideBrushModal, showBrushModal] = useModalToggler();
   const { showSnackbarMessage } = useSnackbar();
   const { canvasDimensions, elements, hasSelectedElements, hasUndoHistory, isSaving, paintFilename } = paintStore;
 
@@ -34,7 +37,7 @@ const ToolbarBrush = () => {
         <ToolbarAction icon="content-save" onPress={onSave} disabled={isSaveProcessStarted || isSaving} />
         <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
         <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
-        <ToolbarAction icon="invert-colors" onPress={onOpen} />
+        <ToolbarAction icon="invert-colors" onPress={showBrushModal} />
       </ExpandableToolbar>
 
       {isSaveProcessStarted && (
@@ -44,6 +47,8 @@ const ToolbarBrush = () => {
           onBase64Generated={onReadyToSaveWithCanvasSnapshot}
         />
       )}
+
+      {isBrushModalVisible && <BrushDialog onDismiss={hideBrushModal} />}
     </>
   );
 };
