@@ -28,9 +28,7 @@ class ZoomPanInfoStore {
   }
 
   set zoomLevel(zoomLevel: number) {
-    runInAction(() => {
-      this._zoomLevel = zoomLevel;
-    });
+    runInAction(() => (this._zoomLevel = zoomLevel));
   }
 
   get offsetX(): number {
@@ -38,9 +36,7 @@ class ZoomPanInfoStore {
   }
 
   set offsetX(offsetX: number) {
-    runInAction(() => {
-      this._offsetX = offsetX;
-    });
+    runInAction(() => (this._offsetX = offsetX));
   }
 
   get offsetY(): number {
@@ -48,9 +44,7 @@ class ZoomPanInfoStore {
   }
 
   set offsetY(offsetY: number) {
-    runInAction(() => {
-      this._offsetY = offsetY;
-    });
+    runInAction(() => (this._offsetY = offsetY));
   }
 
   get translateX(): number {
@@ -58,9 +52,7 @@ class ZoomPanInfoStore {
   }
 
   set translateX(translateX: number) {
-    runInAction(() => {
-      this._translateX = translateX;
-    });
+    runInAction(() => (this._translateX = translateX));
   }
 
   get translateY(): number {
@@ -68,9 +60,7 @@ class ZoomPanInfoStore {
   }
 
   set translateY(translateY: number) {
-    runInAction(() => {
-      this._translateY = translateY;
-    });
+    runInAction(() => (this._translateY = translateY));
   }
 
   // actions

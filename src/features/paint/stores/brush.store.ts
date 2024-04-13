@@ -7,6 +7,7 @@ export const DEFAULT_FILL_COLOR = "none";
 class BrushStore {
   _size = DEFAULT_STROKE_WIDTH;
   _color = DEFAULT_STROKE_COLOR;
+  _fill = DEFAULT_FILL_COLOR;
 
   constructor() {
     makeAutoObservable(this);
@@ -19,9 +20,7 @@ class BrushStore {
   }
 
   set size(value: number) {
-    runInAction(() => {
-      this._size = value;
-    });
+    runInAction(() => (this._size = value));
   }
 
   get color(): string {
@@ -29,9 +28,15 @@ class BrushStore {
   }
 
   set color(value: string) {
-    runInAction(() => {
-      this._color = value;
-    });
+    runInAction(() => (this._color = value));
+  }
+
+  get fill(): string {
+    return this._fill;
+  }
+
+  set fill(value: string) {
+    runInAction(() => (this._fill = value));
   }
 }
 
