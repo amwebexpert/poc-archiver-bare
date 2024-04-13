@@ -9,6 +9,7 @@ import { ToolbarAction } from "./ToolbarAction";
 import paintStore from "../stores/paint.store";
 import { useModalToggler } from "../../../hooks/use-modal-toggler";
 import { BrushDialog } from "./brush-dialog/brush-dialog";
+import brushStore from "../stores/brush.store";
 
 const ToolbarBrush = () => {
   const styles = useStyles();
@@ -37,7 +38,7 @@ const ToolbarBrush = () => {
         <ToolbarAction icon="content-save" onPress={onSave} disabled={isSaveProcessStarted || isSaving} />
         <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
         <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
-        <ToolbarAction icon="invert-colors" onPress={showBrushModal} />
+        <ToolbarAction icon="invert-colors" containerColor={brushStore.color} onPress={showBrushModal} />
       </ExpandableToolbar>
 
       {isSaveProcessStarted && (
