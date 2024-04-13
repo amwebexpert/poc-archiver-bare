@@ -59,7 +59,7 @@ const SERIALIZERS = new Map<SvgElementType, XmlSerializationHandler>([
 ]);
 
 const svgWrapper = ({ content = "", viewBox = DEFAULT_VIEW_BOX }) =>
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox=${viewBox}><desc>{serializerVersion: 1}</desc>${content}</svg>`;
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><desc>{serializerVersion: 1}</desc>${content}</svg>`;
 
 type toSvgFormatProps = {
   elements?: SvgElement[];
