@@ -7,6 +7,7 @@ type PathViewProps = {
   d?: string;
   strokeColor?: string;
   strokeWidth?: number;
+  fill?: string;
   scale?: number;
   onPress?: () => void;
   isSelected?: boolean;
@@ -14,8 +15,9 @@ type PathViewProps = {
 
 export const PathView: FunctionComponent<PathViewProps> = ({
   d = "",
-  strokeColor = "",
+  strokeColor = "black",
   strokeWidth = 1,
+  fill = "none",
   scale = 1,
   onPress,
   isSelected = false,
@@ -24,7 +26,7 @@ export const PathView: FunctionComponent<PathViewProps> = ({
     d={d}
     stroke={strokeColor}
     strokeWidth={strokeWidth}
-    fill="none"
+    fill={fill}
     scale={scale}
     onPress={onPress}
     strokeDasharray={isSelected ? DEFAULT_SELECTION_DASH_ARRAY : undefined}

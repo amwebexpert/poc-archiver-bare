@@ -22,8 +22,5 @@ export const SINGLE_TAP_MAX_DISTANCE = 5;
 
 export const DEFAULT_SELECTION_DASH_ARRAY = "3, 3";
 
-export const DEFAULT_STROKE_WIDTH = 3;
-export const DEFAULT_STROKE_COLOR = "black";
-
 // @see http://mourner.github.io/simplify-js/
 export const PathSimplificationConfigs = Object.freeze({ tolerance: 0.2, highQuality: true });

@@ -1,5 +1,8 @@
 import { autorun, makeAutoObservable, runInAction } from "mobx";
-import { DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH } from "../constants";
+
+export const DEFAULT_STROKE_WIDTH = 3;
+export const DEFAULT_STROKE_COLOR = "black";
+export const DEFAULT_FILL_COLOR = "none";
 
 class BrushStore {
   _size = DEFAULT_STROKE_WIDTH;

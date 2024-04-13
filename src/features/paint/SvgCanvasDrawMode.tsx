@@ -3,13 +3,12 @@ import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 
 import { observer } from "mobx-react";
-import SvgViewer from "./components/SvgViewer/SvgViewer";
+import { paintCommonStyles } from "./CanvasEdit.styles";
 import { PathGestureDrawer } from "./components/PathGestureDrawer";
-import { DEFAULT_STROKE_WIDTH } from "./constants";
+import SvgViewer from "./components/SvgViewer/SvgViewer";
+import brushStore from "./stores/brush.store";
 import paintStore from "./stores/paint.store";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
-import { paintCommonStyles } from "./CanvasEdit.styles";
-import brushStore from "./stores/brush.store";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   const { size, color } = brushStore;

@@ -2,8 +2,6 @@ import pathParser from "parse-svg-path";
 
 import {
   DEFAULT_CANVAS_DIMENSIONS,
-  DEFAULT_STROKE_COLOR,
-  DEFAULT_STROKE_WIDTH,
   SINGLE_TAP_MAX_DISTANCE,
   SVG_SNAPSHOT_SCALE_FACTOR,
   ZERO_BOUNDING_BOX,
@@ -63,11 +61,7 @@ export const isSimpleTapPath = (d = "") => {
   return distance < SINGLE_TAP_MAX_DISTANCE;
 };
 
-export const createElementFromPathGesture = ({
-  d = "",
-  strokeColor = DEFAULT_STROKE_COLOR,
-  strokeWidth = DEFAULT_STROKE_WIDTH,
-}) => {
+export const createElementFromPathGesture = ({ d = "", strokeColor = "black", strokeWidth = 1 }) => {
   if (isSimpleTapPath(d)) {
     return buildCircleElementFromSingleTapPath({ d, strokeColor, strokeWidth });
   } else {

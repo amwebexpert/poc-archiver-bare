@@ -2,7 +2,7 @@ import pathParser from "parse-svg-path";
 import simplify from "simplify-js";
 import { SvgElementType, SvgPathElement, isPath } from "../types/svg.types";
 
-import { DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH, PathSimplificationConfigs } from "../constants";
+import { PathSimplificationConfigs } from "../constants";
 import { XYCoordinates } from "../types/canvas.types";
 import {
   XmlDeserializer,
@@ -16,10 +16,10 @@ export const serializer: XmlSerializer = ({ element, screenScale = 1 }) => {
     throw new Error(`Cannot serialize non-path element: ${JSON.stringify(element)}`);
   }
 
-  const { id, d, strokeColor, strokeWidth } = element;
+  const { id, d, strokeColor, strokeWidth, fill } = element;
   const normalizedPath = toDeviceIndependentPixel({ d, screenScale });
 
-  return `<path id="${id}" d="${normalizedPath}" stroke="${strokeColor}" stroke-width="${strokeWidth}" fill="none" />`;
+  return `<path id="${id}" d="${normalizedPath}" stroke="${strokeColor}" stroke-width="${strokeWidth}" fill="${fill}" />`;
 };
 
 export const simplifyPath = ({
@@ -82,11 +82,7 @@ export const PATH_SERIALIZER: XmlSerializationHandler = { serializer, deserializ
 
 export const normalizePath = (d = "") => d?.trim().toUpperCase() ?? "";
 
-export const buildPathElement = ({
-  d = "",
-  strokeColor = DEFAULT_STROKE_COLOR,
-  strokeWidth = DEFAULT_STROKE_WIDTH,
-}): SvgPathElement => {
+export const buildPathElement = ({ d = "", strokeColor = "black", strokeWidth = 1, fill = "none" }): SvgPathElement => {
   const id = Date.now();
   const simplifiedPath = simplifyPath({ d });
 
@@ -95,6 +91,7 @@ export const buildPathElement = ({
     d: simplifiedPath,
     strokeColor,
     strokeWidth,
+    fill,
     id,
   };
 };
