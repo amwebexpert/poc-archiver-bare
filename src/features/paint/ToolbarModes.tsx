@@ -5,7 +5,7 @@ import { ToolbarAction } from "./components/ToolbarAction";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 
-const CanvasEditToolbarModes = () => {
+const ToolbarModes = () => {
   const styles = useStyles();
 
   const { isCanvasEmpty, isDrawMode, isSelectorMode, isTransformMode, isZoomPanMode } = paintStore;
@@ -31,4 +31,4 @@ const CanvasEditToolbarModes = () => {
   );
 };
 
-export default observer(CanvasEditToolbarModes);
+export default observer(ToolbarModes);

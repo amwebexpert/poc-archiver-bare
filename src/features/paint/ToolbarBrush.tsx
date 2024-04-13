@@ -8,7 +8,7 @@ import SvgSnapshot from "./components/SvgViewer/SvgSnapshot";
 import { ToolbarAction } from "./components/ToolbarAction";
 import paintStore from "./stores/paint.store";
 
-const CanvasEditToolbarBrush = () => {
+const ToolbarBrush = () => {
   const styles = useStyles();
   const { showSnackbarMessage } = useSnackbar();
   const { canvasDimensions, elements, hasSelectedElements, hasUndoHistory, isSaving, paintFilename } = paintStore;
@@ -34,6 +34,7 @@ const CanvasEditToolbarBrush = () => {
         <ToolbarAction icon="content-save" onPress={onSave} disabled={isSaveProcessStarted || isSaving} />
         <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
         <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
+        <ToolbarAction icon="invert-colors" onPress={onOpen} />
       </ExpandableToolbar>
 
       {isSaveProcessStarted && (
@@ -47,4 +48,4 @@ const CanvasEditToolbarBrush = () => {
   );
 };
 
-export default observer(CanvasEditToolbarBrush);
+export default observer(ToolbarBrush);
