@@ -43,30 +43,12 @@ class PaintStore {
     return this._canvasMode;
   }
 
-  set canvasMode(mode: CanvasMode) {
-    runInAction(() => {
-      this._canvasMode = mode;
-    });
-  }
-
   get elements(): SvgElement[] {
     return this._elements.map(elem => ({ ...elem, isSelected: this.isElementSelected(elem) }));
   }
 
-  set elements(elements: SvgElement[]) {
-    runInAction(() => {
-      this._elements = elements;
-    });
-  }
-
   get selectedElementIDs(): number[] {
     return this._selectedElementIDs;
-  }
-
-  set selectedElementIDs(ids: number[]) {
-    runInAction(() => {
-      this._selectedElementIDs = ids;
-    });
   }
 
   get isDrawGestureDirty(): boolean {
@@ -74,49 +56,23 @@ class PaintStore {
   }
 
   set isDrawGestureDirty(isDirty: boolean) {
-    runInAction(() => {
-      this._isDrawGestureDirty = isDirty;
-    });
+    runInAction(() => (this._isDrawGestureDirty = isDirty));
   }
 
   get isSaved(): boolean {
     return this._isSaved;
   }
 
-  set isSaved(isSaved: boolean) {
-    runInAction(() => {
-      this._isSaved = isSaved;
-    });
-  }
-
   get isSaving(): boolean {
     return this._isSaving;
-  }
-
-  set isSaving(isSaving: boolean) {
-    runInAction(() => {
-      this._isSaving = isSaving;
-    });
   }
 
   get isOpening(): boolean {
     return this._isOpening;
   }
 
-  set isOpening(isOpening: boolean) {
-    runInAction(() => {
-      this._isOpening = isOpening;
-    });
-  }
-
   get canvasDimensions(): CanvasDimensions {
     return this._canvasDimensions;
-  }
-
-  set canvasDimensions(dimensions: CanvasDimensions) {
-    runInAction(() => {
-      this._canvasDimensions = dimensions;
-    });
   }
 
   get isCanvasDimensionsAvailable(): boolean {
@@ -165,12 +121,6 @@ class PaintStore {
     return parsePaintFile(this.paintFile).filename;
   }
 
-  set paintFile(paintFile: string) {
-    runInAction(() => {
-      this.paintFile = paintFile;
-    });
-  }
-
   // actions
   // ------------------------------
   setCanvasModeToDraw() {
@@ -181,19 +131,21 @@ class PaintStore {
   }
 
   setCanvasModeToTransform() {
-    this.canvasMode = CanvasMode.TRANSFORM;
+    runInAction(() => (this._canvasMode = CanvasMode.TRANSFORM));
   }
 
   setCanvasModeToSelector() {
-    this.canvasMode = CanvasMode.SELECTOR;
+    runInAction(() => (this._canvasMode = CanvasMode.SELECTOR));
   }
 
   setCanvasModeToZoomPan() {
-    this.canvasMode = CanvasMode.ZOOM_PAN;
+    runInAction(() => (this._canvasMode = CanvasMode.ZOOM_PAN));
   }
 
   onCanvasParentLayoutDimensions({ width, height }: CanvasSurface) {
-    this.canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height });
+    runInAction(() => {
+      this._canvasDimensions = computeMaxDimensionsForAspectRatio({ width, height });
+    });
   }
 
   async open() {
@@ -203,8 +155,10 @@ class PaintStore {
     }
 
     try {
-      this.isOpening = true;
-      this.paintFile = paintFile;
+      runInAction(() => {
+        this._isOpening = true;
+        this._paintFile = paintFile;
+      });
 
       const { screenScale } = this.canvasDimensions;
       const content = await readFile(paintFile, "utf8");
@@ -214,7 +168,7 @@ class PaintStore {
     } catch (err: unknown) {
       console.error("error opening file", err);
     } finally {
-      this.isOpening = false;
+      runInAction(() => (this._isOpening = false));
     }
   }
 
@@ -228,7 +182,7 @@ class PaintStore {
       }
     }
 
-    this.isSaving = true;
+    runInAction(() => (this._isSaving = true));
 
     try {
       const { screenScale } = this.canvasDimensions;
@@ -237,13 +191,13 @@ class PaintStore {
       await writeFile(this.paintFile, data, "utf8");
       await writeFile(fullFilenamePreview, base64Snapshot, "base64");
 
-      this.isSaved = true;
+      runInAction(() => (this._isSaved = true));
       return true;
     } catch (err: unknown) {
       console.error("error saving file", err);
       return false;
     } finally {
-      this.isSaving = false;
+      runInAction(() => (this._isSaving = false));
     }
   }
 
@@ -321,7 +275,7 @@ class PaintStore {
       ? selections.filter(id => id !== elementID)
       : [...selections, elementID];
 
-    this.selectedElementIDs = newSelectedElementIDs;
+    runInAction(() => (this._selectedElementIDs = newSelectedElementIDs));
   }
 }
 
