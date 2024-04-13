@@ -148,6 +148,20 @@ class PaintStore {
     });
   }
 
+  setColor(selectedColor: string) {
+    if (!this.isSelectorMode) {
+      this.isDrawGestureDirty = true;
+      this.brushStore.color = selectedColor;
+    }
+
+    runInAction(() => {
+      this._undoHistory = [...this._undoHistory, this._elements];
+      this._elements = this._elements.map(elem =>
+        this._selectedElementIDs.includes(elem.id) ? { ...elem, strokeColor: selectedColor } : elem,
+      );
+      this._isSaved = false;
+    });
+  }
   async open() {
     const paintFile = await pickFile();
     if (!paintFile) {

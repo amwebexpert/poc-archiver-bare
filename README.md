@@ -4,28 +4,31 @@
 
 ## This app includes the following proof of concept
 
-- `react-native-network-logger`
-- `jail-monkey`
-- `react-native-device-info`
-- `react-native-date-picker`
-- `react-native-email-link`
-- `styled-components`
-- `mobx-react`
-- `axios`
-- `@shopify/flash-list`
 - `@react-native-clipboard/clipboard`
-- `react-native-markdown-display`
-- `react-native-document-picker`
+- `@shopify/flash-list`
+- `axios`
+- `jail-monkey`
+- `mobx-react`
+- `react-native-date-picker`
+- `react-native-device-info`
 - `react-native-document-fs`
+- `react-native-document-picker`
+- `react-native-email-link`
+- `react-native-markdown-display`
+- `react-native-network-logger`
+- `react-native-wheel-color-picker`
+- `styled-components`
 - and many more...
 
 ## TODOs
 
 - replace both `prettier` and `eslint` by [Biomejs](https://biomejs.dev/)
-- inside the Paint demo:
-  - have a vertical collapsible toolbar
-  - horizontal scrollable tool icons
 - upgrade dependencies to the latest stable versions like `react-native-svg` and `react-native-date-picker`
+- implement add the `redo` feature
+- implement multiple items selection mode
+- implement fill color
+- implement brush size selector
+- implement move to back and move to front
 
 # Getting Started
 

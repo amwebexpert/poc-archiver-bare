@@ -16,8 +16,7 @@ export const BrushDialog: FunctionComponent<IProps> = ({ onDismiss }) => {
   const [selectedColor, setSelectedColor] = useState(brushStore.color);
 
   const onOK = () => {
-    paintStore.isDrawGestureDirty = true;
-    brushStore.color = selectedColor;
+    paintStore.setColor(selectedColor);
     onDismiss();
   };
 
