@@ -6,6 +6,10 @@ export const useStyles = () => {
   const theme = useTheme() as AppTheme;
 
   return StyleSheet.create({
-    container: {},
+    colorPicker: {
+      height: 300,
+      borderRadius: 10,
+      marginBottom: 20,
+    },
   });
 };
