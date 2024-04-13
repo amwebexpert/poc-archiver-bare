@@ -1,9 +1,9 @@
 import { observer } from "mobx-react";
-import { useStyles } from "./CanvasEdit.styles";
-import { ExpandableToolbar } from "./components/ExpandableToolbar";
-import { ToolbarAction } from "./components/ToolbarAction";
-import { useSelectedElements } from "./hooks/useSelectedElement";
-import paintStore from "./stores/paint.store";
+import { useStyles } from "../CanvasEdit.styles";
+import { ExpandableToolbar } from "./ExpandableToolbar";
+import { ToolbarAction } from "./ToolbarAction";
+import { useSelectedElements } from "../hooks/useSelectedElement";
+import paintStore from "../stores/paint.store";
 
 const ToolbarModes = () => {
   const styles = useStyles();

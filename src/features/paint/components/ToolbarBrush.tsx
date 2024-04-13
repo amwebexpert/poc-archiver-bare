@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import { observer } from "mobx-react";
-import { useSnackbar } from "../../components/snack-bar/SnackbarProvider";
-import { useStyles } from "./CanvasEdit.styles";
-import { ExpandableToolbar } from "./components/ExpandableToolbar";
-import SvgSnapshot from "./components/SvgViewer/SvgSnapshot";
-import { ToolbarAction } from "./components/ToolbarAction";
-import paintStore from "./stores/paint.store";
+import { useSnackbar } from "../../../components/snack-bar/SnackbarProvider";
+import { useStyles } from "../CanvasEdit.styles";
+import { ExpandableToolbar } from "./ExpandableToolbar";
+import SvgSnapshot from "./SvgViewer/SvgSnapshot";
+import { ToolbarAction } from "./ToolbarAction";
+import paintStore from "../stores/paint.store";
 
 const ToolbarBrush = () => {
   const styles = useStyles();
