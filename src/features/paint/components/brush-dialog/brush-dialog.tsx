@@ -1,4 +1,4 @@
-import React, { useRef, type FunctionComponent } from "react";
+import React, { useState, type FunctionComponent } from "react";
 import { Button, Dialog } from "react-native-paper";
 import ColorPicker from "react-native-wheel-color-picker";
 
@@ -10,22 +10,21 @@ interface IProps {
 }
 
 export const BrushDialog: FunctionComponent<IProps> = ({ onDismiss }) => {
-  const colorPickerRef = useRef(null);
-  const { color } = brushStore;
-
   const styles = useStyles();
 
-  const onColorChange = (color: string) => console.log("Color selected:", color);
+  const [selectedColor, setSelectedColor] = useState(brushStore.color);
+
+  const onOK = () => {
+    brushStore.color = selectedColor;
+    onDismiss();
+  };
 
   return (
     <Dialog visible={true} onDismiss={onDismiss}>
-      <Dialog.Title>This is a title</Dialog.Title>
-
       <Dialog.Content style={styles.colorPicker}>
         <ColorPicker
-          color={color}
-          onColorChange={(color: string) => onColorChange(color)}
-          onColorChangeComplete={(color: string) => console.info(`onColorChangeComplete: ${color}`)}
+          color={brushStore.color}
+          onColorChangeComplete={setSelectedColor}
           thumbSize={30}
           sliderSize={30}
           noSnap={true}
@@ -35,7 +34,9 @@ export const BrushDialog: FunctionComponent<IProps> = ({ onDismiss }) => {
 
       <Dialog.Actions>
         <Button onPress={onDismiss}>Cancel</Button>
-        <Button onPress={onDismiss}>OK</Button>
+        <Button mode="contained" onPress={onOK}>
+          OK
+        </Button>
       </Dialog.Actions>
     </Dialog>
   );
