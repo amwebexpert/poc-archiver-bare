@@ -4,6 +4,7 @@ import ColorPicker from "react-native-wheel-color-picker";
 
 import { useStyles } from "./brush-dialog.styles";
 import brushStore from "../../stores/brush.store";
+import paintStore from "../../stores/paint.store";
 
 interface IProps {
   onDismiss: () => void;
@@ -15,6 +16,7 @@ export const BrushDialog: FunctionComponent<IProps> = ({ onDismiss }) => {
   const [selectedColor, setSelectedColor] = useState(brushStore.color);
 
   const onOK = () => {
+    paintStore.isDrawGestureDirty = true;
     brushStore.color = selectedColor;
     onDismiss();
   };
