@@ -27,14 +27,13 @@ export const simplifyPath = ({
   tolerance = PathSimplificationConfigs.tolerance,
   highQuality = PathSimplificationConfigs.highQuality,
 }): string => {
-  const points = getPathPoints(d);
+  const points = toCoordinatesArray(d);
   const simplifiedPoints = simplify(points, tolerance, highQuality);
 
   return fromCoordinatesArray(simplifiedPoints);
 };
 
-// TODO AM rename toCoordinatesArray to match fromCoordinatesArray below
-export const getPathPoints = (d = ""): XYCoordinates[] => {
+export const toCoordinatesArray = (d = ""): XYCoordinates[] => {
   const path = normalizePath(d);
   return pathParser(path).map(([_command, x, y]) => ({ x, y }));
 };

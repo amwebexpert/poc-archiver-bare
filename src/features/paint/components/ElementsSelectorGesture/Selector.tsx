@@ -11,7 +11,7 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 
 import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../constants";
-import { fromCoordinatesArray, getPathPoints } from "../../utils/svg-path.utils";
+import { fromCoordinatesArray, toCoordinatesArray } from "../../utils/svg-path.utils";
 
 import { BoundingBox, CanvasDimensions } from "../../types/canvas.types";
 import paintStore from "../../stores/paint.store";
@@ -50,7 +50,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
 
   const isSelectionAreaDirty = useSharedValue(false);
   const moveType = useSharedValue(SelectorMoveType.NONE);
-  const originalPathPoints = useSharedValue(getPathPoints(selectedElement?.d));
+  const originalPathPoints = useSharedValue(toCoordinatesArray(selectedElement?.d));
   const topLeft = useSharedValue({ x: originalBoundingBox.left, y: originalBoundingBox.top });
   const bottomRight = useSharedValue({
     x: originalBoundingBox.left + originalBoundingBox.width,
@@ -78,7 +78,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
     // to solve this, we need to recompute all the following values within a "worklet" and then we
     // also need to migrate the dependencies library code we use within a worklet
     // (like pathParser from "parse-svg-path")
-    originalPathPoints.value = getPathPoints(selectedElement?.d);
+    originalPathPoints.value = toCoordinatesArray(selectedElement?.d);
     topLeft.value = { x: originalBoundingBox.left, y: originalBoundingBox.top };
     bottomRight.value = {
       x: originalBoundingBox.left + originalBoundingBox.width,

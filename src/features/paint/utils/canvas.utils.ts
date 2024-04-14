@@ -11,7 +11,7 @@ import {
 import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
 import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
-import { buildPathElement, getPathPoints, normalizePath } from "./svg-path.utils";
+import { buildPathElement, toCoordinatesArray, normalizePath } from "./svg-path.utils";
 
 type MaxDimensionsForAspectRatioInputTypes = {
   width: number;
@@ -97,7 +97,7 @@ export const computeBoundingBoxOfCircleElement = (element: SvgCircleElement): Bo
 };
 
 export const computeBoundingBoxOfPathElement = (element: SvgPathElement): BoundingBox => {
-  const points = getPathPoints(element.d);
+  const points = toCoordinatesArray(element.d);
   const [firstPoint, ...rest] = points;
 
   const { x, y } = firstPoint;
