@@ -40,7 +40,7 @@ const ToolbarBrush = () => {
         <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
         <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
         <ToolbarAction icon="invert-colors" containerColor={brushStore.color} onPress={showBrushModal} />
-        <ToolbarAction icon="robot" onPress={onGenerate} />
+        <ToolbarAction icon="robot-excited-outline" onPress={onGenerate} />
       </ExpandableToolbar>
 
       {isSaveProcessStarted && (
