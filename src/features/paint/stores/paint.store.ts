@@ -8,6 +8,7 @@ import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
 import brushStore from "./brush.store";
 import { newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
+import chatGptService from "../service/chat-gpt.service";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
@@ -290,6 +291,21 @@ class PaintStore {
       : [...selections, elementID];
 
     runInAction(() => (this._selectedElementIDs = newSelectedElementIDs));
+  }
+
+  generateSvg() {
+    //const instructions = "draw a house with 2 trees besise";
+    //const instructions = "draw a square with green border";
+    //const instructions = "draw a square with green border and a red circle inside";
+    const instructions = "draw a blue triangle without Z command";
+
+    chatGptService.sendMessage(instructions).then(content => {
+      console.info("====>>> info", content);
+
+      const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
+      elements.forEach((element, index) => (element.id = index));
+      this.reset(elements);
+    });
   }
 }
 

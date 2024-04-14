@@ -30,6 +30,7 @@ const ToolbarBrush = () => {
   const onSave = () => setIsSaveProcessStarted(true);
   const onUndo = () => paintStore.undo();
   const onDelete = () => paintStore.deleteSelectedElements();
+  const onGenerate = () => paintStore.generateSvg();
 
   return (
     <>
@@ -39,6 +40,7 @@ const ToolbarBrush = () => {
         <ToolbarAction icon="undo-variant" onPress={onUndo} disabled={!hasUndoHistory} />
         <ToolbarAction icon="delete-forever" onPress={onDelete} disabled={!hasSelectedElements} />
         <ToolbarAction icon="invert-colors" containerColor={brushStore.color} onPress={showBrushModal} />
+        <ToolbarAction icon="robot" onPress={onGenerate} />
       </ExpandableToolbar>
 
       {isSaveProcessStarted && (
