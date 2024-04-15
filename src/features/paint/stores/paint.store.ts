@@ -294,18 +294,27 @@ class PaintStore {
   }
 
   generateSvg() {
-    //const instructions = "draw a house with 2 trees besise";
-    //const instructions = "draw a square with green border";
-    //const instructions = "draw a square with green border and a red circle inside";
-    const instructions = "draw a blue triangle without Z command";
+    // const instructions = "draw a house with 2 trees besise";
+    // const instructions = "draw a square with green border";
+    // const instructions = "draw a square with green border and a red circle inside";
+    // const instructions = "draw a blue triangle without Z command";
+    const instructions = "draw a small green ellipse at top left corner of the viewBox";
 
     chatGptService.sendMessage(instructions).then(content => {
-      console.info("====>>> info", content);
-
       const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
       elements.forEach((element, index) => (element.id = index));
       this.reset(elements);
     });
+
+    // const content = `
+    //   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600">
+    //     <ellipse cx="450" cy="800" rx="300" ry="500" fill="none" stroke="black" />
+    //   </svg>
+    // `;
+
+    // const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
+    // elements.forEach((element, index) => (element.id = index));
+    // this.reset(elements);
   }
 }
 

@@ -1,16 +1,17 @@
 import { Circle } from "react-native-svg";
 
-import { DEFAULT_SELECTION_DASH_ARRAY, DEFAULT_STROKE_COLOR, DEFAULT_STROKE_WIDTH } from "../../constants";
+import { DEFAULT_SELECTION_DASH_ARRAY } from "../../constants";
 import { FunctionComponent } from "react";
 
 export const SIMPLE_DOT_SELECTED_EXTRA_RADIUS = 5;
 
-type CircleViewProps = {
+export type CircleViewProps = {
   cx?: number;
   cy?: number;
   radius?: number;
   strokeColor?: string;
   strokeWidth?: number;
+  fill?: string;
   scale?: number;
   onPress?: () => void;
   isSelected?: boolean;
@@ -20,8 +21,9 @@ export const CircleView: FunctionComponent<CircleViewProps> = ({
   cx = 0,
   cy = 0,
   radius = 0,
-  strokeColor = DEFAULT_STROKE_COLOR,
-  strokeWidth = DEFAULT_STROKE_WIDTH,
+  strokeColor = "black",
+  strokeWidth = 1,
+  fill,
   scale = 1,
   onPress,
   isSelected = false,
@@ -35,9 +37,9 @@ export const CircleView: FunctionComponent<CircleViewProps> = ({
       cx={cx}
       cy={cy}
       r={isSimpleDotSelected ? radius + SIMPLE_DOT_SELECTED_EXTRA_RADIUS : radius}
-      fill={isSimpleDotSelected ? "transparent" : strokeColor}
+      fill={isSimpleDotSelected ? "transparent" : fill}
       stroke={strokeColor}
-      strokeWidth={isSelected && !hasStrokeWidth ? DEFAULT_STROKE_WIDTH : strokeWidth}
+      strokeWidth={isSelected && !hasStrokeWidth ? 1 : strokeWidth}
       scale={scale}
       onPress={onPress}
       strokeDasharray={isSelected ? DEFAULT_SELECTION_DASH_ARRAY : undefined}

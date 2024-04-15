@@ -6,6 +6,7 @@ import {
   XmlDeserializer,
   XmlSerializationHandler,
   XmlSerializer,
+  extractColorAttribute,
   extractNumericAttribute,
 } from "./svg-serialization.utils";
 
@@ -14,12 +15,12 @@ export const serializer: XmlSerializer = ({ element, screenScale = 1 }) => {
     throw new Error(`Cannot serialize non-circle element: ${JSON.stringify(element)}`);
   }
 
-  const { id, cx, cy, radius, strokeColor: stroke, strokeWidth: width, fill } = element;
+  const { id, cx, cy, radius, strokeColor = "none", strokeWidth = 0, fill = "none" } = element;
   const x = cx / screenScale;
   const y = cy / screenScale;
   const r = radius / screenScale;
 
-  return `<circle id="${id}" cx="${x}" cy="${y}" r="${r}" stroke="${stroke}" stroke-width="${width}" fill="${fill}" />`;
+  return `<circle id="${id}" cx="${x}" cy="${y}" r="${r}" stroke="${strokeColor}" stroke-width="${strokeWidth}" fill="${fill}" />`;
 };
 
 export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScale = 1 }) => {
@@ -27,9 +28,9 @@ export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScal
   const cy = extractNumericAttribute({ xmlElementAttributes, key: "@_cy" }) ?? 0 * screenScale;
   const radius = extractNumericAttribute({ xmlElementAttributes, key: "@_r" }) ?? 0 * screenScale;
   const id = extractNumericAttribute({ xmlElementAttributes, key: "@_id" }) ?? 0;
-  const strokeColor = xmlElementAttributes["@_stroke"];
-  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" });
-  const fill = xmlElementAttributes["@_fill"] ?? "none";
+  const strokeColor = extractColorAttribute({ xmlElementAttributes, key: "@_stroke" });
+  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" }) ?? 0;
+  const fill = extractColorAttribute({ xmlElementAttributes, key: "@_fill" });
 
   return { type: SvgElementType.circle, id, cx, cy, radius, strokeColor, strokeWidth, fill };
 };

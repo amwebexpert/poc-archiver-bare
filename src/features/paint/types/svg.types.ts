@@ -30,6 +30,15 @@ export type SvgCircleElement = SvgElement & {
   radius: number;
 };
 
+export type SvgEllipseElement = Omit<SvgCircleElement, "radius"> & {
+  type: SvgElementType.ellipse;
+  rx: number;
+  ry: number;
+};
+
 export const isPath = (element?: SvgElement): element is SvgPathElement => element?.type === SvgElementType.path;
 
 export const isCircle = (element?: SvgElement): element is SvgCircleElement => element?.type === SvgElementType.circle;
+
+export const isEllipse = (element?: SvgElement): element is SvgEllipseElement =>
+  element?.type === SvgElementType.ellipse;

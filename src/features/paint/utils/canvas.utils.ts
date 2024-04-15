@@ -11,7 +11,7 @@ import {
 import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
 import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
-import { buildPathElement, toCoordinatesArray, normalizePath } from "./svg-path.utils";
+import { buildPathElement, normalizePath, toCoordinatesArray } from "./svg-path.utils";
 
 type MaxDimensionsForAspectRatioInputTypes = {
   width: number;

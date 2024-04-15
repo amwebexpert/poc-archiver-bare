@@ -4,19 +4,30 @@ import { DEFAULT_CANVAS_DIMENSIONS } from "../constants";
 
 import { SvgElement, SvgElementType } from "../types/svg.types";
 import { CIRCLE_SERIALIZER } from "./svg-circle.utils";
+import { ELLIPSE_SERIALIZER } from "./svg-ellipse.utils";
 import { PATH_SERIALIZER } from "./svg-path.utils";
 
 export type XmlAttributeName = `@_${string}`;
 export type XmlAttributes = Record<XmlAttributeName, string>;
-export type extractNumericAttributeParams<T extends XmlAttributes = XmlAttributes> = {
+
+export type extractAttributeArgs<T extends XmlAttributes = XmlAttributes> = {
   xmlElementAttributes: T;
   key: keyof T;
 };
+
 export const extractNumericAttribute = <T extends XmlAttributes = XmlAttributes>({
   xmlElementAttributes,
   key,
-}: extractNumericAttributeParams<T>): number | undefined => {
+}: extractAttributeArgs<T>): number | undefined => {
   return key in xmlElementAttributes ? Number(xmlElementAttributes[key]) : undefined;
+};
+
+export const extractColorAttribute = <T extends XmlAttributes = XmlAttributes>({
+  xmlElementAttributes,
+  key,
+}: extractAttributeArgs<T>): string => {
+  const attributeValue = (xmlElementAttributes[key] as string) ?? "none";
+  return attributeValue === "undefined" ? "none" : attributeValue;
 };
 
 export type SerializerInputs = {
@@ -56,6 +67,7 @@ const XML_ELEMENT_ATTRIBUTES_KEY = ":@";
 const SERIALIZERS = new Map<SvgElementType, XmlSerializationHandler>([
   [SvgElementType.path, PATH_SERIALIZER],
   [SvgElementType.circle, CIRCLE_SERIALIZER],
+  [SvgElementType.ellipse, ELLIPSE_SERIALIZER],
 ]);
 
 const svgWrapper = ({ content = "", viewBox = DEFAULT_VIEW_BOX }) =>

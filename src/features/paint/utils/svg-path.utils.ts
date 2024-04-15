@@ -8,6 +8,7 @@ import {
   XmlDeserializer,
   XmlSerializationHandler,
   XmlSerializer,
+  extractColorAttribute,
   extractNumericAttribute,
 } from "./svg-serialization.utils";
 
@@ -16,7 +17,7 @@ export const serializer: XmlSerializer = ({ element, screenScale = 1 }) => {
     throw new Error(`Cannot serialize non-path element: ${JSON.stringify(element)}`);
   }
 
-  const { id, d, strokeColor, strokeWidth, fill } = element;
+  const { id, d, strokeColor = "black", strokeWidth = 1, fill = "none" } = element;
   const normalizedPath = toDeviceIndependentPixel({ d, screenScale });
 
   return `<path id="${id}" d="${normalizedPath}" stroke="${strokeColor}" stroke-width="${strokeWidth}" fill="${fill}" />`;
@@ -55,10 +56,11 @@ export const fromCoordinatesArray = (points: XYCoordinates[]): string => {
 export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScale = 1 }) => {
   const d = toDeviceDependentPixel({ d: xmlElementAttributes["@_d"], screenScale });
   const id = extractNumericAttribute({ xmlElementAttributes, key: "@_id" }) ?? 0;
-  const strokeColor = xmlElementAttributes["@_stroke"];
-  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" });
+  const strokeColor = extractColorAttribute({ xmlElementAttributes, key: "@_stroke" });
+  const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" }) ?? 0;
+  const fill = extractColorAttribute({ xmlElementAttributes, key: "@_fill" });
 
-  return { type: SvgElementType.path, id, d, strokeColor, strokeWidth };
+  return { type: SvgElementType.path, id, d, strokeColor, strokeWidth, fill };
 };
 
 export const toDeviceIndependentPixel = ({ d = "", screenScale = 1 }) => applyScale({ d, scale: 1 / screenScale });
