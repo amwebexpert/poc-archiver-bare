@@ -26,17 +26,11 @@ import {
   onTopLeftDrag,
   setupRegionContext,
 } from "../selectorUtils";
+import { SelectorProps } from "./selector.types";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-
-type SelectorProps = {
-  canvasDimensions: CanvasDimensions;
-  originalBoundingBox: BoundingBox;
-  selectedElement?: SvgPathElement;
-  onDrawElementUpdate?: (d: string) => void;
-};
 
 export const Selector: FunctionComponent<SelectorProps> = ({
   canvasDimensions = ZERO_DIMENSIONS,
@@ -148,7 +142,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
       applyTopLeftSnap(topLeft);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)(d.value);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
     });
 
   const onDragBottomRight = Gesture.Pan()
@@ -163,7 +157,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
       applyBottomRightSnap(bottomRight, MAX_X, MAX_Y);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)(d.value);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
     });
 
   const onDragRectangle = Gesture.Pan()
@@ -179,7 +173,7 @@ export const Selector: FunctionComponent<SelectorProps> = ({
     .onEnd(() => {
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)(d.value);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
     });
 
   const animatedProps = useAnimatedProps(() => ({ d: isSelectionAreaDirty.value ? "" : d.value }));

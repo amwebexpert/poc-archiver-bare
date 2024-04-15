@@ -8,7 +8,7 @@ import { CanvasDimensions } from "./types/canvas.types";
 import { ZERO_DIMENSIONS } from "./constants";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
-import { SvgPathElement } from "./types/svg.types";
+import { SvgElement, SvgPathElement } from "./types/svg.types";
 import { paintCommonStyles } from "./CanvasEdit.styles";
 
 type SvgCanvasElementsStretcherModeProps = {
@@ -24,10 +24,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretch
   const [firstSelectedElement] = selectedElements;
   const showSelector = isBoundingBoxReady && hasSingleSelectedPath;
 
-  const onDrawElementUpdate = (d = "") => {
-    const updatedElement = { ...firstSelectedElement, d };
-    paintStore.updateDrawElement(updatedElement);
-  };
+  const onDrawElementUpdate = (updatedElement: SvgElement) => paintStore.updateDrawElement(updatedElement);
 
   return (
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
