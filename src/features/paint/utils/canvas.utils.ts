@@ -9,7 +9,15 @@ import {
 } from "../constants";
 
 import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
-import { SvgCircleElement, SvgElement, SvgPathElement, isCircle, isPath } from "../types/svg.types";
+import {
+  SvgCircleElement,
+  SvgElement,
+  SvgEllipseElement,
+  SvgPathElement,
+  isCircle,
+  isEllipse,
+  isPath,
+} from "../types/svg.types";
 import { buildCircleElementFromSingleTapPath } from "./svg-circle.utils";
 import { buildPathElement, normalizePath, toCoordinatesArray } from "./svg-path.utils";
 
@@ -78,21 +86,42 @@ export const computeBoundingBox = (element: SvgElement): BoundingBox => {
     return computeBoundingBoxOfCircleElement(element);
   }
 
+  if (isEllipse(element)) {
+    return computeBoundingBoxOfEllipseElement(element);
+  }
+
   return ZERO_BOUNDING_BOX;
 };
 
 export const computeBoundingBoxOfCircleElement = (element: SvgCircleElement): BoundingBox => {
   const radius = element.radius ?? 0;
-  const size = radius * 2;
   if (radius <= 0) {
     return ZERO_BOUNDING_BOX;
   }
 
+  const size = radius * 2;
+
   return {
-    left: element.cx ?? 0 - radius,
-    top: element.cy ?? 0 - radius,
+    left: (element.cx ?? 0) - radius,
+    top: (element.cy ?? 0) - radius,
     width: size,
     height: size,
+  };
+};
+
+export const computeBoundingBoxOfEllipseElement = (element: SvgEllipseElement): BoundingBox => {
+  const rx = element.rx ?? 0;
+  const ry = element.ry ?? 0;
+
+  if (rx <= 0 || ry <= 0) {
+    return ZERO_BOUNDING_BOX;
+  }
+
+  return {
+    left: (element.cx ?? 0) - rx,
+    top: (element.cy ?? 0) - ry,
+    width: rx * 2,
+    height: ry * 2,
   };
 };
 

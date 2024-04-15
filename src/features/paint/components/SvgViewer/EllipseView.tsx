@@ -2,13 +2,20 @@ import { Ellipse } from "react-native-svg";
 
 import { FunctionComponent } from "react";
 import { DEFAULT_SELECTION_DASH_ARRAY } from "../../constants";
-import { CircleViewProps } from "./CircleView";
 
 export const SIMPLE_DOT_SELECTED_EXTRA_RADIUS = 5;
 
-export type EllipseViewProps = Omit<CircleViewProps, "radius"> & {
+export type EllipseViewProps = {
+  cx?: number;
+  cy?: number;
   rx?: number;
   ry?: number;
+  strokeColor?: string;
+  strokeWidth?: number;
+  fill?: string;
+  scale?: number;
+  onPress?: () => void;
+  isSelected?: boolean;
 };
 
 export const EllipseView: FunctionComponent<EllipseViewProps> = ({

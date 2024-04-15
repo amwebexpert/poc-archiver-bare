@@ -30,7 +30,7 @@ export type SvgCircleElement = SvgElement & {
   radius: number;
 };
 
-export type SvgEllipseElement = Omit<SvgCircleElement, "radius"> & {
+export type SvgEllipseElement = Omit<SvgCircleElement, "radius" | "type"> & {
   type: SvgElementType.ellipse;
   rx: number;
   ry: number;
