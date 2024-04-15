@@ -2,18 +2,15 @@ import { View } from "react-native";
 
 import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
+import { paintCommonStyles } from "./CanvasEdit.styles";
 import { Selector } from "./components/ElementsSelectorGesture/selectors/Selector";
 import SvgViewer from "./components/SvgViewer/SvgViewer";
-import { CanvasDimensions } from "./types/canvas.types";
-import { ZERO_DIMENSIONS } from "./constants";
 import { useSelectedElements } from "./hooks/useSelectedElement";
 import paintStore from "./stores/paint.store";
 import { SvgElement, SvgPathElement } from "./types/svg.types";
-import { paintCommonStyles } from "./CanvasEdit.styles";
 
 const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
-  const { canvasDimensions, zoomAndPanInfo } = paintStore;
-  const { zoomLevel, translateX, translateY } = zoomAndPanInfo;
+  const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;
 
   const { selectedElements, unselectedElements, originalBoundingBox, isBoundingBoxReady, hasSingleSelectedPath } =
     useSelectedElements();
@@ -26,7 +23,6 @@ const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
       {showSelector && (
         <Selector
-          canvasDimensions={canvasDimensions}
           originalBoundingBox={originalBoundingBox!}
           selectedElement={firstSelectedElement as unknown as SvgPathElement} // TODO: support multiple elements
           onDrawElementUpdate={onDrawElementUpdate} // TODO: support multiple elements
