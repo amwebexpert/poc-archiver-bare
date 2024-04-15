@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../../constants";
+import { ZERO_BOUNDING_BOX } from "../../../constants";
 import { fromCoordinatesArray, toCoordinatesArray } from "../../../utils/svg-path.utils";
 
 import paintStore from "../../../stores/paint.store";
@@ -32,13 +32,12 @@ const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export const Selector: FunctionComponent<SelectorProps> = ({
-  canvasDimensions = ZERO_DIMENSIONS,
   originalBoundingBox = ZERO_BOUNDING_BOX,
   selectedElement,
   onDrawElementUpdate = () => {},
 }) => {
   const zoomLevel = paintStore.zoomAndPanInfo.zoomLevel;
-  const { width: MAX_X, height: MAX_Y } = canvasDimensions;
+  const { width: MAX_X, height: MAX_Y } = paintStore.canvasDimensions;
   const context = useSharedValue<Record<string, any>>({});
 
   const isSelectionAreaDirty = useSharedValue(false);
