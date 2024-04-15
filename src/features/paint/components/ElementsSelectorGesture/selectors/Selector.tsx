@@ -13,7 +13,6 @@ import Svg, { Path } from "react-native-svg";
 import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../../constants";
 import { fromCoordinatesArray, toCoordinatesArray } from "../../../utils/svg-path.utils";
 
-import { BoundingBox, CanvasDimensions } from "../../../types/canvas.types";
 import paintStore from "../../../stores/paint.store";
 import { SvgPathElement } from "../../../types/svg.types";
 import { MovableHandle } from "../MovableHandle";

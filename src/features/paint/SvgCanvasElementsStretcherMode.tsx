@@ -11,14 +11,10 @@ import paintStore from "./stores/paint.store";
 import { SvgElement, SvgPathElement } from "./types/svg.types";
 import { paintCommonStyles } from "./CanvasEdit.styles";
 
-type SvgCanvasElementsStretcherModeProps = {
-  canvasDimensions?: CanvasDimensions;
-};
+const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
+  const { canvasDimensions, zoomAndPanInfo } = paintStore;
+  const { zoomLevel, translateX, translateY } = zoomAndPanInfo;
 
-const SvgCanvasElementsStretcherMode: FunctionComponent<SvgCanvasElementsStretcherModeProps> = ({
-  canvasDimensions = ZERO_DIMENSIONS,
-}) => {
-  const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;
   const { selectedElements, unselectedElements, originalBoundingBox, isBoundingBoxReady, hasSingleSelectedPath } =
     useSelectedElements();
   const [firstSelectedElement] = selectedElements;
