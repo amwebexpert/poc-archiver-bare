@@ -22,19 +22,17 @@ export const EllipseView: FunctionComponent<EllipseViewProps> = ({
   scale = 1,
   onPress,
   isSelected = false,
-}) => {
-  return (
-    <Ellipse
-      cx={cx}
-      cy={cy}
-      rx={rx}
-      ry={ry}
-      fill={fill}
-      stroke={strokeColor}
-      strokeWidth={strokeWidth}
-      scale={scale}
-      onPress={onPress}
-      strokeDasharray={isSelected ? DEFAULT_SELECTION_DASH_ARRAY : undefined}
-    />
-  );
-};
+}) => (
+  <Ellipse
+    cx={cx}
+    cy={cy}
+    rx={rx}
+    ry={ry}
+    fill={fill}
+    stroke={strokeColor}
+    strokeWidth={strokeWidth}
+    scale={scale}
+    onPress={onPress}
+    strokeDasharray={isSelected ? DEFAULT_SELECTION_DASH_ARRAY : undefined}
+  />
+);
