@@ -26,7 +26,7 @@ const CanvasEdit = () => {
               {isZoomPanMode && <SvgCanvasZoomMode />}
               {isDrawMode && <SvgCanvasDrawMode />}
               {isSelectorMode && <SvgCanvasElementsSelectorMode />}
-              {isTransformMode && <SvgCanvasElementsStretcherMode canvasDimensions={canvasDimensions} />}
+              {isTransformMode && <SvgCanvasElementsStretcherMode />}
             </View>
           )}
         </View>
