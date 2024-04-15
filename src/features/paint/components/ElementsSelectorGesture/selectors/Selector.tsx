@@ -10,14 +10,14 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../constants";
-import { fromCoordinatesArray, toCoordinatesArray } from "../../utils/svg-path.utils";
+import { ZERO_BOUNDING_BOX, ZERO_DIMENSIONS } from "../../../constants";
+import { fromCoordinatesArray, toCoordinatesArray } from "../../../utils/svg-path.utils";
 
-import { BoundingBox, CanvasDimensions } from "../../types/canvas.types";
-import paintStore from "../../stores/paint.store";
-import { SvgPathElement } from "../../types/svg.types";
-import { MovableHandle } from "./MovableHandle";
-import { SelectorMoveType } from "./constants";
+import { BoundingBox, CanvasDimensions } from "../../../types/canvas.types";
+import paintStore from "../../../stores/paint.store";
+import { SvgPathElement } from "../../../types/svg.types";
+import { MovableHandle } from "../MovableHandle";
+import { SelectorMoveType } from "../constants";
 import {
   applyBottomRightSnap,
   applyTopLeftSnap,
@@ -25,7 +25,7 @@ import {
   onRegionDrag,
   onTopLeftDrag,
   setupRegionContext,
-} from "./selectorUtils";
+} from "../selectorUtils";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedPath = Animated.createAnimatedComponent(Path);

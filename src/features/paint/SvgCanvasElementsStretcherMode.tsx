@@ -2,7 +2,7 @@ import { View } from "react-native";
 
 import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
-import { Selector } from "./components/ElementsSelectorGesture/Selector";
+import { Selector } from "./components/ElementsSelectorGesture/selectors/Selector";
 import SvgViewer from "./components/SvgViewer/SvgViewer";
 import { CanvasDimensions } from "./types/canvas.types";
 import { ZERO_DIMENSIONS } from "./constants";
