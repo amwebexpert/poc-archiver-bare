@@ -1,10 +1,4 @@
 {
-    "@openspacelabs/react-native-zoomable-view@2.1.5": {
-        "licenses": "MIT",
-        "repository": "https://github.com/openspacelabs/react-native-zoomable-view",
-        "licenseUrl": "https://github.com/openspacelabs/react-native-zoomable-view/raw/master/LICENSE",
-        "parents": "poc-archiver-bare"
-    },
     "@react-native-async-storage/async-storage@1.23.1": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-async-storage/async-storage",
