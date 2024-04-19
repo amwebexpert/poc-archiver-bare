@@ -11,31 +11,31 @@
         "licenseUrl": "https://github.com/react-native-async-storage/async-storage/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-native-clipboard/clipboard@1.13.2": {
+    "@react-native-clipboard/clipboard@1.14.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-clipboard/clipboard",
         "licenseUrl": "https://github.com/react-native-clipboard/clipboard/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-native-community/netinfo@11.2.1": {
+    "@react-native-community/netinfo@11.3.1": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-netinfo/react-native-netinfo",
         "licenseUrl": "https://github.com/react-native-netinfo/react-native-netinfo/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-navigation/drawer@6.6.6": {
+    "@react-navigation/drawer@6.6.15": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-navigation/native-stack@6.9.17": {
+    "@react-navigation/native-stack@6.9.26": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-navigation/native@6.1.9": {
+    "@react-navigation/native@6.1.17": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
@@ -47,7 +47,7 @@
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@shopify/flash-list@1.6.3": {
+    "@shopify/flash-list@1.6.4": {
         "licenses": "MIT",
         "repository": "https://github.com/Shopify/flash-list",
         "licenseUrl": "https://github.com/Shopify/flash-list/raw/master/LICENSE.md",
@@ -59,7 +59,7 @@
         "licenseUrl": "https://github.com/welldone-software/why-did-you-render/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "axios@1.6.5": {
+    "axios@1.6.8": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
         "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
@@ -77,7 +77,7 @@
         "licenseUrl": "https://github.com/entronad/crypto-es/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "date-fns@3.2.0": {
+    "date-fns@3.6.0": {
         "licenses": "MIT",
         "repository": "https://github.com/date-fns/date-fns",
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
@@ -89,19 +89,19 @@
         "licenseUrl": "https://github.com/GantMan/jail-monkey/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "lottie-react-native@6.5.1": {
+    "lottie-react-native@6.7.2": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/react-native-community/lottie-react-native",
         "licenseUrl": "https://github.com/react-native-community/lottie-react-native",
         "parents": "poc-archiver-bare"
     },
-    "mobx-react@9.1.0": {
+    "mobx-react@9.1.1": {
         "licenses": "MIT",
         "repository": "https://github.com/mobxjs/mobx",
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "mobx@6.12.0": {
+    "mobx@6.12.3": {
         "licenses": "MIT",
         "repository": "https://github.com/mobxjs/mobx",
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
@@ -119,34 +119,34 @@
         "licenseUrl": "https://github.com/pmadruga/react-native-clean-project/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-color-matrix-image-filters@6.0.6": {
+    "react-native-color-matrix-image-filters@6.0.7": {
         "licenses": "MIT",
         "repository": "https://github.com/iyegoroff/react-native-color-matrix-image-filters",
         "licenseUrl": "https://github.com/iyegoroff/react-native-color-matrix-image-filters/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-date-picker@4.3.5": {
+    "react-native-date-picker@5.0.2": {
         "licenses": "MIT",
         "repository": "https://github.com/henninghall/react-native-date-picker",
         "licenseUrl": "https://github.com/henninghall/react-native-date-picker/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-device-info@10.12.0": {
+    "react-native-device-info@10.13.1": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-device-info/react-native-device-info",
         "licenseUrl": "https://github.com/react-native-device-info/react-native-device-info/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-document-picker@9.1.1": {
+    "react-native-document-picker@9.1.2": {
         "licenses": "MIT",
         "repository": "https://github.com/rnmods/react-native-document-picker",
         "licenseUrl": "https://github.com/rnmods/react-native-document-picker/raw/master/LICENSE.md",
         "parents": "poc-archiver-bare"
     },
-    "react-native-email-link@1.14.8": {
+    "react-native-email-link@1.16.0": {
         "licenses": "MIT",
-        "repository": "https://github.com/flexible-agency/react-native-email-link",
-        "licenseUrl": "https://github.com/flexible-agency/react-native-email-link/raw/master/LICENSE",
+        "repository": "https://github.com/includable/react-native-email-link",
+        "licenseUrl": "https://github.com/includable/react-native-email-link/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
     "react-native-fast-image@8.6.3": {
@@ -173,13 +173,13 @@
         "licenseUrl": "https://github.com/iamacup/react-native-markdown-display/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-network-logger@1.15.0": {
+    "react-native-network-logger@1.16.1": {
         "licenses": "MIT",
         "repository": "https://github.com/alexbrazier/react-native-network-logger",
         "licenseUrl": "https://github.com/alexbrazier/react-native-network-logger/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-paper@5.12.1": {
+    "react-native-paper@5.12.3": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
@@ -191,7 +191,7 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-safe-area-context@4.8.2": {
+    "react-native-safe-area-context@4.9.0": {
         "licenses": "MIT",
         "repository": "https://github.com/th3rdwave/react-native-safe-area-context",
         "licenseUrl": "https://github.com/th3rdwave/react-native-safe-area-context/raw/master/LICENSE",
@@ -203,7 +203,7 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-screens/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-svg@14.1.0": {
+    "react-native-svg@15.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-community/react-native-svg",
         "licenseUrl": "https://github.com/react-native-community/react-native-svg/raw/master/LICENSE",
