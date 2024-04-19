@@ -5,7 +5,7 @@
         "licenseUrl": "https://github.com/openspacelabs/react-native-zoomable-view/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "@react-native-async-storage/async-storage@1.21.0": {
+    "@react-native-async-storage/async-storage@1.23.1": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-async-storage/async-storage",
         "licenseUrl": "https://github.com/react-native-async-storage/async-storage/raw/master/LICENSE",
@@ -36,6 +36,12 @@
         "parents": "poc-archiver-bare"
     },
     "@react-navigation/native@6.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-navigation/react-navigation",
+        "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
+        "parents": "poc-archiver-bare"
+    },
+    "@react-navigation/stack@6.3.29": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
@@ -155,7 +161,7 @@
         "licenseUrl": "https://github.com/itinance/react-native-fs/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-gesture-handler@2.14.1": {
+    "react-native-gesture-handler@2.16.0": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-gesture-handler",
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
@@ -179,7 +185,7 @@
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
         "parents": "poc-archiver-bare"
     },
-    "react-native-reanimated@3.6.1": {
+    "react-native-reanimated@3.8.1": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-reanimated",
         "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
@@ -191,7 +197,7 @@
         "licenseUrl": "https://github.com/th3rdwave/react-native-safe-area-context/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-screens@3.29.0": {
+    "react-native-screens@3.30.1": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-screens",
         "licenseUrl": "https://github.com/software-mansion/react-native-screens/raw/master/LICENSE",
@@ -209,7 +215,7 @@
         "licenseUrl": "https://github.com/oblador/react-native-vector-icons/raw/master/LICENSE",
         "parents": "poc-archiver-bare"
     },
-    "react-native-webview@13.6.3": {
+    "react-native-webview@13.8.6": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-webview/react-native-webview",
         "licenseUrl": "https://github.com/react-native-webview/react-native-webview/raw/master/LICENSE",
@@ -221,7 +227,7 @@
         "licenseUrl": "https://github.com/naeemur/react-native-wheel-color-picker",
         "parents": "poc-archiver-bare"
     },
-    "react-native@0.73.1": {
+    "react-native@0.73.7": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react-native",
         "licenseUrl": "https://github.com/facebook/react-native/raw/master/LICENSE",

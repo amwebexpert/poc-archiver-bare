@@ -15,7 +15,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
   const { selectedElements, unselectedElements, originalBoundingBox, isBoundingBoxReady, hasSingleSelectedPath } =
     useSelectedElements();
   const [firstSelectedElement] = selectedElements;
-  const showSelector = isBoundingBoxReady && hasSingleSelectedPath;
+  const showSelector = isBoundingBoxReady;
 
   const onDrawElementUpdate = (updatedElement: SvgElement) => paintStore.updateDrawElement(updatedElement);
 

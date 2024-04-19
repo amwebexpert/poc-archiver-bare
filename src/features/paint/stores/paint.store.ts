@@ -301,6 +301,7 @@ class PaintStore {
     const instructions = "draw a small green ellipse at top left corner of the viewBox";
 
     chatGptService.sendMessage(instructions).then(content => {
+      console.info("====>>> content", content);
       const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
       elements.forEach((element, index) => (element.id = index));
       this.reset(elements);
@@ -308,9 +309,10 @@ class PaintStore {
 
     // const content = `
     //   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600">
-    //     <ellipse cx="450" cy="800" rx="300" ry="500" fill="none" stroke="black" />
+    //     <ellipse cx="50" cy="50" rx="30" ry="20" stroke="green" stroke-width="3" fill="none" />
     //   </svg>
     // `;
+    // console.info("====>>> content", content);
 
     // const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
     // elements.forEach((element, index) => (element.id = index));
