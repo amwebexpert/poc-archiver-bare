@@ -32,7 +32,16 @@ export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScal
   const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" }) ?? 0;
   const fill = extractColorAttribute({ xmlElementAttributes, key: "@_fill" });
 
-  return { type: SvgElementType.circle, id, cx, cy, radius, strokeColor, strokeWidth, fill };
+  return {
+    type: SvgElementType.circle,
+    id,
+    cx: cx * screenScale,
+    cy: cy * screenScale,
+    radius: radius * screenScale,
+    strokeColor,
+    strokeWidth,
+    fill,
+  };
 };
 
 export const CIRCLE_SERIALIZER: XmlSerializationHandler = { serializer, deserializer };

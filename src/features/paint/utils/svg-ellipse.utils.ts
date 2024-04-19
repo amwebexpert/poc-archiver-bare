@@ -31,7 +31,17 @@ export const deserializer: XmlDeserializer = ({ xmlElementAttributes, screenScal
   const strokeWidth = extractNumericAttribute({ xmlElementAttributes, key: "@_stroke-width" }) ?? 0;
   const fill = extractColorAttribute({ xmlElementAttributes, key: "@_fill" });
 
-  return { type: SvgElementType.ellipse, id, cx, cy, rx, ry, strokeColor, strokeWidth, fill };
+  return {
+    type: SvgElementType.ellipse,
+    id,
+    cx: cx * screenScale,
+    cy: cy * screenScale,
+    rx: rx * screenScale,
+    ry: ry * screenScale,
+    strokeColor,
+    strokeWidth,
+    fill,
+  };
 };
 
 export const ELLIPSE_SERIALIZER: XmlSerializationHandler = { serializer, deserializer };
