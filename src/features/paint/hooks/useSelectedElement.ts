@@ -1,10 +1,19 @@
 import { computeBoundingBox } from "../utils/canvas.utils";
 import paintStore from "../stores/paint.store";
 import { SvgElement, SvgElementType } from "../types/svg.types";
+import { BoundingBox } from "../types/canvas.types";
 
 export type SvgElementWithSelectedFlag = SvgElement & { isSelected: boolean };
 
-export const useSelectedElements = () => {
+export type UseSelectedElementsResult = {
+  selectedElements: SvgElement[];
+  unselectedElements: SvgElement[];
+  originalBoundingBox: BoundingBox;
+  isBoundingBoxReady: boolean;
+  hasSingleSelectedPath: boolean;
+};
+
+export const useSelectedElements = (): UseSelectedElementsResult => {
   const { elements, selectedElementIDs } = paintStore;
 
   const selectedElements = elements.filter(({ id }) => selectedElementIDs.includes(id));
