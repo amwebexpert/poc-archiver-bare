@@ -4,10 +4,12 @@ import DeviceInfo from "react-native-device-info";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeModules } from "react-native";
 
-Reactotron.setAsyncStorageHandler(AsyncStorage)
-  .configure({ name: "poc-archiver-bare" })
-  .useReactNative({ asyncStorage: true })
+Reactotron.configure({
+  name: "poc-archiver-bare",
+  onConnect: () => Reactotron.clear(),
+})
   .setAsyncStorageHandler?.(AsyncStorage)
+  .useReactNative({ asyncStorage: true })
   .connect();
 
 /**
