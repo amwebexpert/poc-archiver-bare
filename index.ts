@@ -5,7 +5,7 @@ import { name as appName } from "./app.json";
 import App from "./src/App";
 
 if (__DEV__) {
-  require("./src/utils/reactotron-config");
+  require("./src/utils/reactotron/reactotron-config");
 }
 
 startNetworkLogging();
