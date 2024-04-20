@@ -10,6 +10,24 @@ Reactotron.setAsyncStorageHandler(AsyncStorage)
   .setAsyncStorageHandler?.(AsyncStorage)
   .connect();
 
+/**
+ * Reactotron allows you to define custom commands that you can run
+ * from Reactotron itself, and they will run in your app.
+ *
+ * Define them in the section below with `onCustomCommand`. Use your
+ * creativity -- this is great for development to quickly and easily
+ * get your app into the state you want.
+ *
+ * NOTE: If you edit this file while running the app, you will need to do a full refresh
+ * or else your custom commands won't be registered correctly.
+ */
+Reactotron.onCustomCommand({
+  title: "Show Dev Menu",
+  description: "Opens the React Native developer menu",
+  command: "showDevMenu",
+  handler: () => NativeModules.DevMenu.show(),
+});
+
 Reactotron.onCustomCommand({
   title: "Log connected device info",
   description: "Dump device info to console",
@@ -32,22 +50,4 @@ Reactotron.onCustomCommand({
       model: DeviceInfo.getModel(),
       deviceType: DeviceInfo.getDeviceType(),
     }),
-});
-
-/**
- * Reactotron allows you to define custom commands that you can run
- * from Reactotron itself, and they will run in your app.
- *
- * Define them in the section below with `onCustomCommand`. Use your
- * creativity -- this is great for development to quickly and easily
- * get your app into the state you want.
- *
- * NOTE: If you edit this file while running the app, you will need to do a full refresh
- * or else your custom commands won't be registered correctly.
- */
-Reactotron.onCustomCommand({
-  title: "Show Dev Menu",
-  description: "Opens the React Native developer menu",
-  command: "showDevMenu",
-  handler: () => NativeModules.DevMenu.show(),
 });
