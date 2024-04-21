@@ -300,8 +300,10 @@ class PaintStore {
     // const instructions = "draw a blue triangle without Z command";
     const instructions = "draw a small green ellipse at top left corner of the viewBox";
 
+    console.log("====>>> instructions", instructions);
+
     chatGptService.sendMessage(instructions).then(content => {
-      console.info("====>>> content", content);
+      console.log("====>>> content", content);
       const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
       elements.forEach((element, index) => (element.id = index));
       this.reset(elements);

@@ -23,7 +23,12 @@
 ## TODOs
 
 - replace both `prettier` and `eslint` by [Biomejs](https://biomejs.dev/)
-- upgrade dependencies to the latest stable versions like `react-native-svg` and `react-native-date-picker`
+- support additional svg element types:
+  - polygon (ex: triangle <polygon points="100,10 150,190 50,190" ... />)
+  - rect
+  - line
+  - polyline
+  - text
 - implement add the `redo` feature
 - implement multiple items selection mode
 - implement fill color

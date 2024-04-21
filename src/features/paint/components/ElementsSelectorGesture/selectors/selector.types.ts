@@ -1,8 +1,8 @@
-import { BoundingBox, CanvasDimensions } from "../../../types/canvas.types";
-import { SvgElement, SvgPathElement } from "../../../types/svg.types";
+import { BoundingBox } from "../../../types/canvas.types";
+import { SvgElement } from "../../../types/svg.types";
 
 export type SelectorProps = {
   originalBoundingBox: BoundingBox;
-  selectedElement?: SvgPathElement;
+  selectedElement?: SvgElement;
   onDrawElementUpdate?: (updated: SvgElement) => void;
 };
