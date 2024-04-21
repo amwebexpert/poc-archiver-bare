@@ -9,10 +9,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ZERO_BOUNDING_BOX } from "../../../constants";
-import { fromCoordinatesArray, toCoordinatesArray } from "../../../utils/svg-path.utils";
 
 import paintStore from "../../../stores/paint.store";
-import { SvgEllipseElement, SvgPathElement } from "../../../types/svg.types";
+import { SvgEllipseElement } from "../../../types/svg.types";
 import { MovableHandle } from "../MovableHandle";
 import { SelectorMoveType } from "../constants";
 import {
@@ -23,14 +22,14 @@ import {
   onTopLeftDrag,
   setupRegionContext,
 } from "../selectorUtils";
-import { AnimatedEllipse, AnimatedPath, AnimatedSvg, AnimatedView } from "./selector.constants";
+import { AnimatedEllipse, AnimatedSvg, AnimatedView } from "./selector.constants";
 import { styles } from "./selector.styles";
 import { SelectorProps } from "./selector.types";
 
 export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>> = ({
   originalBoundingBox = ZERO_BOUNDING_BOX,
   selectedElement,
-  onDrawElementUpdate = () => {},
+  onDrawElementUpdate,
 }) => {
   const zoomLevel = paintStore.zoomAndPanInfo.zoomLevel;
   const { width: MAX_X, height: MAX_Y } = paintStore.canvasDimensions;
@@ -143,7 +142,11 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       applyTopLeftSnap(topLeft);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, ...sharedEllipse.value } as SvgEllipseElement);
+
+      const { cx, cy, rx, ry } = sharedEllipse.value;
+      const ellipse = { ...selectedElement, cx, cy, rx, ry };
+
+      runOnJS(onDrawElementUpdate)(ellipse);
     });
 
   const onDragBottomRight = Gesture.Pan()
@@ -158,7 +161,11 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       applyBottomRightSnap(bottomRight, MAX_X, MAX_Y);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, ...sharedEllipse.value } as SvgEllipseElement);
+
+      const { cx, cy, rx, ry } = sharedEllipse.value;
+      const ellipse = { ...selectedElement, cx, cy, rx, ry };
+
+      runOnJS(onDrawElementUpdate)(ellipse);
     });
 
   const onDragRectangle = Gesture.Pan()
@@ -174,7 +181,11 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
     .onEnd(() => {
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, ...sharedEllipse.value } as SvgEllipseElement);
+
+      const { cx, cy, rx, ry } = sharedEllipse.value;
+      const ellipse = { ...selectedElement, cx, cy, rx, ry };
+
+      runOnJS(onDrawElementUpdate)(ellipse);
     });
 
   const animatedProps = useAnimatedProps(() => ({
