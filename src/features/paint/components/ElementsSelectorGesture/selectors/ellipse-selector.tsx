@@ -89,45 +89,23 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       };
     }
 
-    if (moveType.value === SelectorMoveType.BOTTOM_RIGHT) {
-      const stretchX = width.value / originalBoundingBox.width;
-      const stretchY = height.value / originalBoundingBox.height;
+    // default
+    const stretchX = width.value / originalBoundingBox.width;
+    const stretchY = height.value / originalBoundingBox.height;
 
-      const rx = originalElement.value.rx * stretchX;
-      const ry = originalElement.value.ry * stretchY;
+    const rx = originalElement.value.rx * stretchX;
+    const ry = originalElement.value.ry * stretchY;
 
-      const deltaX = rx - originalElement.value.rx;
-      const deltaY = ry - originalElement.value.ry;
+    const deltaX = rx - originalElement.value.rx;
+    const deltaY = ry - originalElement.value.ry;
 
-      return {
-        ...originalElement.value,
-        rx,
-        ry,
-        cx: originalElement.value.cx + deltaX,
-        cy: originalElement.value.cy + deltaY,
-      };
-    }
-
-    if (moveType.value === SelectorMoveType.TOP_LEFT) {
-      const stretchX = width.value / originalBoundingBox.width;
-      const stretchY = height.value / originalBoundingBox.height;
-
-      const rx = originalElement.value.rx * stretchX;
-      const ry = originalElement.value.ry * stretchY;
-
-      const deltaX = rx - originalElement.value.rx;
-      const deltaY = ry - originalElement.value.ry;
-
-      return {
-        ...originalElement.value,
-        rx,
-        ry,
-        cx: originalElement.value.cx - deltaX,
-        cy: originalElement.value.cy - deltaY,
-      };
-    }
-
-    return selectedElement;
+    return {
+      ...originalElement.value,
+      rx,
+      ry,
+      cx: originalElement.value.cx + deltaX,
+      cy: originalElement.value.cy + deltaY,
+    };
   });
 
   const onDragTopLeft = Gesture.Pan()
