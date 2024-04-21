@@ -89,23 +89,45 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       };
     }
 
-    // default
-    const stretchX = width.value / originalBoundingBox.width;
-    const stretchY = height.value / originalBoundingBox.height;
+    if (moveType.value === SelectorMoveType.BOTTOM_RIGHT) {
+      const stretchX = width.value / originalBoundingBox.width;
+      const stretchY = height.value / originalBoundingBox.height;
 
-    const rx = originalElement.value.rx * stretchX;
-    const ry = originalElement.value.ry * stretchY;
+      const rx = originalElement.value.rx * stretchX;
+      const ry = originalElement.value.ry * stretchY;
 
-    const deltaX = rx - originalElement.value.rx;
-    const deltaY = ry - originalElement.value.ry;
+      const deltaX = rx - originalElement.value.rx;
+      const deltaY = ry - originalElement.value.ry;
 
-    return {
-      ...originalElement.value,
-      rx,
-      ry,
-      cx: originalElement.value.cx + deltaX,
-      cy: originalElement.value.cy + deltaY,
-    };
+      return {
+        ...originalElement.value,
+        rx,
+        ry,
+        cx: originalElement.value.cx + deltaX,
+        cy: originalElement.value.cy + deltaY,
+      };
+    }
+
+    if (moveType.value === SelectorMoveType.TOP_LEFT) {
+      const stretchX = width.value / originalBoundingBox.width;
+      const stretchY = height.value / originalBoundingBox.height;
+
+      const rx = originalElement.value.rx * stretchX;
+      const ry = originalElement.value.ry * stretchY;
+
+      const deltaX = rx - originalElement.value.rx;
+      const deltaY = ry - originalElement.value.ry;
+
+      return {
+        ...originalElement.value,
+        rx,
+        ry,
+        cx: originalElement.value.cx - deltaX,
+        cy: originalElement.value.cy - deltaY,
+      };
+    }
+
+    return selectedElement;
   });
 
   const onDragTopLeft = Gesture.Pan()
@@ -166,12 +188,17 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       runOnJS(onDrawElementUpdate)(ellipse);
     });
 
-  const animatedProps = useAnimatedProps(() => ({
-    cx: isSelectionAreaDirty.value ? undefined : sharedEllipse.value.cx,
-    cy: isSelectionAreaDirty.value ? undefined : sharedEllipse.value.cy,
-    rx: isSelectionAreaDirty.value ? undefined : sharedEllipse.value.rx,
-    ry: isSelectionAreaDirty.value ? undefined : sharedEllipse.value.ry,
-  }));
+  const animatedProps = useAnimatedProps(() => {
+    const isDirty = isSelectionAreaDirty.value;
+    const { cx, cy, rx, ry } = sharedEllipse.value;
+
+    return {
+      cx: isDirty ? undefined : cx,
+      cy: isDirty ? undefined : cy,
+      rx: isDirty ? undefined : rx,
+      ry: isDirty ? undefined : ry,
+    };
+  });
 
   if (!selectedElement) {
     return null;
