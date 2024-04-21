@@ -2,14 +2,12 @@ import { observer } from "mobx-react";
 import { useStyles } from "../CanvasEdit.styles";
 import { ExpandableToolbar } from "./ExpandableToolbar";
 import { ToolbarAction } from "./ToolbarAction";
-import { useSelectedElements } from "../hooks/useSelectedElement";
 import paintStore from "../stores/paint.store";
 
 const ToolbarModes = () => {
   const styles = useStyles();
 
-  const { isCanvasEmpty, isDrawMode, isSelectorMode, isTransformMode, isZoomPanMode } = paintStore;
-  const { hasSingleSelectedPath } = useSelectedElements();
+  const { isCanvasEmpty, isDrawMode, isSelectorMode, isTransformMode, isZoomPanMode, hasSelectedElements } = paintStore;
 
   const onDraw = () => paintStore.setCanvasModeToDraw();
   const onSelector = () => paintStore.setCanvasModeToSelector();
@@ -24,7 +22,7 @@ const ToolbarModes = () => {
         icon="move-resize-variant"
         onPress={onTransform}
         selected={isTransformMode}
-        disabled={!hasSingleSelectedPath}
+        disabled={!hasSelectedElements}
       />
       <ToolbarAction icon="gesture-swipe" onPress={onZoomPan} selected={isZoomPanMode} />
     </ExpandableToolbar>

@@ -4,6 +4,10 @@ import { pick, types } from "react-native-document-picker";
 import { DocumentDirectoryPath, DownloadDirectoryPath, exists } from "react-native-fs";
 import { isAndroid } from "../../../utils/platform.utils";
 
+import { SvgElement } from "../types/svg.types";
+
+export type SvgElementWithSelectedFlag = SvgElement & { isSelected: boolean };
+
 export type PaintFile = {
   filename: string;
   fullFilename: string;

@@ -1,14 +1,19 @@
 import { autorun, makeAutoObservable, runInAction } from "mobx";
 import { exists, readFile, writeFile } from "react-native-fs";
 import { askConfirmation } from "../../../utils/alert.utils";
-import { CanvasDimensions, CanvasMode, CanvasSurface, DEFAULT_CANVAS_DIMENSIONS } from "../types/canvas.types";
+import {
+  BoundingBox,
+  CanvasDimensions,
+  CanvasMode,
+  CanvasSurface,
+  DEFAULT_CANVAS_DIMENSIONS,
+} from "../types/canvas.types";
 import { SvgElement } from "../types/svg.types";
-import { computeMaxDimensionsForAspectRatio } from "../utils/canvas.utils";
+import { computeBoundingBox, computeMaxDimensionsForAspectRatio } from "../utils/canvas.utils";
 import { fromSvgFormat, toSvgFormat } from "../utils/svg-serialization.utils";
 import brushStore from "./brush.store";
 import { newPaintFile, parsePaintFile, pickFile } from "./paint.store.utils";
 import zoomPanInfoStore from "./zoom-pan.store";
-import chatGptService from "../service/chat-gpt.service";
 
 class PaintStore {
   zoomAndPanInfo = zoomPanInfoStore;
@@ -122,6 +127,18 @@ class PaintStore {
     return parsePaintFile(this.paintFile).filename;
   }
 
+  get selectedElements(): SvgElement[] {
+    return this.elements.filter(({ id }) => this.selectedElementIDs.includes(id));
+  }
+
+  get unselectedElements(): SvgElement[] {
+    return this.elements.filter(({ id }) => !this.selectedElementIDs.includes(id));
+  }
+
+  get selectionBoundingBox(): BoundingBox {
+    return computeBoundingBox(this.selectedElements[0]); // TODO Support multiple elements
+  }
+
   // actions
   // ------------------------------
   setCanvasModeToDraw() {
@@ -163,6 +180,7 @@ class PaintStore {
       this._isSaved = false;
     });
   }
+
   async open() {
     const paintFile = await pickFile();
     if (!paintFile) {
@@ -298,27 +316,27 @@ class PaintStore {
     // const instructions = "draw a square with green border";
     // const instructions = "draw a square with green border and a red circle inside";
     // const instructions = "draw a blue triangle without Z command";
-    const instructions = "draw a small green ellipse at top left corner of the viewBox";
+    // const instructions = "draw a small green ellipse at top left corner of the viewBox";
 
-    console.log("====>>> instructions", instructions);
+    // console.log("====>>> instructions", instructions);
 
-    chatGptService.sendMessage(instructions).then(content => {
-      console.log("====>>> content", content);
-      const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
-      elements.forEach((element, index) => (element.id = index));
-      this.reset(elements);
-    });
+    // chatGptService.sendMessage(instructions).then(content => {
+    //   console.log("====>>> content", content);
+    //   const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
+    //   elements.forEach((element, index) => (element.id = index));
+    //   this.reset(elements);
+    // });
 
-    // const content = `
-    //   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600">
-    //     <ellipse cx="50" cy="50" rx="30" ry="20" stroke="green" stroke-width="3" fill="none" />
-    //   </svg>
-    // `;
-    // console.info("====>>> content", content);
+    const content = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600">
+        <ellipse cx="50" cy="50" rx="30" ry="20" stroke="green" stroke-width="3" fill="none" />
+      </svg>
+    `;
+    console.info("====>>> content", content);
 
-    // const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
-    // elements.forEach((element, index) => (element.id = index));
-    // this.reset(elements);
+    const elements = fromSvgFormat({ content, screenScale: paintStore.canvasDimensions.screenScale });
+    elements.forEach((element, index) => (element.id = index));
+    this.reset(elements);
   }
 }
 
