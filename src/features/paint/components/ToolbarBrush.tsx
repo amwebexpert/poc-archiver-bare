@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { observer } from "mobx-react";
 import { useSnackbar } from "../../../components/snack-bar/SnackbarProvider";
@@ -31,6 +31,12 @@ const ToolbarBrush = () => {
   const onUndo = () => paintStore.undo();
   const onDelete = () => paintStore.deleteSelectedElements();
   const onGenerate = () => paintStore.generateSvg();
+
+  useEffect(() => {
+    if (isSaveProcessStarted) {
+      showSnackbarMessage("Saving...", 1000);
+    }
+  }, [isSaveProcessStarted]);
 
   return (
     <>

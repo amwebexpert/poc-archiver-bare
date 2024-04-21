@@ -206,16 +206,21 @@ class PaintStore {
   }
 
   async save(base64Snapshot: string): Promise<boolean> {
+    if (this._isSaving) {
+      return false;
+    }
+
+    runInAction(() => (this._isSaving = true));
+
     const isFileExists = await exists(this.paintFile);
     const { filename, fullFilenamePreview } = parsePaintFile(this.paintFile);
     if (isFileExists) {
       const shouldReplaceExisting = await askConfirmation(`Override "${filename}" file?`);
       if (!shouldReplaceExisting) {
+        runInAction(() => (this._isSaving = false));
         return false;
       }
     }
-
-    runInAction(() => (this._isSaving = true));
 
     try {
       const { screenScale } = this.canvasDimensions;
