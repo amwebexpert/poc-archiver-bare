@@ -29,7 +29,7 @@ const SvgSnapshot: FunctionComponent<SvgSnapshotProps> = ({
   const onRefUpdate = (ref: Svg) => {
     if (isIOS()) {
       // Dont know why if we do not log this, the ref does not get updated
-      console.log("====>>> onRefUpdate", { elements: elements.length, scale, ref });
+      console.log("====>>> onRefUpdate", { elements: elements.length, scale, width: ref?.props.width });
     }
     ref?.toDataURL(onBase64Generated, DEFAULT_CANVAS_DIMENSIONS);
   };
