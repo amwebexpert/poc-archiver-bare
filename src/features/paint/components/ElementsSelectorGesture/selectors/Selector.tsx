@@ -1,11 +1,9 @@
 import { FunctionComponent } from "react";
 
-import { ZERO_BOUNDING_BOX } from "../../../constants";
-
-import { SelectorProps } from "./selector.types";
 import { SvgElementType, SvgEllipseElement, SvgPathElement } from "../../../types/svg.types";
-import { PathSelector } from "./path-selector";
 import { EllipseSelector } from "./ellipse-selector";
+import { PathSelector } from "./path-selector";
+import { SelectorProps } from "./selector.types";
 
 export const Selector: FunctionComponent<SelectorProps> = ({
   originalBoundingBox,
