@@ -27,11 +27,13 @@ const SvgSnapshot: FunctionComponent<SvgSnapshotProps> = ({
   // as soon as we have a ref to the generated svg, we can take a
   // snapshot and callback onBase64Generated with the result
   const onRefUpdate = (ref: Svg) => {
+    if (!ref?.props.width) return;
+
     if (isIOS()) {
       // Dont know why if we do not log this, the ref does not get updated
-      console.log("====>>> onRefUpdate", { elements: elements.length, scale, width: ref?.props.width });
+      console.log("====>>> onRefUpdate", { elements: elements.length, scale, width: ref.props.width });
     }
-    ref?.toDataURL(onBase64Generated, DEFAULT_CANVAS_DIMENSIONS);
+    ref.toDataURL(onBase64Generated, DEFAULT_CANVAS_DIMENSIONS);
   };
 
   return (
