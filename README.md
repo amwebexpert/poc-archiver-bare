@@ -77,6 +77,15 @@ npm run ios
 yarn ios
 ```
 
+### Reactotron integration
+
+#### Android usefull instructions and commands
+
+- connect device with usbc cable
+- `adb devices`
+- `adb reverse tcp:9090 tcp:9090`
+- `adb logcat -s ReactNativeJS` to see console.log of reanimated `worklet`
+
 ### Troubleshooting
 
 #### `undefined method __apply_Xcode_12_5_M1_post_install_workaround'`

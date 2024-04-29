@@ -20,7 +20,7 @@ const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
     <View style={[paintCommonStyles.container, { transform: [{ scale: zoomLevel }, { translateX }, { translateY }] }]}>
       <Selector
         originalBoundingBox={selectionBoundingBox!}
-        selectedElement={firstSelectedElement as unknown as SvgPathElement} // TODO: support multiple elements
+        selectedElement={firstSelectedElement} // TODO: support multiple elements
         onDrawElementUpdate={onDrawElementUpdate} // TODO: support multiple elements
       />
 

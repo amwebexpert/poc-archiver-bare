@@ -1,3 +1,4 @@
+import Reactotron from "reactotron-react-native";
 import { ColorValue, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, { runOnJS, useAnimatedProps } from "react-native-reanimated";
@@ -19,7 +20,7 @@ type PathGestureDrawerProps = {
   strokeWidth?: number;
   fill?: ColorValue;
   addElementFromGesture?: (path: string) => void;
-  gesturePoints: GesturePoints;
+  gesturePoints?: GesturePoints;
 };
 
 export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
@@ -36,6 +37,9 @@ export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
     })
     .onChange(({ x, y }) => {
       gesturePoints.value = [...gesturePoints.value, `L ${x},${y}`]; // L = "line to"
+      // to see this through logcat, type the following command in the terminal:
+      // adb logcat -s ReactNativeJS
+      // console.info("gesturePoints", gesturePoints.value);
     })
     .onEnd((_event, _ctx) => runOnJS(addElementFromGesture)(gesturePoints.value.join(" ")));
 

@@ -27,7 +27,7 @@ Reactotron.onCustomCommand({
   title: "Show Dev Menu",
   description: "Opens the React Native developer menu",
   command: "showDevMenu",
-  handler: () => NativeModules.DevMenu.show(),
+  handler: () => NativeModules.DevMenu?.show(),
 });
 
 Reactotron.onCustomCommand({

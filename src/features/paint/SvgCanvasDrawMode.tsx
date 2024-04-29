@@ -9,8 +9,6 @@ import SvgViewer from "./components/SvgViewer/SvgViewer";
 import brushStore from "./stores/brush.store";
 import paintStore from "./stores/paint.store";
 import { createElementFromPathGesture } from "./utils/canvas.utils";
-import chatGptService from "./service/chat-gpt.service";
-import { fromSvgFormat } from "./utils/svg-serialization.utils";
 
 const SvgCanvasDrawMode: FunctionComponent<{}> = () => {
   const { size, color } = brushStore;

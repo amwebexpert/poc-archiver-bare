@@ -136,7 +136,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
       applyTopLeftSnap(topLeft);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
   const onDragBottomRight = Gesture.Pan()
@@ -151,7 +151,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
       applyBottomRightSnap(bottomRight, MAX_X, MAX_Y);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
   const onDragRectangle = Gesture.Pan()
@@ -167,7 +167,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
     .onEnd(() => {
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value } as SvgPathElement);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
   const animatedProps = useAnimatedProps(() => ({ d: isSelectionAreaDirty.value ? "" : d.value }));
