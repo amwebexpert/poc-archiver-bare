@@ -8,12 +8,13 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated";
 
-import { ZERO_BOUNDING_BOX } from "../../../constants";
+import { ZERO_BOUNDING_BOX } from "../../constants";
+import { fromCoordinatesArray, toCoordinatesArray } from "../../utils/svg-path.utils";
 
-import paintStore from "../../../stores/paint.store";
-import { SvgEllipseElement } from "../../../types/svg.types";
-import { MovableHandle } from "../MovableHandle";
-import { SelectorMoveType } from "../constants";
+import paintStore from "../../stores/paint.store";
+import { SvgPathElement } from "../../types/svg.types";
+import { MovableHandle } from "./MovableHandle";
+import { SelectorMoveType } from "./constants";
 import {
   applyBottomRightSnap,
   applyTopLeftSnap,
@@ -21,15 +22,15 @@ import {
   onRegionDrag,
   onTopLeftDrag,
   setupRegionContext,
-} from "../selectorUtils";
-import { AnimatedEllipse, AnimatedSvg, AnimatedView } from "./selector.constants";
+} from "./selectorUtils";
+import { AnimatedPath, AnimatedSvg, AnimatedView } from "./selector.constants";
 import { styles } from "./selector.styles";
 import { SelectorProps } from "./selector.types";
 
-export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>> = ({
+export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
   originalBoundingBox = ZERO_BOUNDING_BOX,
   selectedElement,
-  onDrawElementUpdate,
+  onDrawElementUpdate = () => {},
 }) => {
   const zoomLevel = paintStore.zoomAndPanInfo.zoomLevel;
   const { width: MAX_X, height: MAX_Y } = paintStore.canvasDimensions;
@@ -37,7 +38,7 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
 
   const isSelectionAreaDirty = useSharedValue(false);
   const moveType = useSharedValue(SelectorMoveType.NONE);
-  const originalElement = useSharedValue(selectedElement);
+  const originalPathPoints = useSharedValue(toCoordinatesArray(selectedElement?.d));
   const topLeft = useSharedValue({ x: originalBoundingBox.left, y: originalBoundingBox.top });
   const bottomRight = useSharedValue({
     x: originalBoundingBox.left + originalBoundingBox.width,
@@ -65,7 +66,7 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
     // to solve this, we need to recompute all the following values within a "worklet" and then we
     // also need to migrate the dependencies library code we use within a worklet
     // (like pathParser from "parse-svg-path")
-    originalElement.value = selectedElement;
+    originalPathPoints.value = toCoordinatesArray(selectedElement?.d);
     topLeft.value = { x: originalBoundingBox.left, y: originalBoundingBox.top };
     bottomRight.value = {
       x: originalBoundingBox.left + originalBoundingBox.width,
@@ -74,60 +75,53 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
     isSelectionAreaDirty.value = false;
   }, [selectedElement, originalBoundingBox]);
 
-  const sharedEllipse = useDerivedValue<SvgEllipseElement>(() => {
+  const d = useDerivedValue<string>(() => {
     if (moveType.value === SelectorMoveType.NONE) {
-      return selectedElement;
+      return selectedElement?.d ?? "";
     }
 
     if (moveType.value === SelectorMoveType.BOUNDING_BOX) {
       const deltaX = left.value - originalBoundingBox.left;
       const deltaY = top.value - originalBoundingBox.top;
-      return {
-        ...originalElement.value,
-        cx: originalElement.value.cx + deltaX,
-        cy: originalElement.value.cy + deltaY,
-      };
+      const newPoints = originalPathPoints.value.map(point => ({ x: point.x + deltaX, y: point.y + deltaY }));
+      return fromCoordinatesArray(newPoints);
     }
 
     if (moveType.value === SelectorMoveType.BOTTOM_RIGHT) {
       const stretchX = width.value / originalBoundingBox.width;
       const stretchY = height.value / originalBoundingBox.height;
 
-      const rx = originalElement.value.rx * stretchX;
-      const ry = originalElement.value.ry * stretchY;
+      const minX = Math.min(...originalPathPoints.value.map(({ x }) => x));
+      const deltaX = minX * stretchX - left.value;
 
-      const deltaX = rx - originalElement.value.rx;
-      const deltaY = ry - originalElement.value.ry;
+      const minY = Math.min(...originalPathPoints.value.map(({ y }) => y));
+      const deltaY = minY * stretchY - top.value;
 
-      return {
-        ...originalElement.value,
-        rx,
-        ry,
-        cx: originalElement.value.cx + deltaX,
-        cy: originalElement.value.cy + deltaY,
-      };
+      const newPoints = originalPathPoints.value.map(({ x, y }) => ({
+        x: x * stretchX - deltaX,
+        y: y * stretchY - deltaY,
+      }));
+      return fromCoordinatesArray(newPoints);
     }
 
     if (moveType.value === SelectorMoveType.TOP_LEFT) {
       const stretchX = width.value / originalBoundingBox.width;
       const stretchY = height.value / originalBoundingBox.height;
 
-      const rx = originalElement.value.rx * stretchX;
-      const ry = originalElement.value.ry * stretchY;
+      const maxX = Math.max(...originalPathPoints.value.map(({ x }) => x));
+      const deltaX = maxX * stretchX - (left.value + width.value);
 
-      const deltaX = rx - originalElement.value.rx;
-      const deltaY = ry - originalElement.value.ry;
+      const maxY = Math.max(...originalPathPoints.value.map(({ y }) => y));
+      const deltaY = maxY * stretchY - (top.value + height.value);
 
-      return {
-        ...originalElement.value,
-        rx,
-        ry,
-        cx: originalElement.value.cx - deltaX,
-        cy: originalElement.value.cy - deltaY,
-      };
+      const newPoints = originalPathPoints.value.map(({ x, y }) => ({
+        x: x * stretchX - deltaX,
+        y: y * stretchY - deltaY,
+      }));
+      return fromCoordinatesArray(newPoints);
     }
 
-    return selectedElement;
+    return "";
   });
 
   const onDragTopLeft = Gesture.Pan()
@@ -142,11 +136,7 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       applyTopLeftSnap(topLeft);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-
-      const { cx, cy, rx, ry } = sharedEllipse.value;
-      const ellipse = { ...selectedElement, cx, cy, rx, ry };
-
-      runOnJS(onDrawElementUpdate)(ellipse);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
   const onDragBottomRight = Gesture.Pan()
@@ -161,11 +151,7 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
       applyBottomRightSnap(bottomRight, MAX_X, MAX_Y);
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-
-      const { cx, cy, rx, ry } = sharedEllipse.value;
-      const ellipse = { ...selectedElement, cx, cy, rx, ry };
-
-      runOnJS(onDrawElementUpdate)(ellipse);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
   const onDragRectangle = Gesture.Pan()
@@ -181,24 +167,10 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
     .onEnd(() => {
       moveType.value = SelectorMoveType.NONE;
       isSelectionAreaDirty.value = true;
-
-      const { cx, cy, rx, ry } = sharedEllipse.value;
-      const ellipse = { ...selectedElement, cx, cy, rx, ry };
-
-      runOnJS(onDrawElementUpdate)(ellipse);
+      runOnJS(onDrawElementUpdate)({ ...selectedElement, d: d.value });
     });
 
-  const animatedProps = useAnimatedProps(() => {
-    const isDirty = isSelectionAreaDirty.value;
-    const { cx, cy, rx, ry } = sharedEllipse.value;
-
-    return {
-      cx: isDirty ? undefined : cx,
-      cy: isDirty ? undefined : cy,
-      rx: isDirty ? undefined : rx,
-      ry: isDirty ? undefined : ry,
-    };
-  });
+  const animatedProps = useAnimatedProps(() => ({ d: isSelectionAreaDirty.value ? "" : d.value }));
 
   if (!selectedElement) {
     return null;
@@ -211,7 +183,7 @@ export const EllipseSelector: FunctionComponent<SelectorProps<SvgEllipseElement>
 
       <Animated.View style={styles.animatedViewContainer}>
         <AnimatedSvg height="100%" width="100%">
-          <AnimatedEllipse
+          <AnimatedPath
             fill="none"
             animatedProps={animatedProps}
             stroke={selectedElement.strokeColor}

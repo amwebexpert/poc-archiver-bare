@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 
-import { SvgElementType, SvgEllipseElement, SvgPathElement } from "../../../types/svg.types";
+import { SvgElementType, SvgEllipseElement, SvgPathElement } from "../../types/svg.types";
 import { EllipseSelector } from "./ellipse-selector";
 import { PathSelector } from "./path-selector";
 import { SelectorProps } from "./selector.types";

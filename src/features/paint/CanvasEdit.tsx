@@ -3,12 +3,12 @@ import { View } from "react-native";
 import { observer } from "mobx-react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useStyles } from "./CanvasEdit.styles";
-import ToolbarBrush from "./components/ToolbarBrush";
-import ToolbarModes from "./components/ToolbarModes";
 import SvgCanvasDrawMode from "./SvgCanvasDrawMode";
 import SvgCanvasElementsSelectorMode from "./SvgCanvasElementsSelectorMode";
 import SvgCanvasElementsStretcherMode from "./SvgCanvasElementsStretcherMode";
 import SvgCanvasZoomMode from "./SvgCanvasZoomMode";
+import ToolbarBrush from "./components/ToolbarBrush";
+import ToolbarModes from "./components/ToolbarModes";
 import paintStore from "./stores/paint.store";
 
 const CanvasEdit = () => {

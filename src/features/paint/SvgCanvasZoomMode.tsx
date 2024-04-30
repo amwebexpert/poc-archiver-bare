@@ -33,7 +33,7 @@ const SvgCanvasZoomMode: FunctionComponent<{}> = () => {
       doubleTapDelay={zoomLevel > 1 ? 400 : 0}
       zoomStep={0.25}
       bindToBorders={true}
-      onTranslateXY={onZoomPanInfoUpdate}
+      onTranslateXY={onZoomPanInfoUpdate} // TODO Improve typing of the patch
       style={paintCommonStyles.container}>
       <SvgViewer elements={elements} />
     </ReactNativeZoomableView>

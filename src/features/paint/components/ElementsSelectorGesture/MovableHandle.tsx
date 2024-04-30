@@ -1,10 +1,10 @@
-import { View, StyleSheet } from "react-native";
-import { GestureDetector, GestureType, PanGestureHandler } from "react-native-gesture-handler";
+import { StyleSheet, View } from "react-native";
+import { GestureDetector, GestureType } from "react-native-gesture-handler";
 import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from "react-native-reanimated";
 
-import { useMovableHandleSize } from "./hooks/useMovableHandleSize";
-import { XYCoordinates } from "../../types/canvas.types";
 import { FunctionComponent } from "react";
+import { XYCoordinates } from "../../types/canvas.types";
+import { computeMovableHandleSize } from "./selectorUtils";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -14,7 +14,7 @@ type MovableHandleProps = {
 };
 
 export const MovableHandle: FunctionComponent<MovableHandleProps> = ({ position, onDrag }) => {
-  const { halfCircleSize, circleSize } = useMovableHandleSize();
+  const { halfCircleSize, circleSize } = computeMovableHandleSize();
 
   const circlePositionX = useDerivedValue(() => position.value.x - halfCircleSize);
   const circlePositionY = useDerivedValue(() => position.value.y - halfCircleSize);

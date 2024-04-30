@@ -1,8 +1,20 @@
 import { SharedValue } from "react-native-reanimated";
-import { XYCoordinates } from "../../types/canvas.types";
 import { ZERO_COORDINATES } from "../../constants";
-import { SNAP_DELTA } from "./constants";
+import paintStore from "../../stores/paint.store";
+import { XYCoordinates } from "../../types/canvas.types";
+import { CIRCLE_SIZE, SNAP_DELTA } from "./constants";
 import { AnimationEventType, ContextType } from "./selectors.types";
+
+export const computeMovableHandleSize = () => {
+  const { zoomLevel } = paintStore.zoomAndPanInfo;
+  const circleSize = CIRCLE_SIZE / zoomLevel;
+  const halfCircleSize = circleSize / 2;
+
+  return {
+    halfCircleSize,
+    circleSize,
+  };
+};
 
 // optional (dont call it if you don't want a "snap 2 the edge" behavior)
 export const applyBottomRightSnap = (position: SharedValue<XYCoordinates>, maxX = 0, maxY = 0) => {

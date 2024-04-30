@@ -3,10 +3,10 @@ import { View } from "react-native";
 import { observer } from "mobx-react";
 import { FunctionComponent } from "react";
 import { paintCommonStyles } from "./CanvasEdit.styles";
-import { Selector } from "./components/ElementsSelectorGesture/selectors/selector";
+import { Selector } from "./components/ElementsSelectorGesture/selector";
 import SvgViewer from "./components/SvgViewer/SvgViewer";
 import paintStore from "./stores/paint.store";
-import { SvgElement, SvgPathElement } from "./types/svg.types";
+import { SvgElement } from "./types/svg.types";
 
 const SvgCanvasElementsStretcherMode: FunctionComponent = ({}) => {
   const { zoomLevel, translateX, translateY } = paintStore.zoomAndPanInfo;
