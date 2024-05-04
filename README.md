@@ -20,6 +20,12 @@
 - `styled-components`
 - and many more...
 
+## Screen recordings of some POCs
+
+| Generic Drawer POC                              | Zoom In/Out Drawer POC                               |
+| ----------------------------------------------- | ---------------------------------------------------- |
+| <img src="docs/captures/ios-demo-drawer.gif" /> | <img src="docs/captures/ios-demo-drawer-zoom.gif" /> |
+
 ## TODOs
 
 - replace both `prettier` and `eslint` by [Biomejs](https://biomejs.dev/)
