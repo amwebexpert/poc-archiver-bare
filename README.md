@@ -22,9 +22,9 @@
 
 ## Screen recordings of some POCs
 
-| Generic Drawer POC                              | Zoom In/Out Drawer POC                               |
-| ----------------------------------------------- | ---------------------------------------------------- |
-| <img src="docs/captures/ios-demo-drawer.gif" /> | <img src="docs/captures/ios-demo-drawer-zoom.gif" /> |
+| iOS Generic Drawer POC                          | iOS Zoom In/Out Drawer POC                           | Android open existing svg                              | Android Zoom edit undo                                      |
+| ----------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------- |
+| <img src="docs/captures/ios-demo-drawer.gif" /> | <img src="docs/captures/ios-demo-drawer-zoom.gif" /> | <img src="docs/captures/android-demo-open-file.gif" /> | <img src="docs/captures/android-demo-zoom-edit-undo.gif" /> |
 
 ## TODOs
 
