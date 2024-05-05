@@ -15,7 +15,6 @@ type ExpandableToolbarProps = PropsWithChildren & ViewProps;
 const ICON_BUTTON_LAYOUT_WIDTH = 48;
 
 export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ children, ...rest }) => {
-  const styles = useStyles();
   const [isExpanded, setIsExpanded] = useState(true);
   const count = Children.count(children);
   const toolbarWidth = count * ICON_BUTTON_LAYOUT_WIDTH;
@@ -44,20 +43,16 @@ export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ c
   );
 };
 
-const useStyles = () => {
-  const theme = useTheme() as AppTheme;
-
-  return StyleSheet.create({
-    expandToggleButton: {
-      height: 32,
-      width: 24,
-      padding: 0,
-      marginHorizontal: 0,
-      borderColor: undefined,
-    },
-    fixedToolbarContainer: {
-      flexDirection: "row",
-      overflow: "hidden",
-    },
-  });
-};
+const styles = StyleSheet.create({
+  expandToggleButton: {
+    height: 32,
+    width: 24,
+    padding: 0,
+    marginHorizontal: 0,
+    borderColor: undefined,
+  },
+  fixedToolbarContainer: {
+    flexDirection: "row",
+    overflow: "hidden",
+  },
+});
