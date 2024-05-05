@@ -1,6 +1,6 @@
 import { ColorValue, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, { runOnJS, useAnimatedProps } from "react-native-reanimated";
+import Animated, { SharedValue, runOnJS, useAnimatedProps } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
 import { SINGLE_TAP_MAX_DISTANCE } from "../constants";
@@ -10,16 +10,12 @@ import { FunctionComponent } from "react";
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
-type GesturePoints = {
-  value: string[];
-};
-
 type PathGestureDrawerProps = {
   strokeColor?: ColorValue;
   strokeWidth?: number;
   fill?: ColorValue;
   addElementFromGesture?: (path: string) => void;
-  gesturePoints?: GesturePoints;
+  gesturePoints?: SharedValue<string[]>;
 };
 
 export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
@@ -49,9 +45,7 @@ export const PathGestureDrawer: FunctionComponent<PathGestureDrawerProps> = ({
     })
     .onEnd((_event, _ctx) => runOnJS(addElementFromGesture)(gesturePoints.value.join(" ")));
 
-  const animatedProps = useAnimatedProps(() => ({
-    d: gesturePoints.value.join(),
-  }));
+  const animatedProps = useAnimatedProps(() => ({ d: gesturePoints.value.join(" ") }));
 
   return (
     <View style={styles.container}>
