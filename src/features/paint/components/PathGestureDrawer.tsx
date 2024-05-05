@@ -1,4 +1,3 @@
-import Reactotron from "reactotron-react-native";
 import { ColorValue, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, { runOnJS, useAnimatedProps } from "react-native-reanimated";
