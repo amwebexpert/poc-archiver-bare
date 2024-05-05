@@ -12,8 +12,6 @@ import { AppTheme } from "../../../theme";
 
 type ExpandableToolbarProps = PropsWithChildren & ViewProps;
 
-const ICON_BUTTON_LAYOUT_WIDTH = 48;
-
 export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ children, ...rest }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const count = Children.count(children);
@@ -56,3 +54,5 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 });
+
+const ICON_BUTTON_LAYOUT_WIDTH = styles.expandToggleButton.width * 2;
