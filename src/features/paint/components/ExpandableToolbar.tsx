@@ -1,7 +1,13 @@
 import { Children, FunctionComponent, PropsWithChildren, useState } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 import { IconButton, useTheme } from "react-native-paper";
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { AppTheme } from "../../../theme";
 
 type ExpandableToolbarProps = PropsWithChildren & ViewProps;
@@ -11,18 +17,18 @@ const ICON_BUTTON_LAYOUT_WIDTH = 48;
 export const ExpandableToolbar: FunctionComponent<ExpandableToolbarProps> = ({ children, ...rest }) => {
   const styles = useStyles();
   const [isExpanded, setIsExpanded] = useState(true);
-  const expansion = useSharedValue(1);
   const count = Children.count(children);
   const toolbarWidth = count * ICON_BUTTON_LAYOUT_WIDTH;
-  const animatedStyles = useAnimatedStyle(() => ({
-    width: toolbarWidth * expansion.value,
-  }));
+
+  const expansion = useSharedValue(1);
+  const width = useDerivedValue(() => toolbarWidth * expansion.value);
+  const animatedStyles = useAnimatedStyle(() => ({ width: width.value }));
 
   const toggleExpansion = () => {
-    const toValue = expansion.value === 1 ? 0 : 1;
-    const expand = toValue === 1;
-    expansion.value = expand ? withSpring(toValue) : withTiming(toValue, { duration: 400 });
-    setIsExpanded(expand);
+    const toValue = expansion.value ? 0 : 1;
+    const shouldExpand = toValue === 1;
+    expansion.value = shouldExpand ? withSpring(toValue) : withTiming(toValue, { duration: 400 });
+    setIsExpanded(shouldExpand);
   };
 
   return (
