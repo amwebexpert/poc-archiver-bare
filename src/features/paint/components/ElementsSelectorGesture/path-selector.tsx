@@ -15,6 +15,9 @@ import paintStore from "../../stores/paint.store";
 import { SvgPathElement } from "../../types/svg.types";
 import { MovableHandle } from "./MovableHandle";
 import { SelectorMoveType } from "./constants";
+import { AnimatedPath, AnimatedSvg, AnimatedView } from "./selector.constants";
+import { styles } from "./selector.styles";
+import { SelectorProps } from "./selector.types";
 import {
   applyBottomRightSnap,
   applyTopLeftSnap,
@@ -23,9 +26,6 @@ import {
   onTopLeftDrag,
   setupRegionContext,
 } from "./selectorUtils";
-import { AnimatedPath, AnimatedSvg, AnimatedView } from "./selector.constants";
-import { styles } from "./selector.styles";
-import { SelectorProps } from "./selector.types";
 
 export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
   originalBoundingBox = ZERO_BOUNDING_BOX,
@@ -38,7 +38,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
 
   const isSelectionAreaDirty = useSharedValue(false);
   const moveType = useSharedValue(SelectorMoveType.NONE);
-  const originalPathPoints = useSharedValue(toCoordinatesArray(selectedElement?.d));
+  const originalPathPoints = useSharedValue(toCoordinatesArray(selectedElement.d));
   const topLeft = useSharedValue({ x: originalBoundingBox.left, y: originalBoundingBox.top });
   const bottomRight = useSharedValue({
     x: originalBoundingBox.left + originalBoundingBox.width,
@@ -66,7 +66,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
     // to solve this, we need to recompute all the following values within a "worklet" and then we
     // also need to migrate the dependencies library code we use within a worklet
     // (like pathParser from "parse-svg-path")
-    originalPathPoints.value = toCoordinatesArray(selectedElement?.d);
+    originalPathPoints.value = toCoordinatesArray(selectedElement.d);
     topLeft.value = { x: originalBoundingBox.left, y: originalBoundingBox.top };
     bottomRight.value = {
       x: originalBoundingBox.left + originalBoundingBox.width,
@@ -77,7 +77,7 @@ export const PathSelector: FunctionComponent<SelectorProps<SvgPathElement>> = ({
 
   const d = useDerivedValue<string>(() => {
     if (moveType.value === SelectorMoveType.NONE) {
-      return selectedElement?.d ?? "";
+      return selectedElement.d;
     }
 
     if (moveType.value === SelectorMoveType.BOUNDING_BOX) {
