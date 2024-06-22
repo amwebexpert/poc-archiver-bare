@@ -1,16 +1,20 @@
 - [Project coding standards](#project-coding-standards)
-  - [Avoid `const renderXyx = () => {...}` pattern](#avoid-const-renderxyx-----pattern)
+  - [avoid `{renderAbc()}` pattern](#avoid-renderabc-pattern)
     - [:x: avoid](#x-avoid)
     - [:white_check_mark: prefer](#white_check_mark-prefer)
     - [:thinking: :information_source: Explanation](#thinking-information_source-explanation)
+  - [single arrow function event handler](#single-arrow-function-event-handler)
+    - [❌ avoid double arrows functions](#-avoid-double-arrows-functions)
+    - [✅ prefer single arrow functions](#-prefer-single-arrow-functions)
+    - [ℹ️ Explanation:](#ℹ️-explanation)
 
 # Project coding standards
 
 This section list coding patterns promoted in the project.
 
-## Avoid `const renderXyx = () => {...}` pattern
+## avoid `{renderAbc()}` pattern
 
-#### :x: avoid
+### :x: avoid
 
 ```typescript
 const renderToggleIcon = useCallback(() => {
@@ -36,7 +40,7 @@ return (
 )
 ```
 
-#### :white_check_mark: prefer
+### :white_check_mark: prefer
 
 ````typescript
 // define small dumb components with props
@@ -48,7 +52,7 @@ return (
 )```
 ````
 
-#### :thinking: :information_source: Explanation
+### :thinking: :information_source: Explanation
 
 the `useCallback` hook:
 
@@ -63,3 +67,55 @@ creating small dumb components:
 - removes template complexity
 - promotes potential re-usability
 - promotes separation of concerns
+
+## single arrow function event handler
+
+### ❌ avoid double arrows functions
+
+```tsx
+// double arrow functions (a.k.a. function factories)
+const onUpdatePress = (pm: PaymentMethod) => () => {
+   ...
+}
+const onDeletePress = (id: string) => () => {
+   ...
+}
+
+...
+
+return (
+  <View onPress={onUpdatePress(paymentMethod)}>
+    <View onPress={onDeletePress(id)}>
+      ...
+    </View>
+  </View>
+)
+```
+
+### ✅ prefer single arrow functions
+
+```tsx
+// simple function
+const onUpdatePress = (pm: PaymentMethod) => {
+   ...
+}
+const onDeletePress = (id: string) => {
+   ...
+}
+
+...
+
+return (
+  <View onPress={() => onUpdatePress(paymentMethod)}>
+    <View onPress={() => onDeletePress(id)}>
+      ...
+    </View>
+  </View>
+)
+```
+
+### ℹ️ Explanation:
+
+- `onNameOfEventPress` handler name makes sense when the event is triggered
+- passing the factory reference to `onPress` adds confusion since we are passing a factory that generates the handler, not the handler itself
+- factory pattern makes it more difficult to read and maintain because this adds confusion
