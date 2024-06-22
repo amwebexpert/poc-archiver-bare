@@ -1,3 +1,9 @@
+- [Project coding standards](#project-coding-standards)
+  - [Avoid `const renderXyx = () => {...}` pattern](#avoid-const-renderxyx-----pattern)
+    - [:x: avoid](#x-avoid)
+    - [:white_check_mark: prefer](#white_check_mark-prefer)
+    - [:thinking: :information_source: Explanation](#thinking-information_source-explanation)
+
 # Project coding standards
 
 This section list coding patterns promoted in the project.
