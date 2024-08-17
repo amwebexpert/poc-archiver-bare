@@ -21,6 +21,11 @@ Table of content
   - [:bulb: Usage of `Omit<P, K>` for attribute removal transformer function pattern](#bulb-usage-of-omitp-k-for-attribute-removal-transformer-function-pattern)
   - [:bulb: Pure TS function inputs validation](#bulb-pure-ts-function-inputs-validation)
   - [:bulb: Class \& this with asserts on class attributes](#bulb-class--this-with-asserts-on-class-attributes)
+  - [:bulb: Conditional Type to enforce mandatory properties](#bulb-conditional-type-to-enforce-mandatory-properties)
+    - [The Generic Type Parameter](#the-generic-type-parameter)
+    - [Conditional Type](#conditional-type)
+    - [The Resulting Type](#the-resulting-type)
+    - [Summary](#summary)
 
 ## :bulb: Reuse previous type to force next type shape
 
@@ -241,9 +246,8 @@ const myProps2: ComponentPropsWithoutRef<typeof AppProgressBar> = {
 ```typescript
 export type DeepPartial<T> = T extends Function ? T : DeepPartialArrayOrObject<T>;
 
-export type DeepPartialArrayOrObject<TArrayOrObject> = TArrayOrObject extends Array<infer TElement>
-  ? DeepPartialArray<TElement>
-  : DeepPartialObject<TArrayOrObject>;
+export type DeepPartialArrayOrObject<TArrayOrObject> =
+  TArrayOrObject extends Array<infer TElement> ? DeepPartialArray<TElement> : DeepPartialObject<TArrayOrObject>;
 
 export type DeepPartialArray<TElement> = Array<DeepPartial<TElement>>;
 
@@ -288,9 +292,8 @@ export const partialConfigs: DeepPartial<ConfigsType> = {
 // -----------------------------------------------------
 export type DeepReadonly<T> = T extends Function ? T : DeepReadonlyArrayOrObject<T>;
 
-export type DeepReadonlyArrayOrObject<TArrayOrObject> = TArrayOrObject extends Array<infer TElement>
-  ? DeepReadonlyArray<TElement>
-  : DeepReadonlyObject<TArrayOrObject>;
+export type DeepReadonlyArrayOrObject<TArrayOrObject> =
+  TArrayOrObject extends Array<infer TElement> ? DeepReadonlyArray<TElement> : DeepReadonlyObject<TArrayOrObject>;
 
 export type DeepReadonlyArray<TElement> = Readonly<Array<DeepReadonly<TElement>>>;
 
@@ -438,3 +441,51 @@ export class AppUser {
   }
 }
 ```
+
+## :bulb: Conditional Type to enforce mandatory properties
+
+```typescript
+export type Message<PayloadType = void> = PayloadType extends void
+  ? { type: MessageType }
+  : { type: MessageType; payload: PayloadType };
+```
+
+This TypeScript type definition is defining a generic type called `Message` that can either be used with a payload or without a payload. Let's break it down step by step:
+
+### The Generic Type Parameter
+
+```typescript
+<PayloadType = void>
+```
+
+- `PayloadType` is a generic type parameter. It means that when you use `Message`, you can specify a type for `PayloadType`, or you can leave it out, and it will default to `void`.
+- `void` in TypeScript represents the absence of a type (i.e., no value or an undefined return value).
+
+### Conditional Type
+
+```typescript
+PayloadType extends void
+```
+
+- This is a conditional type in TypeScript. It checks if `PayloadType` extends (or is assignable to) `void`.
+- If `PayloadType` is `void`, the condition will evaluate to `true`. Otherwise, it will evaluate to `false`.
+
+### The Resulting Type
+
+```typescript
+PayloadType extends void
+  ? { type: MessageType }
+  : { type: MessageType; payload: PayloadType }
+```
+
+- If `PayloadType` is `void`, the resulting type will be `{ type: MessageType }`. This means that the `Message` object will only have a `type` property of type `MessageType`.
+- If `PayloadType` is not `void`, the resulting type will be `{ type: MessageType; payload: PayloadType }`. This means that the `Message` object will have both a `type` property of type `MessageType` and a `payload` property of type `PayloadType`.
+
+### Summary
+
+This type definition allows for the creation of a `Message` object that can either:
+
+1. **Contain only a `type` property** if `PayloadType` is `void` or omitted.
+2. **Contain both a `type` and a `payload` property** if `PayloadType` is specified as something other than `void`.
+
+This is useful for defining message types where some messages might only need a type identifier, while others might need to carry additional data (the payload).
