@@ -8,12 +8,12 @@ import {
   ZERO_COORDINATES,
 } from "../constants";
 
-import { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
+import type { AspectRatio, BoundingBox, CanvasDimensions } from "../types/canvas.types";
 import {
-  SvgCircleElement,
-  SvgElement,
-  SvgEllipseElement,
-  SvgPathElement,
+  type SvgCircleElement,
+  type SvgElement,
+  type SvgEllipseElement,
+  type SvgPathElement,
   isCircle,
   isEllipse,
   isPath,
@@ -36,19 +36,19 @@ export const computeMaxDimensionsForAspectRatio = (inputs: MaxDimensionsForAspec
     const screenScale = width / targetDimensionsForScale.width;
     const snapshotScale = (targetDimensionsForScale.width / width) * SVG_SNAPSHOT_SCALE_FACTOR;
     return { width, height: computedHeightBasedOnWidth, snapshotScale, screenScale };
-  } else {
-    // take full height and adjust width
-    const screenScale = height / targetDimensionsForScale.height;
-    const snapshotScale = (targetDimensionsForScale.height / height) * SVG_SNAPSHOT_SCALE_FACTOR;
-    return { width: computedWidthBasedOnHeight, height, snapshotScale, screenScale };
   }
+
+  // take full height and adjust width
+  const screenScale = height / targetDimensionsForScale.height;
+  const snapshotScale = (targetDimensionsForScale.height / height) * SVG_SNAPSHOT_SCALE_FACTOR;
+  return { width: computedWidthBasedOnHeight, height, snapshotScale, screenScale };
 };
 
 export const computeDistance = ({ p1 = ZERO_COORDINATES, p2 = ZERO_COORDINATES }) => {
   const dx = p2.x - p1.x;
   const dy = p2.y - p1.y;
 
-  return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+  return Math.sqrt(dx ** 2 + dy ** 2);
 };
 
 export const isSimpleTapPath = (d = "") => {
@@ -72,9 +72,9 @@ export const isSimpleTapPath = (d = "") => {
 export const createElementFromPathGesture = ({ d = "", strokeColor = "black", strokeWidth = 1 }) => {
   if (isSimpleTapPath(d)) {
     return buildCircleElementFromSingleTapPath({ d, strokeColor, strokeWidth });
-  } else {
-    return buildPathElement({ d, strokeColor, strokeWidth });
   }
+
+  return buildPathElement({ d, strokeColor, strokeWidth });
 };
 
 export const computeBoundingBox = (element: SvgElement): BoundingBox => {

@@ -1,11 +1,11 @@
-import { ColorValue, StyleSheet, View } from "react-native";
+import { type ColorValue, StyleSheet, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, { SharedValue, runOnJS, useAnimatedProps } from "react-native-reanimated";
+import Animated, { type SharedValue, runOnJS, useAnimatedProps } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
 import { SINGLE_TAP_MAX_DISTANCE } from "../constants";
 
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
