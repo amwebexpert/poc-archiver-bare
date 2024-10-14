@@ -2,6 +2,9 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/amwebexpert/poc-archiver-bare) ![GitHub Release Date](https://img.shields.io/github/release-date/amwebexpert/poc-archiver-bare) ![GitHub last commit](https://img.shields.io/github/last-commit/amwebexpert/poc-archiver-bare) ![GitHub](https://img.shields.io/github/license/amwebexpert/poc-archiver-bare)
 
+Note:
+- See also [poc-archiver](https://github.com/amwebexpert/poc-archiver) for other POCs packaged as another app!
+
 ## This app includes the following proof of concept
 
 - `@react-native-clipboard/clipboard`
